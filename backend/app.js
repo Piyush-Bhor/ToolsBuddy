@@ -7,7 +7,7 @@ const session = require('express-session');
 const request = require('request');
 
 // routers
-
+const indexRoutes = require('./routes/index');
 
 // models
 
@@ -31,7 +31,7 @@ async function main() {
 }
 
 // routes
-
+app.use('/', indexRoutes); 
 
 
 // server
