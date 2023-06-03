@@ -5,6 +5,8 @@ require("dotenv").config();
 const mongoose = require('mongoose');
 const session = require('express-session');
 const request = require('request');
+const { auth, requiresAuth } = require('express-openid-connect');
+
 
 // routers
 const indexRoutes = require('./routes/index');
@@ -29,6 +31,25 @@ async function main() {
   await mongoose.connect(url);
   console.log('Connected to MongoDB');
 }
+
+// oauth
+const config = {
+  issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
+  baseURL: process.env.BASE_URL,
+  clientID: process.env.AUTH0_CLIENT_ID,
+  secret: process.env.SECRET,
+  authRequired: false,
+  auth0Logout: true,
+};
+
+app.use(auth(config));
+
+// session
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+})); 
 
 // routes
 app.use('/', indexRoutes); 
