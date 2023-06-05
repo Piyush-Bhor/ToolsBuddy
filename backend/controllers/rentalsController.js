@@ -51,10 +51,27 @@ const getRentalsByTags = (req, res) => {
     return res.status(500).send('Error Retrieving Listings');
     });
 };
-  
 
+// get Rentals by Item Name
+const getRentalsByItemName = (req, res) => {
+    const itemName = req.params.itemName;
+    Rental.findOne({ itemName: itemName })
+      .then((result) => {
+        if (result) {
+          return res.json(result);
+        } else {
+          return res.status(404).send('Listing Not Found');
+        }
+      })
+      .catch((err) => {
+        console.log('Error Retrieving Listing:', err);
+        return res.status(500).send('Error Retrieving Listing');
+      });
+  };
+  
 module.exports = {
     getRentalByID,
     getAllRentals,
     getRentalsByTags,
+    getRentalsByItemName,
 };
