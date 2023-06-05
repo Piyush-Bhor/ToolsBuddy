@@ -28,14 +28,33 @@ const getAllRentals = (req, res) => {
         } else {
           return res.status(404).send('Listing Not Found');
         }
-      })
-      .catch((err) => {
-        console.log('Error retrieving listings:', err);
-        return res.status(500).send('Error Retrieving Listings');
-      });
-  };
+    })
+    .catch((err) => {
+    console.log('Error retrieving listings:', err);
+    return res.status(500).send('Error Retrieving Listings');
+    });
+};
+
+// get Rentals by Tags
+const getRentalsByTags = (req, res) => {
+    const tags = req.params.Tags.split(',');
+    Rental.find({ itemTags: { $in: tags } })
+      .then((results) => {
+        if (results.length > 0) {
+          return res.json(results);
+        } else {
+          return res.status(404).send('Listings Not Found');
+        }
+    })
+    .catch((err) => {
+    console.log('Error Retrieving Listings:', err);
+    return res.status(500).send('Error Retrieving Listings');
+    });
+};
+  
 
 module.exports = {
     getRentalByID,
     getAllRentals,
+    getRentalsByTags,
 };
