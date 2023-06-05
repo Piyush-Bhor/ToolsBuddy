@@ -10,9 +10,9 @@ const { auth, requiresAuth } = require('express-openid-connect');
 
 // routers
 const indexRoutes = require('./routes/index');
+const rentalRoutes = require('./routes/rental')
 
 // models
-
 
 app = express();
 
@@ -53,6 +53,7 @@ app.use(session({
 
 // routes
 app.use('/', indexRoutes); 
+app.use('/rentals', rentalRoutes);
 
 
 // server
