@@ -1,0 +1,51 @@
+.home{
+    display:flex;
+    justify-content: center;
+    width:100vw;
+}
+
+img{
+    width:60%;
+    float:right;
+}
+
+form{
+    display:flex;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 25px;
+    width:80%;
+    z-index:9;
+}
+
+form input[type=text]{
+    padding:15px;
+    border-radius: 25px 0 0 25px;
+    border:none;
+    width:100%;
+}
+
+form button{
+    border-radius: 0 25px 25px 0;
+    border:none;
+    background-color:#33d6ad
+}
+
+.hero{
+    position:relative;
+}
+
+.searchbar{
+    position:absolute;
+    left:15%;
+    top:25%;
+    z-index:10;
+}
+
+.searchbar p{
+    width:60%;
+    font-weight:bold;
+}
+
+.hero-text{
+    font-size:60px;
+}

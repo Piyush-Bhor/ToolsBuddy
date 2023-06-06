@@ -8,6 +8,7 @@ ul {
     list-style-type: none;
     display: flex;
     align-items: center;
+    
 }
 
 ul li{
@@ -16,8 +17,27 @@ ul li{
 
 li a{
     text-decoration: none;
+    color:black;
+    transition:0.3s;
+}
+
+li a:hover{
+    color:#33d6ad;
 }
 
 .login {
     float:right;
+}
+
+#logo{
+    margin-left:-20px;
+    width:150px;
+}
+
+button{
+    background-color: #33d68d;
+    border:none;
+    padding:10px 15px 10px 15px;
+    font-size:16px;
+    border-radius:25px;
 }
