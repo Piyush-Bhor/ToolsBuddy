@@ -1,0 +1,23 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+ul li{
+    margin-right: 20px;
+}
+
+li a{
+    text-decoration: none;
+}
+
+.login {
+    float:right;
+}
