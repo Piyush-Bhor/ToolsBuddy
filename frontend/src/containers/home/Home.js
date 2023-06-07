@@ -24,6 +24,14 @@ function Home() {
         <p className="hero-text">Borrow and lend tools.</p>
         <form>
           <input type="text" placeholder="Search..." />
+          <select name="categories" id="categories">
+            <option value="" disabled selected>Categories</option>
+            <option value="hardware">Hardware</option>
+            <option value="cooking">Cooking</option>
+            <option value="gardening">Gardening</option>
+            <option value="cleaning">Cleaning</option>
+            <option value="arts">Arts & Crafts</option>
+          </select>
           <button type="submit"><FaSearch /></button>
         </form>
       </section>
@@ -35,6 +43,7 @@ function Home() {
         <h2>New Listings</h2>
         <div className="grid-container">
           
+          {/* Dummy listings */}
           <article class="single-listing">
             <img alt="guy holding wrench" src={Wrench}></img>
             <div className="details">

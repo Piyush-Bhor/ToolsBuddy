@@ -1,6 +1,4 @@
 /*https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557*/
-/*https://coolors.co/85ffc7-297373-ff8552-e6e6e6-39393a*/
-
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;900&display=swap');
 
@@ -16,18 +14,32 @@ body{
   background-color: #edf2f4;
 }
 
+h1{
+  color:#1D3557;
+  font-size: 40px;
+}
+
 button{
   color:white;
   transition:0.3s;
   cursor:pointer;
 }
 
-/*ignore this, I'm just storing colours here*/
-.dummy{
-  color:#33d6ad;
-  color:#f58a07;
-  color:#6b6570;
-  color:#39393a;
-  color:#f55607;
+.grid-container{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:30px;
+  margin-bottom:50px;
 }
 
+@media only screen and (max-width: 1200px) {
+  .grid-container{
+      grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .grid-container{
+      display:block;
+  }
+}
