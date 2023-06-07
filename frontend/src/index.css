@@ -1,22 +1,33 @@
-/*https://coolors.co/palette/ff9f1c-ffbf69-ffffff-cbf3f0-2ec4b6*/
+/*https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557*/
 /*https://coolors.co/85ffc7-297373-ff8552-e6e6e6-39393a*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;900&display=swap');
+
 *{
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
+}
+
+/*hide horizontal overflow when using width 100vw*/
+body{
+  overflow-x: hidden;
+  height: 100vh;
+  width:100vw;
+  background-color: #edf2f4;
+}
+
+button{
+  color:white;
+  transition:0.3s;
+  cursor:pointer;
 }
 
 /*ignore this, I'm just storing colours here*/
 .dummy{
-  color:#FF9F1C;
-  color:#FFBF69;
-  color:white;
-  color:#CBF3F0;
-  color:#2EC4B6;
-
-  color:#85ffc7;
-  color:#297373;
-  color:#ff8552;
-  color:#e6e6e6;
+  color:#33d6ad;
+  color:#f58a07;
+  color:#6b6570;
   color:#39393a;
+  color:#f55607;
 }
 

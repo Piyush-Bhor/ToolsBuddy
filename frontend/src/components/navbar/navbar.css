@@ -19,10 +19,11 @@ li a{
     text-decoration: none;
     color:black;
     transition:0.3s;
+    
 }
 
 li a:hover{
-    color:#33d6ad;
+    color:#E63946;
 }
 
 .login {
@@ -35,9 +36,14 @@ li a:hover{
 }
 
 button{
-    background-color: #33d68d;
+    background-color: #E63946;
     border:none;
     padding:10px 15px 10px 15px;
     font-size:16px;
     border-radius:25px;
+}
+
+button:hover{
+    background-color: #A8DADC;
+    color:#1D3557;
 }

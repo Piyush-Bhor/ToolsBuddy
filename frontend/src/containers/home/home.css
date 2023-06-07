@@ -1,12 +1,13 @@
 .home{
     display:flex;
     justify-content: center;
-    width:100vw;
+    flex-direction: column;
+    gap:80px;
 }
 
 img{
-    width:60%;
-    float:right;
+    width:55%;
+    
 }
 
 form{
@@ -27,11 +28,17 @@ form input[type=text]{
 form button{
     border-radius: 0 25px 25px 0;
     border:none;
-    background-color:#33d6ad
+    background-color:#e63946;
+}
+
+form button:hover{
+    background-color: #A8DADC;
+    color:#1D3557;
 }
 
 .hero{
     position:relative;
+    text-align: right;
 }
 
 .searchbar{
@@ -48,4 +55,47 @@ form button{
 
 .hero-text{
     font-size:60px;
+    font-weight:900;
+    color:#1D3557;
+}
+
+.listings{
+    text-align: center;
+    width:75%;
+    margin:auto;
+}
+
+.grid-container{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:60px;
+    margin-bottom:50px;
+}
+
+.single-listing{
+    width:100%;
+    margin:auto;
+    border-radius:25px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+    text-align: center;
+}
+
+.single-listing img{
+    border-radius:25px 25px 0 0;
+    width:100%;
+}
+
+.details{
+    padding:1rem;
+}
+
+.listing-name{
+    font-weight: bold;
+    color:#e63946;
+    font-size:18px;
+}
+
+.description{
+    color:#1D3557;
 }
