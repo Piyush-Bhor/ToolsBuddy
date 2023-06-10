@@ -7,11 +7,15 @@ import { FaSearch } from "react-icons/fa";
 
 function Home() {
   /*test backend connection
+  //hold data here
   const [message, setMessage] = useState("");
+
+  //access api endpoint
+  url="http://localhost:8080/";
 
   //when a component mounts (ie when it is inserted into the dom), call the api
   useEffect(() => {
-    fetch("http://localhost:8080/")
+    fetch(url)
       .then((res) => res.json())
       .then((data) => setMessage(data));
 
