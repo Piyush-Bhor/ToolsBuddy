@@ -5,9 +5,21 @@
     gap:80px;
 }
 
-img{
+.heroResize{
+    position: relative;
+}
+
+.hero img{
     width:55%;
-    
+    margin-bottom:-50px;
+}
+
+.heroResize img{
+    width:100%;
+    display:none;
+    margin-bottom:-50px;
+    position: relative;
+    margin-top:-16px;
 }
 
 form{
@@ -51,7 +63,6 @@ form button:hover{
 }
 
 .hero{
-    position:relative;
     text-align: right;
 }
 
@@ -65,7 +76,7 @@ form button:hover{
 .searchbar{
     position:absolute;
     left:15%;
-    top:25%;
+    top:5vw;
     z-index:10;
 }
 
@@ -111,8 +122,54 @@ form button:hover{
     color:#1D3557;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1280px) {
+    .grid-container{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-text{
+        font-size: 48px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .hero img{
+        display:none;
+    }
+
+    .heroResize img{
+        display:block;
+    }
+
+    .hero-text{
+        color:white;
+    }
+    .searchbar{
+        top:15vw;
+    }
+}
+
+@media only screen and (max-width: 768px) {
     .single-listing{
         margin-bottom:30px;
     }
-  }
+
+    .hero-text{
+        font-size:32px;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    .searchbar{
+        width:110%;
+        left:8%;
+        top:5vw;
+    }
+    .hero-text{
+        font-size:24px;
+    }
+
+    .heroResize{
+        margin-bottom:-80px;
+    }
+}

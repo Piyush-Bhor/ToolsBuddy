@@ -1,37 +1,64 @@
-.navbar{
+.large-navbar{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height:80px;
 }
 
 ul {
     list-style-type: none;
     display: flex;
     align-items: center;
-    
+    width:100%;
 }
 
 ul li{
     margin-right: 20px;
 }
 
-li a{
+ul li a{
     text-decoration: none;
     color:black;
     transition:0.3s;
+}
+
+.large-navbar ul li a:hover{
+    color:#E63946;
+}
+
+.resize-navbar ul{
+    flex-direction: column;
     
 }
 
-li a:hover{
-    color:#E63946;
+.resize-navbar ul li{
+    width:100vw;
+    margin-left:-60px;
+    text-align: center;
+    padding:0.5rem;
+    transition: 0.3s;
+}
+
+.resize-navbar ul li a{
+    width:100vw;
+    
+}
+
+.resize-navbar ul li:hover{
+    background-color: rgb(214, 214, 214)
+}
+
+.pages{
+    float:left;
 }
 
 .login {
     float:right;
+    justify-content: right;
 }
 
 #logo{
-    margin-left:-20px;
+    margin-left:20px;
     width:150px;
 }
 
@@ -46,4 +73,47 @@ button{
 button:hover{
     background-color: #A8DADC;
     color:#1D3557;
+}
+
+#menu{
+    font-size: 36px;
+    color:#1D3557;
+    transition: 0.3s;
+    padding:10px;
+}
+
+#menu:hover{
+    color:#E63946;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    #menu{
+        display:none;
+    }
+
+    .resize-navbar{
+        display:none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .large-navbar ul {
+      display: none;
+    }
+
+    #menu{
+        display:block;
+    }
+
+    .resize-navbar button{
+        background-color: transparent;
+        color:black;
+        padding:0;
+    }
+
+    .resize-navbar button:hover{
+        color:black;
+        background-color: transparent;
+    }
 }
