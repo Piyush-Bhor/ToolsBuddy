@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const request = require('request');
 const { auth, requiresAuth } = require('express-openid-connect');
+const cors = require('cors')
 
 
 // routers
@@ -21,6 +22,9 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({extended:false}));
+
+// enable cors
+app.use(cors());
 
 // database connection
 mongoose.set("strictQuery", false);

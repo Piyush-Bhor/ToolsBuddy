@@ -7,29 +7,38 @@ import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 
 function Home() {
-  /* //test backend connection
+  //test backend connection
   //hold data here
-  const [data, setData] = useState("");
+   const [data, setData] = useState([]);
 
   //access api endpoint
-  const url="http://localhost:8080/getAllRentals";
+  const url="http://localhost:8080/rentals/getAllRentals";
 
   //when a component mounts (ie when it is inserted into the dom), call the api
   useEffect(() => {
     const fetchData = async() =>{
       const response = await fetch(url);
       const newData = await response.json();
+      //const newData = response;
       setData(newData);
-  }
+    }
       
-  fetchData();
-
+    fetchData();
+    
   //empty array as second argument so this hook is only called once
-  }, []); */
+  }, []); 
+
+  useEffect(()=>{
+    console.log(data);
+    setData(data);
+  })
 
   return (
     <div className="home">
-      {/* <p>{data}</p> */}
+      {data &&
+        <p>{data}</p>
+      }
+       
       <section>
         <div className="heroResize">
           <div className="searchbar">

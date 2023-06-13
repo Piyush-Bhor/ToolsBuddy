@@ -19,7 +19,6 @@
     display:none;
     margin-bottom:-50px;
     position: relative;
-    margin-top:-16px;
 }
 
 form{
@@ -156,6 +155,10 @@ form button:hover{
 
     .hero-text{
         font-size:32px;
+    }
+
+    .heroResize{
+        margin-top:-16px;
     }
 }
 
