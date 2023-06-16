@@ -38,6 +38,9 @@ const getAllRentals = (req, res) => {
 // get Rentals by Tags
 const getRentalsByTags = (req, res) => {
     const tags = req.params.Tags.split(',');
+    if (tags.length === 0) {
+      return res.status(400).send('Invalid Tags');
+    }
     Rental.find({ itemTags: { $in: tags } })
       .then((results) => {
         if (results.length > 0) {
@@ -69,7 +72,7 @@ const getRentalsByItemName = (req, res) => {
       });
   };
 
-// Create a new Listing
+// Create a new Listing - Work in Progress
 const createListing = (req, res) => {
   const { username, itemName, itemDescription, itemTags, itemPrice, rentalPeriod } = req.body;
   const newListing = new Rental({
