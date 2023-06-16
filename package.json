@@ -17,5 +17,12 @@
     "mongoose": "^7.2.2",
     "path": "^0.12.7",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "chai-http": "^4.4.0",
+    "mocha": "^10.2.0",
+    "sinon": "^15.1.2",
+    "supertest": "^6.3.3"
   }
 }

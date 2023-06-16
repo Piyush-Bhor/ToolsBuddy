@@ -63,3 +63,5 @@ app.use('/rentals', rentalRoutes);
 // server
 app.listen(8080);
 console.log('Server running at http://localhost:8080');
+
+module.exports = app;

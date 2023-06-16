@@ -68,10 +68,32 @@ const getRentalsByItemName = (req, res) => {
         return res.status(500).send('Error Retrieving Listing');
       });
   };
+
+// Create a new Listing
+const createListing = (req, res) => {
+  const { username, itemName, itemDescription, itemTags, itemPrice, rentalPeriod } = req.body;
+  const newListing = new Rental({
+    username,
+    itemName,
+    itemDescription,
+    itemTags,
+    itemPrice,
+    rentalPeriod
+  });
+
+  newListing.save()
+    .then(() => res.status(201).json({ message: 'Item listing created successfully' }))
+    .catch((err) => {
+      console.log('Error Creating Item Listing:', err);
+      return res.status(500).send('Error Creating Item Listing');
+  });
+};
+
   
 module.exports = {
     getRentalByID,
     getAllRentals,
     getRentalsByTags,
     getRentalsByItemName,
+    createListing,
 };
