@@ -1,5 +1,5 @@
 const testConfig = {
-    dbURL: "mongodb+srv://pycsuser001:fvpAvnhBxQZItkQP@cluster0.oz461bl.mongodb.net/rental"
+    dbURL: process.env.CONNECTIONSTRING
     // Add other test configurations if needed
   };
   
