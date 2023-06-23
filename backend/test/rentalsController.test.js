@@ -24,16 +24,23 @@ describe('getRentalByID', () => {
   });
 
   it('should return a rental when a valid ID is provided', async () => {
-    const response = await request.get(`/rentals/getRentalByID/648bfa5addc05eb7f31269b4`).expect(200);
-
+    const validID = '647e6256cf9632b4ec39bbe1';
+    const correct_username = "john123";
+    const total_itemsRented = 1;
+    const total_itemsLended = 1;
+  
+    const response = await request.get(`/rentals/getRentalByID/647e6256cf9632b4ec39bbe1`).expect(200);
+    const rental = response.body;
+    
     expect(response.body).to.be.an('object');
-    expect(response.body.itemName).to.equal('Test Rental');
-    expect(response.body.itemDescription).to.equal('This is a test rental');
-    expect(response.body.itemPrice).to.equal(100.5);
+    expect(rental.username).to.equal(correct_username);
+    expect(rental.itemsRented).to.have.length(total_itemsRented);
+    expect(rental.itemsLend).to.have.length(total_itemsLended);
+
   });
 
   it('should return 404 error when an invalid ID is provided', async () => {
-    const invalidID = '647e6256cf9632b4ec39bbe4';
+    const invalidID = '647e6256cf9632b4ec39bbe8';
 
     const response = await request.get(`/rentals/getRentalByID/${invalidID}`).expect(404);
 
@@ -60,7 +67,7 @@ describe('getAllRentals', () => {
   it('should return all rentals', async () => {
     const response = await request.get('/rentals/getAllRentals').expect(200);
 
-    const total_users = 4; // Total number of enteries in the database
+    const total_users = 3; // Total number of enteries in the database
 
     expect(response.body).to.be.an('array');
     expect(response.body).to.have.length(total_users);

@@ -7,6 +7,9 @@ const getRentalByID = (req, res) => {
   Rental.findOne({ _id: objectId })
     .then((result) => {
       if (result) {
+        console.log(result.username);
+        console.log(result.itemsRented);
+        console.log(result.itemsLend);
         return res.json(result);
       } else {
         return res.status(404).send('Listing Not Found');
@@ -41,7 +44,7 @@ const getRentalsByTags = (req, res) => {
     if (tags.length === 0) {
       return res.status(400).send('Invalid Tags');
     }
-    Rental.find({ itemTags: { $in: tags } })
+    Rental.find({ 'itemsLend.itemTags': { $in: tags } })
       .then((results) => {
         if (results.length > 0) {
           return res.json(results);
@@ -72,8 +75,8 @@ const getRentalsByItemName = (req, res) => {
       });
   };
 
-// Create a new Listing - Work in Progress
-const createListing = (req, res) => {
+// Create a new Posting - Work in Progress
+const createPosting = (req, res) => {
   const { username, itemName, itemDescription, itemTags, itemPrice, rentalPeriod } = req.body;
   const newListing = new Rental({
     username,
@@ -98,12 +101,12 @@ module.exports = {
     getAllRentals,
     getRentalsByTags,
     getRentalsByItemName,
-    createListing,
+    createPosting,
     //getRentalsByName
     //getIncomingMessages
     //getOutgoingMessages
     //DeleteIncomingMessage
-    //createPosting
+    //createListing
     //viewPosting
     //deletePosting
     //updatePosting

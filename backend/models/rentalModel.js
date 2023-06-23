@@ -1,46 +1,39 @@
 const mongoose = require('mongoose');
 
 const rentalSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true
-  },
-  itemName: {
-    type: String,
-    required: true
-  },
-  itemDescription: {
-    type: String,
-    required: true
-  },
-  itemTags: {
-    type: [String],
-    required: true
-  },
-  itemPrice: {
-    type: Number,
-    required: true
-  },
-  rentalPeriod: {
-    from: {
-      type: Date,
-      required: true
-    },
-    to: {
-      type: Date,
-      required: true
+  
+  username: String,
+  itemsRented: [
+    {
+      itemName: String,
+      itemDescription: String,
+      itemTags: [String],
+      itemPrice: Number,
+      rentalPeriod: {
+        from: Date,
+        to: Date
+      },
+      itemImage: String
     }
-  },
+  ],
   messages: {
-    incoming: {
-      type: [String],
-      default: []
-    },
-    outgoing: {
-      type: [String],
-      default: []
+    incoming: [String],
+    outgoing: [String]
+  },
+  itemsLend: [
+    {
+      itemName: String,
+      itemDescription: String,
+      itemTags: [String],
+      itemPrice: Number,
+      rentalPeriod: {
+        from: Date,
+        to: Date
+      },
+      itemImage: String
     }
-  }
+  ]
+
 });
 
 module.exports = mongoose.model('Rental', rentalSchema);
