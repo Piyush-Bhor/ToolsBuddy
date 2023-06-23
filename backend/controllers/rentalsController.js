@@ -99,4 +99,14 @@ module.exports = {
     getRentalsByTags,
     getRentalsByItemName,
     createListing,
+    //getRentalsByName
+    //getIncomingMessages
+    //getOutgoingMessages
+    //DeleteIncomingMessage
+    //createPosting
+    //viewPosting
+    //deletePosting
+    //updatePosting
+    //getAllRentedItems
+    //getAllLendedItems
 };
