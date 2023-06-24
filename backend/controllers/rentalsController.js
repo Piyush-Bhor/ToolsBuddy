@@ -118,7 +118,6 @@ module.exports = {
     getRentalsByItemName,
     searchRentalsByTags,
     searchRentalsByItemName,
-    createPosting,
     //getIncomingMessages
     //getOutgoingMessages
     //DeleteIncomingMessage
@@ -126,6 +125,4 @@ module.exports = {
     //viewPosting
     //deletePosting
     //updatePosting
-    //getAllRentedItemsById
-    //getAllLendedItems
 };

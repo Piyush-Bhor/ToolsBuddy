@@ -67,7 +67,7 @@ describe('getAllRentals', () => {
   it('should return all rentals', async () => {
     const response = await request.get('/rentals/getAllRentals').expect(200);
 
-    const total_users = 3; // Total number of enteries in the database
+    const total_users = 4; // Total number of enteries in the database
 
     expect(response.body).to.be.an('array');
     expect(response.body).to.have.length(total_users);
