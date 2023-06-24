@@ -75,8 +75,8 @@ describe('getAllRentals', () => {
   });
 });
 
-// get Rentals by Tags
-describe('getRentalsByTags', () => {
+// search Rentals by Tags
+describe('searchRentalsByTags', () => {
   before(async () => {
     try {
       if (mongoose.connection.readyState === 0) {
@@ -95,7 +95,7 @@ describe('getRentalsByTags', () => {
     const tags = ['gardening', 'lawn', 'tools'];
     const results = 2;
   
-    const response = await request.get(`/rentals/getRentalsByTags/${tags.join(',')}`).expect(200);
+    const response = await request.get(`/rentals/searchRentalsByTags/${tags.join(',')}`).expect(200);
   
     expect(response.body).to.be.an('array');
     expect(response.body).to.have.length(results);
@@ -103,13 +103,13 @@ describe('getRentalsByTags', () => {
     it('should return 404 error when no rentals are found for the provided tags', async () => {
       const invalidTags = ['human centipede', 'lady gaga', 'God'];
     
-      const response = await request.get(`/rentals/getRentalsByTags/${invalidTags.join(',')}`).expect(404);
+      const response = await request.get(`/rentals/searchRentalsByTags/${invalidTags.join(',')}`).expect(404);
     
       expect(response.text).to.equal('Listings Not Found');
     });
     
     it('should return 400 error when tags parameter is missing', async () => {
-      const response = await request.get('/rentals/getRentalsByTags').expect(400);
+      const response = await request.get('/rentals/searchRentalsByTags').expect(400);
     
       expect(response.text).to.equal('Invalid tags');
     });
@@ -117,7 +117,7 @@ describe('getRentalsByTags', () => {
     it('should return 404 error when tags parameter is not provided as a comma-separated list', async () => {
       const invalidTags = 'tools gardening';
     
-      const response = await request.get(`/rentals/getRentalsByTags/${invalidTags}`).expect(404);
+      const response = await request.get(`/rentals/searchRentalsByTags/${invalidTags}`).expect(404);
       
     });
   });
