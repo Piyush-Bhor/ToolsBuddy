@@ -11,7 +11,8 @@ const cors = require('cors')
 
 // routers
 const indexRoutes = require('./routes/index');
-const rentalRoutes = require('./routes/rental')
+const rentalRoutes = require('./routes/rental');
+const profileRoutes = require('./routes/profile');
 
 // models
 
@@ -58,6 +59,7 @@ app.use(session({
 // routes
 app.use('/', indexRoutes); 
 app.use('/rentals', rentalRoutes);
+app.use('/profile', profileRoutes);
 
 
 // server

@@ -1,4 +1,3 @@
-const request = require('request');
 const Rental = require('../models/rentalModel');
 
 // Get Rental by ID
@@ -7,9 +6,6 @@ const getRentalByID = (req, res) => {
   Rental.findOne({ _id: objectId })
     .then((result) => {
       if (result) {
-        console.log(result.username);
-        console.log(result.itemsRented);
-        console.log(result.itemsLend);
         return res.json(result);
       } else {
         return res.status(404).send('Listing Not Found');
@@ -130,6 +126,6 @@ module.exports = {
     //viewPosting
     //deletePosting
     //updatePosting
-    //getAllRentedItems
+    //getAllRentedItemsById
     //getAllLendedItems
 };
