@@ -13,8 +13,7 @@ function Home() {
   const [errorMessage, setErrorMessage] = useState('');
   const [name, setName] = useState('');
   const [url, setUrl] = useState("http://localhost:8080/rentals/searchRentalsByTags/tools")
-  const [test, setTest] = useState([]);
-
+  
   const fetchData = async() =>{
     await fetch(url)
     .then(response => {
@@ -129,19 +128,18 @@ function Home() {
           {/* If data exists, map the available listings from the db */}
           {data && isLoaded && (data.map((listing, i)=>(
           
-          
-          <article className="single-listing" key={i}>
+          <Link to={`/rental/${listing.itemsLend[0]._id}`}>
+          <article  className="single-listing" key={i}>
             <img className="listing-img" alt="tool listing" 
             src={require("../../assets/" + listing.itemsLend[0].itemImage)}></img>
 
             <div className="details" >
-              <p className="listing-name">{
-              
-              listing.itemsLend[0].itemName}</p>
+              <p className="listing-name">{listing.itemsLend[0].itemName}</p>
               <p className="listing-price">Starting at ${listing.itemsLend[0].itemPrice}</p>
               <p className="description">{listing.itemsLend[0].itemDescription}</p>
             </div>
           </article>
+          </Link>
           )))}
           
           {/* Dummy listing

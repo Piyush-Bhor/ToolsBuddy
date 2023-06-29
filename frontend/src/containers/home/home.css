@@ -114,6 +114,10 @@ form button:hover{
     font-size: 24px;;
 }
 
+.listing-container a{
+    text-decoration: none;
+}
+
 .listing-heading{
     display:flex;
     align-items: center;
@@ -128,6 +132,11 @@ form button:hover{
 
 .listing-heading a:hover{
     color:#e63946;
+}
+
+.listing-price{
+    color:#1D3557;
+    font-style: italic;
 }
 
 .single-listing{

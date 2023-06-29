@@ -1,6 +1,7 @@
 import './search.css';
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
+import {Link} from "react-router-dom";
 
 function Search() {
   // **** backend connection****
@@ -88,6 +89,7 @@ function Search() {
           {/* If data exists, map the available listings from the db */}
           {data && isLoaded && (data.map((listing, i)=>(
 
+          <Link to={`/rental/${listing.itemsLend[0]._id}`}>
           <article className="single-listing" key={i}>
             <img className="listing-img" alt="tool listing" 
             src={require("../../assets/" + listing.itemsLend[0].itemImage)}></img>
@@ -98,6 +100,7 @@ function Search() {
               <p className="description">{listing.itemsLend[0].itemDescription}</p>
             </div>
           </article>
+          </Link>
           )))}
           </div>
       
