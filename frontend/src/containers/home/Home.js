@@ -1,50 +1,69 @@
 import './home.css';
 import FullHero from '../../assets/full-working.png';
 import Hero from '../../assets/working.png';
-import Hammer from '../../assets/hammer.jpg';
-import Wrench from '../../assets/wrench.jpg';
+import {Link} from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 
 function Home() {
-  //test backend connection
-  //hold data here
-   const [data, setData] = useState([]);
+  // **** backend connection****
+  // hold data here
+  const [data, setData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [errorMessage, setErrorMessage] = useState();
+  const [name, setName] = useState('');
+  const [url, setUrl] = useState("http://localhost:8080/rentals/searchRentalsByTags/tools")
 
-  //access api endpoint
-  const url="http://localhost:8080/rentals/getAllRentals";
 
-  //when a component mounts (ie when it is inserted into the dom), call the api
+  const fetchData = async() =>{
+    await fetch(url)
+    .then(response => {
+      if(!response.ok){
+      throw Error('Could not fetch the data');
+      }
+      setIsLoaded(false);
+      return response.json()
+    })
+    .then(data =>{
+      setData(data);
+      setIsLoaded(true);
+    })
+
+    .catch(error => {
+        setErrorMessage(error.message);
+    }) 
+  }
+  
+  // when a component mounts (ie when it is inserted into the dom), call the api
   useEffect(() => {
-    const fetchData = async() =>{
-      const response = await fetch(url);
-      const newData = await response.json();
-      //const newData = response;
-      setData(newData);
-    }
-      
     fetchData();
     
-  //empty array as second argument so this hook is only called once
-  }, []); 
+  // this hook is only called when the url changes
+  }, [url]); 
 
+  // make sure data is loaded on the page
   useEffect(()=>{
-    console.log(data);
     setData(data);
   })
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(name);
+  }
+
   return (
     <div className="home">
-      {data &&
-        <p>{data}</p>
-      }
-       
+      {/* Hero image */}
       <section>
         <div className="heroResize">
           <div className="searchbar">
             <p className="hero-text">Borrow and lend tools.</p>
-            <form>
-              <input type="text" placeholder="Search..." />
+
+            {/* A form for the search bar */}
+            <form onSubmit={handleSubmit}>
+              <input type="text" placeholder="Search..." value={name}
+              onChange={(e) => setName(e.target.value)} />
+
               <select name="categories" id="categories">
                 <option value="" disabled selected>Categories</option>
                 <option value="hardware">Hardware</option>
@@ -53,31 +72,68 @@ function Home() {
                 <option value="cleaning">Cleaning</option>
                 <option value="arts">Arts & Crafts</option>
               </select>
-              <button type="submit"><FaSearch /></button>
+              <button type="submit"><FaSearch alt="search icon" /></button>
             </form>
           </div>
+
+          {/* Expanded version of hero image for smaller screens */}
           <img alt="woodworking" src={FullHero}></img>
         </div>
+
         <div className="hero">
           <img alt="woodworking" src={Hero}></img>
         </div>
       </section>
+
+      <section className="categories">
+        <div className="listing-heading">
+          <h2>Shop by Category</h2>
+        </div>
+        <div className="category-container">
+          <article className="category-box">
+            <p>Hardware</p>
+          </article>
+          <article className="category-box">
+            <p>Cooking</p>
+          </article>
+          <article className="category-box">
+            <p>Gardening</p>
+          </article>
+          <article className="category-box">
+            <p>Cleaning</p>
+          </article>
+          <article className="category-box">
+            <p>Arts & Crafts</p>
+          </article>
+        </div>
+      </section>
+
       <section className="listings">
-        <h2>New Listings</h2>
-        <div className="grid-container">
-          
-          {/* Dummy listings */}
-          <article class="single-listing">
-            <img alt="guy holding wrench" src={Wrench}></img>
-            <div className="details">
-              <p className="listing-name">Wrench</p>
-              <p className="listing-price">$5 per hour</p>
-              <p className="description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-              </p>
+        <div className="listing-heading">
+          <h2>New Listings</h2>
+          <Link to="/search">View All</Link>
+        </div>
+        
+        <div className="listing-container">
+          {!isLoaded && !errorMessage && <p>Loading...</p>}
+          {errorMessage && <p> {errorMessage}</p>}
+
+          {/* If data exists, map the available listings from the db */}
+          {data && isLoaded && (data.map((listing, i)=>(
+
+          <article className="single-listing" key={i}>
+            <img className="listing-img" alt="tool listing" 
+            src={require("../../assets/" + listing.itemsLend[0].itemImage)}></img>
+
+            <div className="details" >
+              <p className="listing-name">{listing.itemsLend[0].itemName}</p>
+              <p className="listing-price">Starting at ${listing.itemsLend[0].itemPrice}</p>
+              <p className="description">{listing.itemsLend[0].itemDescription}</p>
             </div>
           </article>
+          )))}
+          
+          {/* Dummy listing
 
           <article class="single-listing">
             <img alt="guy holding wrench" src={Wrench}></img>
@@ -89,19 +145,7 @@ function Home() {
               tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
               </p>
             </div>
-          </article>
-          
-          <article class="single-listing">
-            <img alt="guy holding wrench" src={Wrench}></img>
-            <div className="details">
-              <p className="listing-name">Wrench</p>
-              <p className="listing-price">$5 per hour</p>
-              <p className="description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-              </p>
-            </div>
-          </article>
+          </article>*/}
 
         </div>
       </section>
