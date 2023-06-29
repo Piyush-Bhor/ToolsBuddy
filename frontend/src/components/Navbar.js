@@ -1,5 +1,5 @@
-import './navbar.css';
-import Logo from '../../assets/logo-placeholder.png'
+import './components.css';
+import Logo from '../assets/logo-placeholder.png'
 import { NavLink } from 'react-router-dom'
 import { BiMenu } from "react-icons/bi";
 import React, { useState} from "react";

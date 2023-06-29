@@ -1,4 +1,4 @@
-import './footer.css';
+import './components.css';
 import { AiOutlineGithub } from "react-icons/ai";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { AiFillLinkedin } from "react-icons/ai";

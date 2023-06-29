@@ -1,3 +1,4 @@
+/*navigation*/
 .large-navbar{
     display: flex;
     justify-content: space-between;
@@ -87,6 +88,22 @@ button:hover{
     cursor: pointer;
 }
 
+/* footer */
+.footer{
+    width:100%;
+    background-color: #457B9D;
+    text-align: center;
+    color:white;
+    padding:1rem;
+    
+}
+
+.socials{
+    font-size:50px;
+}
+
+
+/*media queries*/
 @media screen and (min-width: 768px) {
     #menu{
         display:none;

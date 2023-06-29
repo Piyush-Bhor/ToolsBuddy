@@ -8,33 +8,48 @@ function Search() {
   const [data, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
+  const [numPosts, setNumPosts] = useState(0);
   const [name, setName] = useState('');
-  const [url, setUrl] = useState("http://localhost:8080/rentals/searchRentalsByTags/tools")
+  const [url, setUrl] = useState();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${name}`);
+    
+    console.log(name);
+  }
 
   const fetchData = async() =>{
-    await fetch(url)
-    .then(response => {
-      if(!response.ok){
-      throw Error('Could not fetch the data');
-      }
+    if(url){
       setIsLoaded(false);
-      return response.json()
-    })
-    .then(data =>{
-      setData(data);
+      setNumPosts(0);
+      await fetch(url)
+      .then(response => {
+        if(!response.ok){
+          throw Error('Could not fetch the data');
+        }
+        setIsLoaded(false);
+        return response.json()
+      })
+      .then(data =>{
+        setData(data);
+        setIsLoaded(true);
+        setNumPosts(data.length);
+      })
+  
+      .catch(error => {
+          setErrorMessage(error.message);
+      }) 
+    }
+    else{
       setIsLoaded(true);
-    })
-
-    .catch(error => {
-        setErrorMessage(error.message);
-    }) 
+    }
+    
   }
   
   // when a component mounts (ie when it is inserted into the dom), call the api
   useEffect(() => {
     fetchData();
-    
   // this hook is only called when the url changes
   }, [url]); 
 
@@ -43,16 +58,16 @@ function Search() {
     setData(data);
   })
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(name);
-  }
+  
+
   return (
     <div className="search">
       <section>
         <h1>Search</h1>
-        <form>
-          <input type="text" placeholder="Search..." />
+        <form onSubmit={handleSubmit}>
+          <input type="text" placeholder="Search..." value={name}
+            onChange={(e) => setName(e.target.value)}/>
+
           <select name="categories" id="categories">
             <option value="" disabled selected>Categories</option>
             <option value="hardware">Hardware</option>
@@ -64,10 +79,11 @@ function Search() {
           <button type="submit"><FaSearch /></button>
         </form>
       </section>
-      <section className="results">
+      <section className="listings">
+        {url && <h3>{numPosts} results</h3>}
         <div className="listing-container">
           {!isLoaded && !errorMessage && <p>Loading...</p>}
-          {errorMessage && <p> {errorMessage}</p>}
+          {errorMessage && !data && <p> {errorMessage}</p>}
 
           {/* If data exists, map the available listings from the db */}
           {data && isLoaded && (data.map((listing, i)=>(

@@ -3,28 +3,31 @@ import FullHero from '../../assets/full-working.png';
 import Hero from '../../assets/working.png';
 import {Link} from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { FaSearch } from "react-icons/fa";
+import { FaHammer, FaConciergeBell, FaSearch, FaLeaf, FaBroom, FaPalette } from "react-icons/fa";
 
 function Home() {
   // **** backend connection****
   // hold data here
   const [data, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [errorMessage, setErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState('');
   const [name, setName] = useState('');
   const [url, setUrl] = useState("http://localhost:8080/rentals/searchRentalsByTags/tools")
-
+  const [test, setTest] = useState([]);
 
   const fetchData = async() =>{
     await fetch(url)
     .then(response => {
       if(!response.ok){
-      throw Error('Could not fetch the data');
+        throw Error('Could not fetch the data');
       }
       setIsLoaded(false);
       return response.json()
     })
     .then(data =>{
+      for(let i; i < data.length; i++){
+
+      }
       setData(data);
       setIsLoaded(true);
     })
@@ -91,18 +94,23 @@ function Home() {
         </div>
         <div className="category-container">
           <article className="category-box">
+            <FaHammer className="icon" alt="hammer icon" />
             <p>Hardware</p>
           </article>
           <article className="category-box">
+            <FaConciergeBell className="icon" alt="cooking icon" />
             <p>Cooking</p>
           </article>
           <article className="category-box">
+          <FaLeaf className="icon" alt="plant icon" />
             <p>Gardening</p>
           </article>
           <article className="category-box">
+          <FaBroom className="icon" alt="broom icon" />
             <p>Cleaning</p>
           </article>
           <article className="category-box">
+          <FaPalette className="icon" alt="palette icon" />
             <p>Arts & Crafts</p>
           </article>
         </div>
@@ -120,13 +128,16 @@ function Home() {
 
           {/* If data exists, map the available listings from the db */}
           {data && isLoaded && (data.map((listing, i)=>(
-
+          
+          
           <article className="single-listing" key={i}>
             <img className="listing-img" alt="tool listing" 
             src={require("../../assets/" + listing.itemsLend[0].itemImage)}></img>
 
             <div className="details" >
-              <p className="listing-name">{listing.itemsLend[0].itemName}</p>
+              <p className="listing-name">{
+              
+              listing.itemsLend[0].itemName}</p>
               <p className="listing-price">Starting at ${listing.itemsLend[0].itemPrice}</p>
               <p className="description">{listing.itemsLend[0].itemDescription}</p>
             </div>
