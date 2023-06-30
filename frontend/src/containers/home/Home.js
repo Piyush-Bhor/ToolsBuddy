@@ -1,7 +1,7 @@
 import './home.css';
 import FullHero from '../../assets/full-working.png';
 import Hero from '../../assets/working.png';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { FaHammer, FaConciergeBell, FaSearch, FaLeaf, FaBroom, FaPalette } from "react-icons/fa";
 
@@ -11,9 +11,10 @@ function Home() {
   const [data, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [name, setName] = useState('');
+  const [query, setQuery] = useState('');
   const [url, setUrl] = useState("http://localhost:8080/rentals/searchRentalsByTags/tools")
-  
+  const navigate = useNavigate();
+
   const fetchData = async() =>{
     await fetch(url)
     .then(response => {
@@ -46,11 +47,12 @@ function Home() {
   // make sure data is loaded on the page
   useEffect(()=>{
     setData(data);
-  })
+  },[])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(name);
+    console.log(query);
+    navigate('/search', {state:{query:query}});
   }
 
   return (
@@ -63,8 +65,9 @@ function Home() {
 
             {/* A form for the search bar */}
             <form onSubmit={handleSubmit}>
-              <input type="text" placeholder="Search..." value={name}
-              onChange={(e) => setName(e.target.value)} />
+            {/* <form> */}
+              <input type="text" placeholder="Search..." value={query}
+              onChange={(e) => setQuery(e.target.value)} />
 
               <select name="categories" id="categories">
                 <option value="" disabled selected>Categories</option>
@@ -74,7 +77,13 @@ function Home() {
                 <option value="cleaning">Cleaning</option>
                 <option value="arts">Arts & Crafts</option>
               </select>
-              <button type="submit"><FaSearch alt="search icon" /></button>
+              {/* <Link to={{
+                pathname:"/search",
+                state:{query}
+              }}> */}
+                <button><FaSearch alt="search icon" /></button>
+              {/* </Link> */}
+              
             </form>
           </div>
 

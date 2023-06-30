@@ -2,6 +2,7 @@ import './search.css';
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import {Link} from "react-router-dom";
+import {useLocation} from 'react-router-dom';
 
 function Search() {
   // **** backend connection****
@@ -10,14 +11,18 @@ function Search() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const [numPosts, setNumPosts] = useState(0);
-  const [name, setName] = useState('');
+  const [query, setQuery] = useState('');
   const [url, setUrl] = useState();
+  const location = useLocation();
+  
+
+  const handleQuery = (query) =>{
+    setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${query}`);
+  } 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${name}`);
-    
-    console.log(name);
+    handleQuery(query);
   }
 
   const fetchData = async() =>{
@@ -45,29 +50,30 @@ function Search() {
     else{
       setIsLoaded(true);
     }
-    
   }
   
   // when a component mounts (ie when it is inserted into the dom), call the api
   useEffect(() => {
-    fetchData();
-  // this hook is only called when the url changes
-  }, [url]); 
-
-  // make sure data is loaded on the page
-  useEffect(()=>{
+    if(location.state){
+      console.log(location.state.query);
+      handleQuery(location.state.query);
+    }
+    
     setData(data);
-  })
+  // this hook is only called when the url changes
+  }, []); 
 
-  
+  useEffect(()=>{
+    fetchData();
+  },[url])
 
   return (
     <div className="search">
       <section>
         <h1>Search</h1>
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Search..." value={name}
-            onChange={(e) => setName(e.target.value)}/>
+          <input type="text" placeholder="Search..." value={query}
+            onChange={(e) => setQuery(e.target.value)}/>
 
           <select name="categories" id="categories">
             <option value="" disabled selected>Categories</option>
@@ -80,6 +86,8 @@ function Search() {
           <button type="submit"><FaSearch /></button>
         </form>
       </section>
+
+      {/*maybe make this a component later*/}
       <section className="listings">
         {url && <h3>{numPosts} results</h3>}
         <div className="listing-container">
