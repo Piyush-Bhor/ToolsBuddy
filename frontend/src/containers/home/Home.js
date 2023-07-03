@@ -8,12 +8,13 @@ import { FaHammer, FaConciergeBell, FaSearch, FaLeaf, FaBroom, FaPalette } from 
 function Home() {
   // **** backend connection****
   // hold data here
-  const [data, setData] = useState([]);
+  const [listingData, setListingData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [query, setQuery] = useState('');
   const [url, setUrl] = useState("http://localhost:8080/rentals/searchRentalsByTags/tools")
   const navigate = useNavigate();
+  const [listings, setListings] = useState([]);
 
   const fetchData = async() =>{
     await fetch(url)
@@ -25,16 +26,24 @@ function Home() {
       return response.json()
     })
     .then(data =>{
-      for(let i; i < data.length; i++){
-
-      }
-      setData(data);
+      setListingData(data);
       setIsLoaded(true);
+      formatData();
+      
     })
 
     .catch(error => {
         setErrorMessage(error.message);
     }) 
+  }
+  const formatData = () =>{
+    let temp = [];
+    
+    for(let i = 0; i < listingData.length; i++){
+      temp = temp.concat(listingData[i].itemsLend, listingData[i].itemsRented);
+    }
+    setListings(temp);
+    
   }
   
   // when a component mounts (ie when it is inserted into the dom), call the api
@@ -46,8 +55,12 @@ function Home() {
 
   // make sure data is loaded on the page
   useEffect(()=>{
-    setData(data);
+    setListingData(listingData);
   },[])
+
+  useEffect(()=>{
+    formatData();
+  },[listings])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -131,25 +144,33 @@ function Home() {
         </div>
         
         <div className="listing-container">
+          
+          {/* Loading and error message */}
           {!isLoaded && !errorMessage && <p>Loading...</p>}
-          {errorMessage && <p> {errorMessage}</p>}
+          {errorMessage && !listingData && <p> {errorMessage}</p>}
 
           {/* If data exists, map the available listings from the db */}
-          {data && isLoaded && (data.map((listing, i)=>(
-          
-          <Link to={`/rental/${listing.itemsLend[0]._id}`}>
-          <article  className="single-listing" key={i}>
-            <img className="listing-img" alt="tool listing" 
-            src={require("../../assets/" + listing.itemsLend[0].itemImage)}></img>
+          {listingData && listings && isLoaded && (listings.map((listing, i)=>{
 
-            <div className="details" >
-              <p className="listing-name">{listing.itemsLend[0].itemName}</p>
-              <p className="listing-price">Starting at ${listing.itemsLend[0].itemPrice}</p>
-              <p className="description">{listing.itemsLend[0].itemDescription}</p>
+            return(
+            <div>
+              
+              <Link to={`/rental/${listing._id}`}>
+                
+              <article className="single-listing" key={i}>
+                <img className="listing-img" alt="tool listing"
+                src={require("../../assets/" + listing.itemImage)}></img>
+
+                <div className="details" >
+                  <p className="listing-name">{listing.itemName}</p>
+                  <p className="listing-price">Starting at ${listing.itemPrice.toFixed(2)}</p>
+                  <p className="description">{listing.itemDescription}</p>
+                </div>
+
+              </article>
+              </Link>
             </div>
-          </article>
-          </Link>
-          )))}
+          )}))}
           
           {/* Dummy listing
 

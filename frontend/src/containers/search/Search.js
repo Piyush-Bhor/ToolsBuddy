@@ -80,6 +80,10 @@ function Search() {
     // run when url changes
   },[url])
 
+  useEffect(()=>{
+    formatData();
+  },[listings])
+
   return (
     <div className="search">
       <section>
@@ -103,8 +107,7 @@ function Search() {
       {/*maybe make this a component later*/}
       <section className="listings">
 
-        {url && <h3>{listings.length} results</h3>}
-
+        {url && listings && <h3>{listings.length} results</h3>}
         <div className="listing-container">
           
           {/* Loading and error message */}
