@@ -7,17 +7,18 @@ import {useLocation} from 'react-router-dom';
 function Search() {
   // **** backend connection****
   // hold data here
-  const [data, setData] = useState([]);
+  const [listingData, setListingData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
-  const [numPosts, setNumPosts] = useState(0);
   const [query, setQuery] = useState('');
   const [url, setUrl] = useState();
   const location = useLocation();
+  const [listings, setListings] = useState([]);
   
 
   const handleQuery = (query) =>{
     setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${query}`);
+    console.log(query);
   } 
 
   const handleSubmit = (e) => {
@@ -28,7 +29,6 @@ function Search() {
   const fetchData = async() =>{
     if(url){
       setIsLoaded(false);
-      setNumPosts(0);
       await fetch(url)
       .then(response => {
         if(!response.ok){
@@ -38,33 +38,46 @@ function Search() {
         return response.json()
       })
       .then(data =>{
-        setData(data);
+        setListingData(data);
         setIsLoaded(true);
-        setNumPosts(data.length);
+        formatData();
       })
   
       .catch(error => {
-          setErrorMessage(error.message);
+        setErrorMessage(error.message);
       }) 
     }
     else{
       setIsLoaded(true);
     }
   }
-  
+  const formatData = () =>{
+    let temp = [];
+    
+    for(let i = 0; i < listingData.length; i++){
+      temp = temp.concat(temp, listingData[i].itemsLend, listingData[i].itemsRented);
+    }
+    setListings(temp);
+    
+  }
+
   // when a component mounts (ie when it is inserted into the dom), call the api
   useEffect(() => {
+    // if query is coming from home page
     if(location.state){
-      console.log(location.state.query);
       handleQuery(location.state.query);
     }
     
-    setData(data);
-  // this hook is only called when the url changes
+    setListingData(listingData);
+    
+    // only run once
   }, []); 
 
   useEffect(()=>{
     fetchData();
+    
+    setListings(listings);
+    // run when url changes
   },[url])
 
   return (
@@ -89,29 +102,38 @@ function Search() {
 
       {/*maybe make this a component later*/}
       <section className="listings">
-        {url && <h3>{numPosts} results</h3>}
+
+        {url && <h3>{listings.length} results</h3>}
+
         <div className="listing-container">
+          
+          {/* Loading and error message */}
           {!isLoaded && !errorMessage && <p>Loading...</p>}
-          {errorMessage && !data && <p> {errorMessage}</p>}
+          {errorMessage && !listingData && <p> {errorMessage}</p>}
 
           {/* If data exists, map the available listings from the db */}
-          {data && isLoaded && (data.map((listing, i)=>(
+          {listingData && listings && isLoaded && (listings.map((listing, i)=>{
 
-          <Link to={`/rental/${listing.itemsLend[0]._id}`}>
-          <article className="single-listing" key={i}>
-            <img className="listing-img" alt="tool listing" 
-            src={require("../../assets/" + listing.itemsLend[0].itemImage)}></img>
+            return(
+            <div>
+              
+              <Link to={`/rental/${listing._id}`}>
+                
+              <article className="single-listing" key={i}>
+                <img className="listing-img" alt="tool listing"
+                src={require("../../assets/" + listing.itemImage)}></img>
 
-            <div className="details" >
-              <p className="listing-name">{listing.itemsLend[0].itemName}</p>
-              <p className="listing-price">Starting at ${listing.itemsLend[0].itemPrice}</p>
-              <p className="description">{listing.itemsLend[0].itemDescription}</p>
+                <div className="details" >
+                  <p className="listing-name">{listing.itemName}</p>
+                  <p className="listing-price">Starting at ${listing.itemPrice.toFixed(2)}</p>
+                  <p className="description">{listing.itemDescription}</p>
+                </div>
+
+              </article>
+              </Link>
             </div>
-          </article>
-          </Link>
-          )))}
-          </div>
-      
+          )}))}
+        </div>
       </section>
     </div>
   );
