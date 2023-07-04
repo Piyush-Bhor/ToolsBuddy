@@ -1,4 +1,5 @@
 import './home.css';
+import useFetch from '../../hooks/useFetch';
 import FullHero from '../../assets/full-working.png';
 import Hero from '../../assets/working.png';
 import {Link, useNavigate} from "react-router-dom";
@@ -6,61 +7,16 @@ import React, { useState, useEffect } from "react";
 import { FaHammer, FaConciergeBell, FaSearch, FaLeaf, FaBroom, FaPalette } from "react-icons/fa";
 
 function Home() {
-  // **** backend connection****
-  // hold data here
-  const [listingData, setListingData] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
   const [query, setQuery] = useState('');
   const [url, setUrl] = useState("http://localhost:8080/rentals/searchRentalsByTags/tools")
   const navigate = useNavigate();
-  const [listings, setListings] = useState([]);
-
-  const fetchData = async() =>{
-    await fetch(url)
-    .then(response => {
-      if(!response.ok){
-        throw Error('Could not fetch the data');
-      }
-      setIsLoaded(false);
-      return response.json()
-    })
-    .then(data =>{
-      setListingData(data);
-      setIsLoaded(true);
-      formatData();
-      
-    })
-
-    .catch(error => {
-        setErrorMessage(error.message);
-    }) 
-  }
-  const formatData = () =>{
-    let temp = [];
-    
-    for(let i = 0; i < listingData.length; i++){
-      temp = temp.concat(listingData[i].itemsLend, listingData[i].itemsRented);
-    }
-    setListings(temp);
-    
-  }
-  
-  // when a component mounts (ie when it is inserted into the dom), call the api
-  useEffect(() => {
-    fetchData();
-    
-  // this hook is only called when the url changes
-  }, [url]); 
-
-  // make sure data is loaded on the page
-  useEffect(()=>{
-    setListingData(listingData);
-  },[])
+  const {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
 
   useEffect(()=>{
-    formatData();
+    console.log(listings)
+
   },[listings])
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -90,12 +46,9 @@ function Home() {
                 <option value="cleaning">Cleaning</option>
                 <option value="arts">Arts & Crafts</option>
               </select>
-              {/* <Link to={{
-                pathname:"/search",
-                state:{query}
-              }}> */}
+            
                 <button><FaSearch alt="search icon" /></button>
-              {/* </Link> */}
+              
               
             </form>
           </div>
@@ -150,7 +103,7 @@ function Home() {
           {errorMessage && !listingData && <p> {errorMessage}</p>}
 
           {/* If data exists, map the available listings from the db */}
-          {listingData && listings && isLoaded && (listings.map((listing, i)=>{
+          { listings && isLoaded && (listings.map((listing, i)=>{
 
             return(
             <div>

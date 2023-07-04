@@ -1,96 +1,41 @@
 import './search.css';
+import useFetch from '../../hooks/useFetch';
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import {Link} from "react-router-dom";
 import {useLocation} from 'react-router-dom';
 
 function Search() {
-  // **** backend connection****
-  // hold data here
-  const [listingData, setListingData] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [errorMessage, setErrorMessage] = useState();
-  const [query, setQuery] = useState('');
-  const [url, setUrl] = useState();
+  const [query, setQuery] = useState();
+  const [input, setInput] = useState();
   const location = useLocation();
-  const [listings, setListings] = useState([]);
   
+  const url = `http://localhost:8080/rentals/searchRentalsByItemName/${query}`;
 
-  const handleQuery = (query) =>{
-    setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${query}`);
-    console.log(query);
-  } 
+  // get data fetched using useFetch hook
+  let {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleQuery(query);
+    setQuery(input);
   }
 
-  const fetchData = async() =>{
-    if(url){
-      setIsLoaded(false);
-      await fetch(url)
-      .then(response => {
-        if(!response.ok){
-          throw Error('Could not fetch the data');
-        }
-        setIsLoaded(false);
-        return response.json()
-      })
-      .then(data =>{
-        setListingData(data);
-        setIsLoaded(true);
-        formatData();
-      })
-  
-      .catch(error => {
-        setErrorMessage(error.message);
-      }) 
-    }
-    else{
-      setIsLoaded(true);
-    }
-  }
-  const formatData = () =>{
-    let temp = [];
-    
-    for(let i = 0; i < listingData.length; i++){
-      temp = temp.concat(temp, listingData[i].itemsLend, listingData[i].itemsRented);
-    }
-    setListings(temp);
-    
-  }
-
-  // when a component mounts (ie when it is inserted into the dom), call the api
   useEffect(() => {
     // if query is coming from home page
     if(location.state){
-      handleQuery(location.state.query);
+      setQuery(location.state.query);
     }
-    
-    setListingData(listingData);
     
     // only run once
   }, []); 
-
-  useEffect(()=>{
-    fetchData();
-    
-    setListings(listings);
-    // run when url changes
-  },[url])
-
-  useEffect(()=>{
-    formatData();
-  },[listings])
 
   return (
     <div className="search">
       <section>
         <h1>Search</h1>
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Search..." value={query}
-            onChange={(e) => setQuery(e.target.value)}/>
+          <input type="text" placeholder="Search..." value={input}
+            onChange={(e) => setInput(e.target.value)}/>
 
           <select name="categories" id="categories">
             <option value="" disabled selected>Categories</option>
@@ -107,7 +52,7 @@ function Search() {
       {/*maybe make this a component later*/}
       <section className="listings">
 
-        {url && listings && <h3>{listings.length} results</h3>}
+        {listings && query && <h3>{listings.length} results</h3>}
         <div className="listing-container">
           
           {/* Loading and error message */}
@@ -115,7 +60,7 @@ function Search() {
           {errorMessage && !listingData && <p> {errorMessage}</p>}
 
           {/* If data exists, map the available listings from the db */}
-          {listingData && listings && isLoaded && (listings.map((listing, i)=>{
+          {listings && isLoaded && (listings.map((listing, i)=>{
 
             return(
             <div>
