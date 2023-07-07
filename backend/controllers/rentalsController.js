@@ -97,27 +97,6 @@ const searchRentalsByItemName = (req, res) => {
   return res.status(500).send('Error Retrieving Listings');
   });
 };
-
-// Create a new Posting - Work in Progress
-const createPosting = (req, res) => {
-  const { username, itemName, itemDescription, itemTags, itemPrice, rentalPeriod } = req.body;
-  const newListing = new Rental({
-    username,
-    itemName,
-    itemDescription,
-    itemTags,
-    itemPrice,
-    rentalPeriod
-  });
-
-  newListing.save()
-    .then(() => res.status(201).json({ message: 'Item listing created successfully' }))
-    .catch((err) => {
-      console.log('Error Creating Item Listing:', err);
-      return res.status(500).send('Error Creating Item Listing');
-  });
-};
-
   
 module.exports = {
     getRentalByID,
@@ -125,11 +104,4 @@ module.exports = {
     getRentalsByItemName,
     searchRentalsByTags,
     searchRentalsByItemName,
-    //getIncomingMessages
-    //getOutgoingMessages
-    //DeleteIncomingMessage
-    //createListing
-    //viewPosting
-    //deletePosting
-    //updatePosting
 };
