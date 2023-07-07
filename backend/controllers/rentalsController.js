@@ -4,7 +4,6 @@ const Rental = require('../models/rentalModel');
 const getRentalByID = (req, res) => {
   const objectId = req.params.rentalID;
   const itemNum = req.params.itemNum;
-
   Rental.findOne({ _id: objectId })
     .then((result) => {
       if (result) {
@@ -27,10 +26,15 @@ const getRentalByID = (req, res) => {
 // get Rentals by Item Name
 const getRentalsByItemName = (req, res) => {
   const itemName = req.params.itemName;
-  Rental.findOne({ itemName: itemName })
+  Rental.findOne({ 'itemsLend.itemName': itemName })
     .then((result) => {
       if (result) {
-        return res.json(result);
+        const item = result.itemsLend.find((item) => item.itemName === itemName);
+        if (item) {
+          return res.json(item);
+        } else {
+          return res.status(404).send('Item Not Found');
+        }
       } else {
         return res.status(404).send('Listing Not Found');
       }
