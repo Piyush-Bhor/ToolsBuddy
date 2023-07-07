@@ -36,18 +36,18 @@ const getRentalsByItemName = (req, res) => {
 
 // Get All Rentals 
 const getAllRentals = (req, res) => {
-    Rental.find()
-      .distinct('username')
-      .then((rentals) => {
-        if (rentals && rentals.length > 0) {
-          return res.json(rentals);
-        } else {
-          return res.status(404).send('Listing Not Found');
-        }
+  Rental.find()
+    .then((rentals) => {
+      const itemsLend = rentals.flatMap((rental) => rental.itemsLend);
+      if (itemsLend && itemsLend.length > 0) {
+        return res.json(itemsLend);
+      } else {
+        return res.status(404).send('Listing Not Found');
+      }
     })
     .catch((err) => {
-    console.log('Error retrieving listings:', err);
-    return res.status(500).send('Error Retrieving Listings');
+      console.log('Error retrieving listings:', err);
+      return res.status(500).send('Error Retrieving Listings');
     });
 };
 
