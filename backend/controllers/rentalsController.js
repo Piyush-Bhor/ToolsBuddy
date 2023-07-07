@@ -3,17 +3,24 @@ const Rental = require('../models/rentalModel');
 // Get Rental by ID
 const getRentalByID = (req, res) => {
   const objectId = req.params.rentalID;
+  const itemNum = req.params.itemNum;
+
   Rental.findOne({ _id: objectId })
     .then((result) => {
       if (result) {
-        return res.json(result);
+        const itemsLend = result.itemsLend;
+        if (itemsLend && itemsLend.length > itemNum) {
+          return res.json(itemsLend[itemNum]);
+        } else {
+          return res.status(404).send('Item Not Found');
+        }
       } else {
-        return res.status(404).send('Listing Not Found');
+        return res.status(404).send('Rental Not Found');
       }
     })
     .catch((err) => {
-      console.log('Error Retrieving Listing:', err);
-      return res.status(500).send('Error Retrieving Listing');
+      console.log('Error Retrieving Rental:', err);
+      return res.status(500).send('Error Retrieving Rental');
     });
 };
 
