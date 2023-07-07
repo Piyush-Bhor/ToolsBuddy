@@ -34,8 +34,25 @@ const getLendedItemsByID = (req, res) => {
       });
     };
 
+// Get User By ID
+const getUserDetailsByID = (req, res) => {
+  const objectId = req.params.userID;
+  Rental.findOne({ _id: objectId })
+    .then((result) => {
+      if (result) {
+        return res.json(result);
+      } else {
+        return res.status(404).send('User Not Found');
+      }
+    })
+    .catch((err) => {
+      console.log('Error Retrieving User:', err);
+      return res.status(500).send('Error Retrieving User');
+    });
+}; 
   
 module.exports = {
     getRentedItemsByID,
-    getLendedItemsByID
+    getLendedItemsByID,
+    getUserDetailsByID
 };
