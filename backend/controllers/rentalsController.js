@@ -64,43 +64,60 @@ const getAllRentals = (req, res) => {
 
 // search Rentals by Tags
 const searchRentalsByTags = (req, res) => {
-    const tags = req.params.Tags.split(',');
-    if (tags.length === 0) {
-      return res.status(400).send('Invalid Tags');
-    }
-    Rental.find({ 'itemsLend.itemTags': { $in: tags } })
-      .then((results) => {
-        if (results.length > 0) {
-          return res.json(results);
-        } else {
-          return res.status(404).send('Listings Not Found');
-        }
+  const tags = req.params.Tags.split(',');
+  if (tags.length === 0) {
+    return res.status(400).send('Invalid Tags');
+  }
+  Rental.find({ 'itemsLend.itemTags': { $in: tags } })
+    .then((results) => {
+      if (results.length > 0) {
+        const items = [];
+        results.forEach((rental) => {
+          rental.itemsLend.forEach((item) => {
+            if (item.itemTags.some((tag) => tags.includes(tag))) {
+              items.push(item);
+            }
+          });
+        });
+        return res.json(items);
+      } else {
+        return res.status(404).send('Listings Not Found');
+      }
     })
     .catch((err) => {
-    console.log('Error Retrieving Listings:', err);
-    return res.status(500).send('Error Retrieving Listings');
+      console.log('Error Retrieving Listings:', err);
+      return res.status(500).send('Error Retrieving Listings');
     });
 };
 
 // search Rentals by Name
 const searchRentalsByItemName = (req, res) => {
-  const search_query = req.params.itemName.split(',');
-  if (search_query.length === 0) {
+  const searchQuery = req.params.itemName.split(',');
+  if (searchQuery.length === 0) {
     return res.status(400).send('Listing Not Found');
   }
-  Rental.find({ 'itemsLend.itemName': { $in: search_query } })
+  Rental.find({ 'itemsLend.itemName': { $in: searchQuery } })
     .then((results) => {
       if (results.length > 0) {
-        return res.json(results);
+        const items = [];
+        results.forEach((rental) => {
+          rental.itemsLend.forEach((item) => {
+            if (searchQuery.includes(item.itemName)) {
+              items.push(item);
+            }
+          });
+        });
+        return res.json(items);
       } else {
         return res.status(404).send('Listings Not Found');
       }
-  })
-  .catch((err) => {
-  console.log('Error Retrieving Listings:', err);
-  return res.status(500).send('Error Retrieving Listings');
-  });
+    })
+    .catch((err) => {
+      console.log('Error Retrieving Listings:', err);
+      return res.status(500).send('Error Retrieving Listings');
+    });
 };
+
   
 module.exports = {
     getRentalByID,
