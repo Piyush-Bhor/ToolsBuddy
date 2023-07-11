@@ -14,7 +14,7 @@ const useFetch = (url) => {
         await fetch(url)
         
         .then(response => {
-            if(!response.ok && url!="http://localhost:8080/rentals/searchRentalsByItemName/undefined"){
+            if(!response.ok && url!=="http://localhost:8080/rentals/searchRentalsByItemName/undefined"){
                 throw Error('Could not fetch the data');
                 //setErrorMessage('Could not fetch the data')
             }
@@ -28,7 +28,7 @@ const useFetch = (url) => {
         })
 
         .catch(error => {
-            if(url!="http://localhost:8080/rentals/searchRentalsByItemName/undefined"){
+            if(url!=="http://localhost:8080/rentals/searchRentalsByItemName/undefined"){
                 setErrorMessage(error.message);
             }
 

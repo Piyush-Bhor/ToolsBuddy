@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import {Link} from "react-router-dom";
 import {useLocation} from 'react-router-dom';
+import Listings from '../../components/Listings';
 
 function Search() {
   const [query, setQuery] = useState();
@@ -60,27 +61,7 @@ function Search() {
           {errorMessage && !listingData && <p> {errorMessage}</p>}
 
           {/* If data exists, map the available listings from the db */}
-          {listings && isLoaded && (listings.map((listing, i)=>{
-
-            return(
-            <div>
-              
-              <Link to={`/rental/${listing._id}`}>
-                
-              <article className="single-listing" key={i}>
-                <img className="listing-img" alt="tool listing"
-                src={require("../../assets/" + listing.itemImage)}></img>
-
-                <div className="details" >
-                  <p className="listing-name">{listing.itemName}</p>
-                  <p className="listing-price">Starting at ${listing.itemPrice.toFixed(2)}</p>
-                  <p className="description">{listing.itemDescription}</p>
-                </div>
-
-              </article>
-              </Link>
-            </div>
-          )}))}
+          {listings && isLoaded && <Listings data={listings} />}
         </div>
       </section>
     </div>
