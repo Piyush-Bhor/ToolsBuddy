@@ -8,7 +8,7 @@ import { FaHammer, FaConciergeBell, FaSearch, FaLeaf, FaBroom, FaPalette } from 
 
 function Home() {
   const [query, setQuery] = useState('');
-  const [url, setUrl] = useState("http://localhost:8080/rentals/searchRentalsByTags/tools")
+  const [url, setUrl] = useState("http://localhost:8080/rentals/getAllRentals")
   const navigate = useNavigate();
   const {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
 
@@ -101,7 +101,7 @@ function Home() {
           {/* Loading and error message */}
           {!isLoaded && !errorMessage && <p>Loading...</p>}
           {errorMessage && !listingData && <p> {errorMessage}</p>}
-
+          
           {/* If data exists, map the available listings from the db */}
           { listings && isLoaded && (listings.map((listing, i)=>{
 

@@ -2,22 +2,9 @@ import { useState, useEffect } from 'react';
 
 // fetch data using given url
 const useFetch = (url) => {
-    const [listingData, setListingData] = useState([]);
     const [listings, setListings] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const [errorMessage, setErrorMessage] = useState();
-    
-
-    const formatData = () =>{
-        let temp = [];
-        
-        // put all listings in array for mapping
-        for(let i = 0; i < listingData.length; i++){
-            temp = temp.concat(listingData[i].itemsLend);
-                //, listingData[i].itemsRented);
-        }
-        setListings(temp);
-    }
 
     const fetchData = async() =>{
         setListings();
@@ -36,9 +23,8 @@ const useFetch = (url) => {
         })
     
         .then(data =>{
-            setListingData(data);
             setIsLoaded(true);
-            formatData();
+            setListings(data);
         })
 
         .catch(error => {
@@ -51,17 +37,13 @@ const useFetch = (url) => {
     }
     
     useEffect(()=>{
-        setListingData(listingData);
+        setListings(listings);
     },[])
-
-    useEffect(()=>{
-        formatData();
-    },[listingData])
 
     useEffect(()=>{
         fetchData();
     },[url])
 
-    return {listingData, listings, isLoaded, errorMessage};
+    return {listings, isLoaded, errorMessage};
 }
 export default useFetch;
