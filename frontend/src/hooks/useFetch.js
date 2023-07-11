@@ -23,7 +23,6 @@ const useFetch = (url) => {
         setListings();
         setIsLoaded(false);
         setErrorMessage('');
-        
 
         await fetch(url)
         

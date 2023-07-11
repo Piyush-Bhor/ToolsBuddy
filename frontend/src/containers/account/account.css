@@ -1,0 +1,63 @@
+.account{
+    width:90%;
+    margin:auto;
+}
+
+.account-container{
+    display:grid;
+    grid-template-columns: 25% 70%;
+    grid-gap:5%;
+    
+}
+
+.account-container aside{
+    display:flex;
+    flex-direction: column;
+    background-color: white;
+    
+}
+
+.account button{
+    color:black;
+    background-color: white;
+    border-radius: 0;
+
+}
+
+.details-container{
+    margin: auto;
+}
+
+.account-form{
+    background-color: white;
+    
+    padding:1rem;
+}
+
+.account-form section{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:1rem;
+}
+
+.account-form input{
+    width:50%
+}
+
+.account-form button{
+    width:250px;
+    background-color: #E63946;
+    color:white;
+}
+
+.profile{
+    display:flex;
+    gap:10px;
+    margin:0 auto;
+}
+
+.profile img{
+    aspect-ratio: 1;
+    width:30px;
+    align-self: center;
+}

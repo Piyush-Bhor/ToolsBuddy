@@ -2,59 +2,76 @@ import './rental.css';
 import React, { useState, useEffect } from "react";
 import {useParams} from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
-
+import Wrench from '../../assets/wrench.jpg';
 function Rental() {
     const {id} = useParams();
-    const [url, setUrl] = useState(`http://localhost:8080/rentals/getRentalByID/${id}`)
-    const {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
+    //const [url, setUrl] = useState(`http://localhost:8080/rentals/getRentalByID/${id}`)
+    //const {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
     
     return (
         
-        <div>
-            <p>hi</p>
-            <p>{id}</p>
-            <div className="listing-container">
-          
-          {/* Loading and error message */}
-          {!isLoaded && !errorMessage && <p>Loading...</p>}
-          {errorMessage && !listingData && <p> {errorMessage}</p>}
+        <div className="rental">
+            {/*Dummy listing*/}
 
-          {/* If data exists, map the available listings from the db */}
-          { listings && isLoaded && (listings.map((listing, i)=>{
-
-            return(
-            <div>
-              
-              
-              <article className="single-listing" key={i}>
-                <img className="listing-img" alt="tool listing"
-                src={require("../../assets/" + listing.itemImage)}></img>
-
-                <div className="details" >
-                  <p className="listing-name">{listing.itemName}</p>
-                  <p className="listing-price">Starting at ${listing.itemPrice.toFixed(2)}</p>
-                  <p className="description">{listing.itemDescription}</p>
-                </div>
-
-              </article>
+            {/*<p>{id}</p>*/}
+            <div className="rental-container">
+                <section>
+                    <h1>Wrench</h1>
+                    <p>$5 per hour</p>
+                    <img alt="guy holding wrench" src={Wrench}></img>
+                    <h2>Details</h2>
+                    <hr />
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                    </p>
+                </section>
+                <section>
+                <h2>Booking Dates</h2>
+                <hr />
+                <form className="rentalForm">
+                    <div className="booking">
+                        <h3>Pickup</h3>
+                        <div>
+                            <label for="pickupDate">Date</label>
+                            <input type="date" id="pickupDate" name="pickupDate" /> 
+                        </div>
+                        <div>
+                        <label for="pickupTime">Time</label>
+                        <select name="pickupTime" id="pickupTime">
+                            <option value="" disabled selected>Select a time</option>
+                            <option value="11">11:00 AM</option>
+                            <option value="12">12:00 PM</option>
+                            <option value="13">1:00 PM</option>
+                            <option value="14">2:00 PM</option>
+                            <option value="15">3:00 PM</option>
+                        </select>
+                        </div>
+                        
+                    </div>
+                    <div className="booking">
+                        <h3>Return</h3>
+                        <div>
+                            <label for="returnDate">Date</label>
+                            <input type="date" id="returnDate" name="returnDate" /> 
+                        </div>
+                        <div>
+                            <label for="returnTime">Time</label>
+                            <select name="returnTime" id="returnTime">
+                                <option value="" disabled selected>Select a time</option>
+                                <option value="11">11:00 AM</option>
+                                <option value="12">12:00 PM</option>
+                                <option value="13">1:00 PM</option>
+                                <option value="14">2:00 PM</option>
+                                <option value="15">3:00 PM</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    
+                </form>
+                </section>
             </div>
-          )}))}
-          
-          {/* Dummy listing
-
-          <article class="single-listing">
-            <img alt="guy holding wrench" src={Wrench}></img>
-            <div className="details">
-              <p className="listing-name">Wrench</p>
-              <p className="listing-price">$5 per hour</p>
-              <p className="description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-              </p>
-            </div>
-          </article>*/}
-
-        </div>
         </div>
     );
 }

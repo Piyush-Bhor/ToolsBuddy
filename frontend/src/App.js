@@ -1,6 +1,7 @@
 import './App.css';
 import Home from "./containers/home/Home.js"
 import Search from "./containers/search/Search.js"
+import Account from "./containers/account/Account.js"
 import Navbar from "./components/Navbar.js"
 import Footer from "./components/Footer.js"
 import Rental from "./containers/rental/Rental.js"
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Home />}/>
             <Route path="/search" element={<Search />}/>
             <Route path="/rental/:id" element={<Rental />}/>
+            <Route path="/account" element={<Account />}/>
           </Routes>
         </main>
         
