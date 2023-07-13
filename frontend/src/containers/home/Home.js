@@ -1,5 +1,6 @@
 import './home.css';
 import useFetch from '../../hooks/useFetch';
+import Listings from '../../components/Listings';
 import FullHero from '../../assets/full-working.png';
 import Hero from '../../assets/working.png';
 import {Link, useNavigate} from "react-router-dom";
@@ -8,16 +9,16 @@ import { FaHammer, FaConciergeBell, FaSearch, FaLeaf, FaBroom, FaPalette } from 
 
 function Home() {
   const [query, setQuery] = useState('');
-  const [url, setUrl] = useState("http://localhost:8080/rentals/searchRentalsByTags/tools")
   const navigate = useNavigate();
+  const url = "http://localhost:8080/rentals/getAllRentals";
   const {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
 
   useEffect(()=>{
     console.log(listings)
-
   },[listings])
   
 
+  // redirect to search
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(query);
@@ -48,8 +49,7 @@ function Home() {
               </select>
             
                 <button><FaSearch alt="search icon" /></button>
-              
-              
+            
             </form>
           </div>
 
@@ -102,28 +102,7 @@ function Home() {
           {!isLoaded && !errorMessage && <p>Loading...</p>}
           {errorMessage && !listingData && <p> {errorMessage}</p>}
 
-          {/* If data exists, map the available listings from the db */}
-          { listings && isLoaded && (listings.map((listing, i)=>{
-
-            return(
-            <div>
-              
-              <Link to={`/rental/${listing._id}`}>
-                
-              <article className="single-listing" key={i}>
-                <img className="listing-img" alt="tool listing"
-                src={require("../../assets/" + listing.itemImage)}></img>
-
-                <div className="details" >
-                  <p className="listing-name">{listing.itemName}</p>
-                  <p className="listing-price">Starting at ${listing.itemPrice.toFixed(2)}</p>
-                  <p className="description">{listing.itemDescription}</p>
-                </div>
-
-              </article>
-              </Link>
-            </div>
-          )}))}
+          {listings && isLoaded && <Listings data={listings} />}
           
           {/* Dummy listing
 

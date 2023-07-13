@@ -1,0 +1,30 @@
+.rental-container{
+    width:80%;
+    margin:auto;
+}
+
+.rental-container img{
+    width:100%;
+}
+
+.rental-container form{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom:40px;
+    grid-gap:20px;
+}
+
+.booking input[type=date], 
+.booking select{
+    
+}
+
+.booking label{
+    color:#e63946;
+}
+
+.booking{
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+}
