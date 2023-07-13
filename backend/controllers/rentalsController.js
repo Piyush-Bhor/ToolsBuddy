@@ -45,20 +45,31 @@ const getRentalsByItemName = (req, res) => {
     });
 };
 
-// Get All Rentals 
+// get All Rentals
 const getAllRentals = (req, res) => {
   Rental.find()
     .then((rentals) => {
-      const itemsLend = rentals.flatMap((rental) => rental.itemsLend);
+      const itemsLend = rentals.flatMap((rental) => {
+        return rental.itemsLend.map((itemLend, itemIndex) => {
+          const item = {
+            ...itemLend,
+            originalId: rental._id.toString()
+          };
+          const { $__parent, $__, _doc, $isNew, ...resItem } = item; // To remove unrequired fields
+          return resItem;
+        });
+      });
+
       if (itemsLend && itemsLend.length > 0) {
-        return res.json(itemsLend);
+        console.log(itemsLend[0]);
+        res.json(itemsLend);
       } else {
-        return res.status(404).send('Listing Not Found');
+        res.status(404).send('Listing Not Found');
       }
     })
     .catch((err) => {
       console.log('Error retrieving listings:', err);
-      return res.status(500).send('Error Retrieving Listings');
+      res.status(500).send('Error Retrieving Listings');
     });
 };
 
