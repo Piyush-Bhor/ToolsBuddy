@@ -33,6 +33,7 @@ function Search() {
   return (
     <div className="search">
       <section>
+        <div className="color-box"></div>
         <h1>Search</h1>
         <form onSubmit={handleSubmit}>
           <input type="text" placeholder="Search..." value={input}

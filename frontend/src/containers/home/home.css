@@ -80,7 +80,7 @@
     align-items: center;
     justify-content: center;
     padding-bottom:50px;
-    margin-top:-20px;
+    margin-top:-50px;
 }
 
 .category-container h2::after, .listing-heading h2::after {
@@ -88,7 +88,7 @@
     display: block;
     width: 32px;
     padding-top: 3px;
-    border-bottom: 2px solid #E63946;
+    border-bottom: 3px solid #E63946;
   }
 
 .category-grid {
@@ -172,6 +172,10 @@ hr{
   width: 80%;               
   background-color:rgb(222, 222, 222);
   height: 1px;
+}
+
+.home .listings{
+    margin-top:-50px;
 }
 
 @media only screen and (max-width: 1280px) {
