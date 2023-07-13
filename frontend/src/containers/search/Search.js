@@ -61,7 +61,7 @@ function Search() {
           {errorMessage && !listingData && <p> {errorMessage}</p>}
 
           {/* If data exists, map the available listings from the db */}
-          {listings && isLoaded && <Listings data={listings} />}
+          {listings && isLoaded && <Listings data={listings} num={10} />}
         </div>
       </section>
     </div>

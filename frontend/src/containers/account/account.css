@@ -4,60 +4,157 @@
 }
 
 .account-container{
-    display:grid;
-    grid-template-columns: 25% 70%;
-    grid-gap:5%;
-    
+    display:flex;
+    justify-content: center;
+    gap:25px;
+    align-items: start;
 }
 
-.account-container aside{
+.account-details{
+    width:75%;
+}
+
+.profile{
+    border-radius: 10px;
     display:flex;
     flex-direction: column;
+    align-items: start;
     background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding-top:30px;
+    padding-bottom:50px;
     
 }
 
-.account button{
+.profile a{ 
+    text-align: center;
+    align-self: center;
+    text-decoration: none;
+    color:#1D3557;
+    font-weight: bold;
+    transition: 0.3s;
+    margin-top:50px;
+}
+
+.profile a:hover{
+    color:#E63946
+}
+
+.logout{
+    margin-top:30px;
+    border-radius: 0;
+}
+
+.profile-header{
+    display:flex;
+    align-items: center;
+    text-align: left;
+    gap:10px;
+    margin:auto;
+}
+
+.profile-header p{
+    color:rgb(79, 79, 79);
+    font-size: 14px;
+    margin-bottom:-10px;
+}
+
+.profile-links{
+    display:flex;
+    flex-direction: column;
+    margin:auto;
+    align-items: start;
+    margin-top:20px;
+}
+
+.profile-links button:hover{
+    background-color: #A8DADC;
+}
+
+.profile-links button{
     color:black;
     background-color: white;
     border-radius: 0;
+    width:100%;
+    text-align: left;
+    padding-left:40px;
+    padding-right:40px;
+}
 
+.profile button{
+    margin: auto;
+}
+
+.profile img{
+    width:50px;
+    align-self: center;
+}
+
+.profile-icon{
+    width:30px;
+    margin-right:20px;
+    
+}
+
+.logout{
+    width:50%;
+}
+
+#logout-icon{
+    margin-bottom:-2px;
+    margin-right:10px;
+}
+
+/* Details page */
+
+.details{
+    width:70%;
 }
 
 .details-container{
-    margin: auto;
+    text-align: center;
 }
 
 .account-form{
     background-color: white;
-    
     padding:1rem;
+    border-radius:15px;
+    
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
 }
 
-.account-form section{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap:1rem;
+label{
+    margin-bottom:10px;
+    font-weight: 500;
 }
 
-.account-form input{
-    width:50%
+.inputs{
+    display:flex;
+    flex-direction: column;
+    width:80%;
+    margin-top:20px;
+}
+
+.account-form input{ 
+    margin-bottom:20px;
+    padding:10px;
+    border:none;
+    background-color:rgb(227, 227, 227)
 }
 
 .account-form button{
-    width:250px;
+    margin-top:40px;
+    width:150px;
     background-color: #E63946;
     color:white;
+    border-radius: 0;
+    margin-bottom:15px;
 }
 
-.profile{
-    display:flex;
-    gap:10px;
-    margin:0 auto;
-}
-
-.profile img{
-    aspect-ratio: 1;
-    width:30px;
-    align-self: center;
+.small-listings{
+    text-decoration: none;
 }

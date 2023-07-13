@@ -9,7 +9,7 @@
     display:flex;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 25px;
-    width:50%;
+    
     z-index:9;
 }
 
@@ -20,10 +20,16 @@
     width:100%;
 }
 
+.search .listings{
+    width:75%
+}
+
 .listings h3{
     font-weight: 400;
     text-align: left;
 }
+
+
 
 @media only screen and (max-width: 900px) {
     .search form{

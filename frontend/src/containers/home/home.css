@@ -1,6 +1,7 @@
 .home{
     display:flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     gap:80px;
 }
@@ -44,21 +45,7 @@
 }
 
 #categories:hover{
-    /*background-color: rgb(224, 224, 224);
-    color:black;*/
     cursor:pointer;
-}
-
-
-form button{
-    border-radius: 0 25px 25px 0;
-    border:none;
-    background-color:#e63946;
-}
-
-form button:hover{
-    background-color: #A8DADC;
-    color:#1D3557;
 }
 
 .hero{
@@ -84,96 +71,107 @@ form button:hover{
     font-weight:bold;
 }
 
-.categories{
-    width:75%;
-    margin:0 auto;
-    margin-bottom:-40px;
+.icon{
+    font-size: 24px;
+}
+
+.category{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom:50px;
+    margin-top:-20px;
+}
+
+.category-container h2::after, .listing-heading h2::after {
+    content: "";
+    display: block;
+    width: 32px;
+    padding-top: 3px;
+    border-bottom: 2px solid #E63946;
+  }
+
+.category-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr 1fr; 
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+.category-grid div{
+    position: relative;
+    /* text-align: center; */
+    color: white;
+    width:100%;
+    height:100%; 
+    display: inline-block; 
+    overflow: hidden;
+    
+}
+
+.category-grid div img{
+    display:block;
+    width:100%;
+    height:100%;
+    border-radius:5px;
+    transition: .3s ease-in-out;
+}
+
+.category-grid p{
+    font-weight: 700;
+    position: absolute;
+    top:10px;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    font-size: 18px;
 }
 
 .category-container{
+    width:80%;
+}
+
+.category-grid img:hover{
+    transform: scale(1.10);
+    cursor:pointer
+}
+    
+.category1 { grid-area: 1 / 1 / 2 / 2; }
+.category2 { grid-area: 2 / 1 / 3 / 2; }
+.category3 { grid-area: 1 / 2 / 3 / 3; }
+.category4 { grid-area: 1 / 3 / 2 / 4; }
+.category5 { grid-area: 2 / 3 / 3 / 4; }
+  
+.perks{
     display:grid;
-    grid-template-columns: 18.5% 18.5% 18.5% 18.5% 18.5%;
-    grid-gap:2%;
-    justify-content: center;
-    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    
     text-align: center;
-    color:#1D3557
+    margin-top:50px;
+    width:75%;
 }
 
-.category-box{
-    background-color: white;
-    aspect-ratio: 1;
-    border-radius: 10px;
-    display:flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
+.perks-icon{
+    font-size: 50px;
+    color:#457B9D;
 }
 
-.icon{
-    font-size: 24px;;
+.perks p{
+    font-weight: 100;
 }
 
-.listing-container a{
-    text-decoration: none;
+.perks h4{
+    font-size: 18px;
+    font-weight: 400;
 }
 
-.listing-heading{
-    display:flex;
-    align-items: center;
-}
-
-.listing-heading a{
-    margin-left:auto;
-    text-decoration: none;
-    color:black;
-    transition:0.3s;
-}
-
-.listing-heading a:hover{
-    color:#e63946;
-}
-
-.listing-price{
-    color:#1D3557;
-    font-style: italic;
-}
-
-.single-listing{
-    width:100%;
-    margin:auto;
-    border-radius:25px;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
-    text-align: center;
-    transition: all .2s ease-in-out; 
-}
-
-.single-listing:hover{
-    transform: scale(1.03); 
-    cursor: pointer;
-}
-
-.single-listing img{
-    border-radius:25px 25px 0 0;
-    width:100%;
-    max-height:300px;
-    object-fit: cover;
-    object-position:0 10%;
-}
-
-.details{
-    padding:1rem;
-}
-
-.listing-name{
-    font-weight: bold;
-    color:#e63946;
-    font-size:18px;
-}
-
-.description{
-    color:#1D3557;
+hr{
+    border: 0;
+  clear:both;
+  display:block;
+  width: 80%;               
+  background-color:rgb(222, 222, 222);
+  height: 1px;
 }
 
 @media only screen and (max-width: 1280px) {
@@ -216,10 +214,10 @@ form button:hover{
         margin-top:-16px;
     }
 
-    .category-container{
+    /* .category-container{
         grid-template-columns: 48.5% 48.5%;
         grid-gap:3%
-    }
+    } */
 }
 
 @media only screen and (max-width: 390px) {

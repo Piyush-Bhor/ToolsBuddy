@@ -5,15 +5,15 @@ import useFetch from '../../hooks/useFetch';
 import Wrench from '../../assets/wrench.jpg';
 function Rental() {
     const {id} = useParams();
-    //const [url, setUrl] = useState(`http://localhost:8080/rentals/getRentalByID/${id}`)
-    //const {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
-    
+    const [url, setUrl] = useState(`http://localhost:8080/rentals/getRentalByID/${id}`)
+    const {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
+    console.log(listings);
     return (
         
         <div className="rental">
             {/*Dummy listing*/}
 
-            {/*<p>{id}</p>*/}
+            <p>{id}</p>
             <div className="rental-container">
                 <section>
                     <h1>Wrench</h1>

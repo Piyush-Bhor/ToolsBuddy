@@ -18,13 +18,34 @@ ul {
 
 ul li{
     margin-right: 20px;
+    display: table-cell; 
+    position: relative; 
 }
 
 ul li a{
     text-decoration: none;
     color:black;
     transition:0.3s;
+    display: inline-block;
+    margin-bottom:10px;
 }
+
+  .link a:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #E63946;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  .link a:hover:after { 
+    width: 100%; 
+    left: 0; 
+  }
 
 .large-navbar ul li a:hover{
     color:#E63946;
@@ -105,15 +126,108 @@ button:hover{
     font-size:50px;
 }
 
+/*listings*/
 .listings-component{
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap:30px;
+    gap:15px;
     margin-bottom:50px;
+}
+
+.listings-component a{
+    text-decoration: none;
+}
+
+.small-listings{
+    grid-template-columns: 1fr 1fr;
+}
+
+.listings{
+    margin-top:20px;
+    width:100%;
+    margin:auto;
+}
+
+.listing-box{
+    width:75%;
+    margin:auto;
+}
+  
+.listing-details{
+    padding:1rem;
+}
+
+.listing-container a{
+    text-decoration: none;
+}
+
+.listing-heading{
+    display:flex;
+    align-items: center;
+}
+
+.listing-heading a{
+    margin-left:auto;
+    text-decoration: none;
+    color:black;
+    transition:0.3s;
+}
+
+.listing-heading a:hover{
+    color:#e63946;
+}
+
+.listing-price{
+    color:#1D3557;
+    font-style: italic;
+}
+
+.single-listing{
+    width:100%;
+    margin:auto;
+    border-radius:10px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+    text-align: center;
+    transition: all .2s ease-in-out; 
+    display: inline-block; 
+    overflow: hidden;
+}
+
+.single-listing:hover .listing-name{
+    cursor: pointer;
+    color:#1D3557;
+}
+
+.single-listing img{
+    border-radius:10px 10px 0 0;
+    width:100%;
+    max-height:300px;
+    object-fit: cover;
+    object-position:0 10%;
+}
+
+.listing-name{
+    font-weight: bold;
+    color:#e63946;
+    font-size:18px;
+    transition: all .2s ease-in-out; 
+}
+
+.description{
+    color:#1D3557;
+}
+
+  @media only screen and (max-width: 1280px) {
+    .listings-component{
+        grid-template-columns: 1fr 1fr;
+    }
   }
   
-  .single-listing{
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+  @media only screen and (max-width: 768px) {
+    .listings-component{
+        display:block;
+    }
   }
 
 /*media queries*/

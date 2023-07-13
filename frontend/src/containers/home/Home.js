@@ -4,20 +4,22 @@ import Listings from '../../components/Listings';
 import FullHero from '../../assets/full-working.png';
 import Hero from '../../assets/working.png';
 import {Link, useNavigate} from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import { FaHammer, FaConciergeBell, FaSearch, FaLeaf, FaBroom, FaPalette } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { FaSearch, FaMoneyBillWave, FaHandHoldingHeart} from "react-icons/fa";
+import { RiEarthFill } from "react-icons/ri";
+import Arts from '../../assets/arts.jpg';
+import Cleaning from '../../assets/cleaning.jpg';
+import Cooking from '../../assets/cooking.jpg';
+import Gardening from '../../assets/gardening.jpg';
+import Hardware from '../../assets/hardware.jpg';
+
 
 function Home() {
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
   const url = "http://localhost:8080/rentals/getAllRentals";
   const {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
-
-  useEffect(()=>{
-    console.log(listings)
-  },[listings])
   
-
   // redirect to search
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,6 +29,7 @@ function Home() {
 
   return (
     <div className="home">
+
       {/* Hero image */}
       <section>
         <div className="heroResize">
@@ -34,8 +37,7 @@ function Home() {
             <p className="hero-text">Borrow and lend tools.</p>
 
             {/* A form for the search bar */}
-            <form onSubmit={handleSubmit}>
-            {/* <form> */}
+            <form className="home-form" onSubmit={handleSubmit}>
               <input type="text" placeholder="Search..." value={query}
               onChange={(e) => setQuery(e.target.value)} />
 
@@ -48,7 +50,7 @@ function Home() {
                 <option value="arts">Arts & Crafts</option>
               </select>
             
-                <button><FaSearch alt="search icon" /></button>
+              <button><FaSearch alt="search icon" /></button>
             
             </form>
           </div>
@@ -61,65 +63,71 @@ function Home() {
           <img alt="woodworking" src={Hero}></img>
         </div>
       </section>
-
-      <section className="categories">
-        <div className="listing-heading">
-          <h2>Shop by Category</h2>
+      
+      <section className="perks">
+        <div>
+          <RiEarthFill className="perks-icon" alt="earth icon" />
+          <h4>Eco Friendly</h4>
+          <p>Reduce, reuse, recycle</p>
         </div>
+        <div>
+          <FaHandHoldingHeart className="perks-icon" alt="earth icon" />
+          <h4>Borrow Local</h4>
+          <p>Help your neighbours</p>
+        </div>
+        <div>
+          <FaMoneyBillWave className="perks-icon" alt="earth icon" />
+          <h4>Save Money</h4>
+          <p>Save those hard earned dollars</p>
+        </div>
+      </section>
+
+      <hr />
+
+      <section className="category">
         <div className="category-container">
-          <article className="category-box">
-            <FaHammer className="icon" alt="hammer icon" />
-            <p>Hardware</p>
-          </article>
-          <article className="category-box">
-            <FaConciergeBell className="icon" alt="cooking icon" />
-            <p>Cooking</p>
-          </article>
-          <article className="category-box">
-          <FaLeaf className="icon" alt="plant icon" />
-            <p>Gardening</p>
-          </article>
-          <article className="category-box">
-          <FaBroom className="icon" alt="broom icon" />
-            <p>Cleaning</p>
-          </article>
-          <article className="category-box">
-          <FaPalette className="icon" alt="palette icon" />
-            <p>Arts & Crafts</p>
-          </article>
-        </div>
-      </section>
-
-      <section className="listings">
-        <div className="listing-heading">
-          <h2>New Listings</h2>
-          <Link to="/search">View All</Link>
-        </div>
-        
-        <div className="listing-container">
-          
-          {/* Loading and error message */}
-          {!isLoaded && !errorMessage && <p>Loading...</p>}
-          {errorMessage && !listingData && <p> {errorMessage}</p>}
-
-          {listings && isLoaded && <Listings data={listings} />}
-          
-          {/* Dummy listing
-
-          <article class="single-listing">
-            <img alt="guy holding wrench" src={Wrench}></img>
-            <div className="details">
-              <p className="listing-name">Wrench</p>
-              <p className="listing-price">$5 per hour</p>
-              <p className="description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-              </p>
+          <h2>Categories</h2>
+          <div className="category-grid">
+            <div className="category1">
+              <img alt="arts and crafts" src={Arts}></img>
+              <p>Arts & Crafts</p>
             </div>
-          </article>*/}
-
+            <div className="category2">
+              <img alt="gardening" src={Gardening}></img>
+              <p>Gardening</p>
+            </div>
+            <div className="category3">
+              <img alt="hardware" src={Hardware}></img>
+              <p>Hardware</p>
+            </div>
+            <div className="category4">
+              <img alt="cleaning" src={Cleaning}></img>
+              <p>Cleaning</p>
+            </div>
+            <div className="category5">
+              <img alt="cooking" src={Cooking}></img>
+              <p>Cooking</p>
+            </div>
+          </div>
         </div>
       </section>
+      
+      <section className="listings">
+        <div className="listing-box">
+          <div className="listing-heading">
+            <h2>New Listings</h2>
+            <Link to="/search">View All</Link>
+          </div>
+          
+          <div className="listing-container">
+            {!isLoaded && !errorMessage && <p>Loading...</p>}
+            {errorMessage && !listingData && <p> {errorMessage}</p>}
+
+            {listings && isLoaded && <Listings data={listings} num={3} />}
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
