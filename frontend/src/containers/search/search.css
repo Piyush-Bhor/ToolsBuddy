@@ -49,7 +49,12 @@
     text-align: left;
 }
 
-
+.search .listings-component{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:15px;
+    margin-bottom:50px;
+}
 
 @media only screen and (max-width: 900px) {
     .search form{

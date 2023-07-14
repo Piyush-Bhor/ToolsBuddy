@@ -4,8 +4,8 @@ import AddListing from './AddListing.js';
 import ViewListing from './ViewListing.js';
 import Messages from './Messages.js';
 import avatar from '../../assets/avatar-icon.png';
-import React, { useState, useEffect } from "react";
-import {useParams} from 'react-router-dom';
+import React, { useState } from "react";
+/* import {useParams} from 'react-router-dom'; */
 import { useAuth0 } from "@auth0/auth0-react";
 import { FaEdit, FaClipboardList } from "react-icons/fa";
 import { AiFillFileAdd, AiFillMessage } from "react-icons/ai";
@@ -76,10 +76,10 @@ function Account() {
                     </a>
                 </aside>
                 <section className="account-details">
-                    {page == "details" && <Details/>}
-                    {page == "current" && <ViewListing />}
-                    {page == "new" && <AddListing />}
-                    {page == "messages" && <Messages />}
+                    {page === "details" && <Details/>}
+                    {page === "current" && <ViewListing />}
+                    {page === "new" && <AddListing />}
+                    {page === "messages" && <Messages />}
                 </section>
             </div>
         </div>

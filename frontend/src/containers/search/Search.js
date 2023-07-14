@@ -2,7 +2,6 @@ import './search.css';
 import useFetch from '../../hooks/useFetch';
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
-import {Link} from "react-router-dom";
 import {useLocation} from 'react-router-dom';
 import Listings from '../../components/Listings';
 

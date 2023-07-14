@@ -4,7 +4,7 @@ import Listings from '../../components/Listings';
 import FullHero from '../../assets/full-working.png';
 import Hero from '../../assets/working.png';
 import {Link, useNavigate} from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FaSearch, FaMoneyBillWave, FaHandHoldingHeart} from "react-icons/fa";
 import { RiEarthFill } from "react-icons/ri";
 import Arts from '../../assets/arts.jpg';
@@ -123,7 +123,7 @@ function Home() {
             {!isLoaded && !errorMessage && <p>Loading...</p>}
             {errorMessage && !listingData && <p> {errorMessage}</p>}
 
-            {listings && isLoaded && <Listings data={listings} num={3} />}
+            {listings && isLoaded && <Listings data={listings} num={4} />}
           </div>
         </div>
       </section>
