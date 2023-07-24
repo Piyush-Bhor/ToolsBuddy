@@ -61,7 +61,6 @@ const getAllRentals = (req, res) => {
       });
 
       if (itemsLend && itemsLend.length > 0) {
-        console.log(itemsLend[0]);
         res.json(itemsLend);
       } else {
         res.status(404).send('Listing Not Found');

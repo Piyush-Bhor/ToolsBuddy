@@ -17,7 +17,7 @@ const getRentedItemsByID = (req, res) => {
       });
     };
 
-// Get All Rented Items by ID
+// Get All Lended Items by ID
 const getLendedItemsByID = (req, res) => {
     const objectId = req.params.rentalID;
     Rental.find({ _id: objectId, itemsLend: { $exists: true, $not: { $size: 0 } } })
@@ -51,32 +51,43 @@ const getUserDetailsByID = (req, res) => {
     });
 }; 
 
-// Create a new Posting - Work in Progress
-const createPosting = (req, res) => {
-  const { username, itemName, itemDescription, itemTags, itemPrice, rentalPeriod } = req.body;
-  const newListing = new Rental({
-    username,
+// Create a new Posting
+const createListing = (req, res) => {
+  const { userID, itemName, itemDescription, itemTags, itemPrice, rentalPeriod, itemImage } = req.body;
+  console.log(userID)
+  const newRental = {
     itemName,
     itemDescription,
     itemTags,
     itemPrice,
-    rentalPeriod
-  });
+    rentalPeriod,
+    itemImage,
+  };
 
-  newListing.save()
+  Rental.findOne({ _id: userID })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      user.itemsLend.push(newRental);
+      return user.save();
+    })
     .then(() => res.status(201).json({ message: 'Item listing created successfully' }))
     .catch((err) => {
+      console.log(userID)
       console.log('Error Creating Item Listing:', err);
       return res.status(500).send('Error Creating Item Listing');
-  });
+    });
 };
+
  
 module.exports = {
     getRentedItemsByID,
     getLendedItemsByID,
     getUserDetailsByID,
+    createListing
     //createListing
-    //viewPosting
-    //deletePosting
-    //updatePosting
+    //viewListing
+    //deleteListing
+    //updateListing
 };

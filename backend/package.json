@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express-openid-connect": "^2.16.0"
+    "express-openid-connect": "^2.16.0",
+    "json": "^11.0.0"
   },
   "devDependencies": {
     "cors": "^2.8.5",
