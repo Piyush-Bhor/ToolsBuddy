@@ -6,17 +6,15 @@ const useFetch = (url) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [errorMessage, setErrorMessage] = useState();
 
-    const fetchData = async() =>{
+    const fetchData = () =>{
         setListings();
         setIsLoaded(false);
         setErrorMessage('');
 
-        await fetch(url)
-        
+        fetch(url)
         .then(response => {
             if(!response.ok && url!=="http://localhost:8080/rentals/searchRentalsByItemName/undefined"){
                 throw Error('Could not fetch the data');
-                //setErrorMessage('Could not fetch the data')
             }
             setIsLoaded(false);
             return response.json()

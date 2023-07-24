@@ -20,9 +20,20 @@ h1{
 }
 
 button{
+  background-color: #E63946;
+  border:none;
+  padding:10px 15px 10px 15px;
+  font-size:16px;
+  border-radius:25px;
   color:white;
   transition:0.3s;
   cursor:pointer;
+}
+
+button:hover{
+  background-color: #A8DADC;
+  color:#1D3557;
+  cursor: pointer;
 }
 
 .home-form button, .search button{

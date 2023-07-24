@@ -20,11 +20,11 @@
     margin-bottom:10px;
 }
 
-/*.rental-container img{
+.small{
     width:100%;
     aspect-ratio: 3/4;
     object-fit: cover; 
-}*/
+}
 
 .rental .price{
     margin-bottom:20px;

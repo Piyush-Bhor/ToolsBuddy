@@ -19,6 +19,7 @@ function Rental() {
                 <section>
                     {/* modal image component lets you view large version of image... needs fixing */}
                     <ModalImage
+                    className="small"
                     small={require("../../assets/" + listings.itemImage)}
                     large={require("../../assets/" + listings.itemImage)}
                     alt="Rental Image"

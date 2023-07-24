@@ -41,11 +41,13 @@
 }
 
 .logout{
-    margin-top:30px;
+    display:flex;
+    align-items: center;
     border-radius: 0;
 }
 
 .profile-header{
+    width:75%;
     display:flex;
     align-items: center;
     text-align: left;
@@ -86,8 +88,9 @@
 }
 
 .profile img{
-    width:50px;
+    width:75px;
     align-self: center;
+    border-radius:50%;
 }
 
 .profile-icon{
@@ -109,6 +112,7 @@
 
 .details{
     width:70%;
+    margin-bottom:30px;
 }
 
 .details-container{

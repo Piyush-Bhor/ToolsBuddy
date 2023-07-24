@@ -5,19 +5,14 @@ import ViewListing from './ViewListing.js';
 import Messages from './Messages.js';
 import avatar from '../../assets/avatar-icon.png';
 import React, { useState } from "react";
-/* import {useParams} from 'react-router-dom'; */
 import { useAuth0 } from "@auth0/auth0-react";
 import { FaEdit, FaClipboardList } from "react-icons/fa";
 import { AiFillFileAdd, AiFillMessage } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
+import Logout from "../../components/Logout.js"
+
 function Account() {
-    
     const { user } = useAuth0();
-
-    /*if (!user) {
-      return null;
-    }*/
-
     console.log(user)
 
     const [page, setPage] = useState("details");
@@ -26,6 +21,9 @@ function Account() {
         setPage(page);
     }
 
+    if (!user) {
+      return null;
+    }
 
     return (
         
@@ -33,16 +31,21 @@ function Account() {
             <div className="account-container">
                 <aside className="profile">
                     <div className="profile-header">
-                        <img
+                        {/* <img
                         src={avatar}
+                        alt="Profile"
+                        className="avatar"
+                        /> */}
+                        <img
+                        src={user.picture}
                         alt="Profile"
                         className="avatar"
                         />
                         <div>
-                        <p>My Account</p>
-                        <h3>John Smith</h3>
+                            <p>My Account</p>
+                            {/* <h3>John Smith</h3> */}
+                            <h3>{user.name}</h3>
                         </div>
-                        
                     </div>
                         
                     
@@ -72,7 +75,7 @@ function Account() {
 
                     <a href="" className="logout">
                         <BiLogOut id="logout-icon" alt="chat bubble icon" />
-                        Log Out
+                        <Logout />
                     </a>
                 </aside>
                 <section className="account-details">
