@@ -79,7 +79,7 @@ const createListing = (req, res) => {
     });
 };
 
-// Delete a Listing - Work in Progress
+// Delete a Listing
 const deleteListing = (req, res) => {
   const { userID, itemIndex } = req.params;
   console.log(userID)
@@ -102,11 +102,44 @@ const deleteListing = (req, res) => {
     });
 };
 
+// Update Listing
+const updateListing = (req, res) => {
+  const { userID, itemIndex, itemName, itemDescription, itemTags, itemPrice, rentalPeriod, itemImage } = req.body;
+  const updatedRental = {
+    itemName,
+    itemDescription,
+    itemTags,
+    itemPrice,
+    rentalPeriod,
+    itemImage,
+  };
+
+  Rental.findOne({ _id: userID })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+
+      if (itemIndex < 0 || itemIndex > user.itemsLend.length) {
+        return res.status(400).json({ message: 'Invalid item index' });
+      }
+      user.itemsLend[itemIndex] = updatedRental;
+      user.save();
+      return res.status(200).json({ message: 'Item listing updated successfully' })
+    })
+    //.then(() => res.status(200).json({ message: 'Item listing updated successfully' }))
+    .catch((err) => {
+      console.log(userID);
+      console.log('Error Updating Item Listing:', err);
+      return res.status(500).send('Error Updating Item Listing');
+    });
+};
+
 module.exports = {
     getRentedItemsByID,
     getLendedItemsByID,
     getUserDetailsByID,
     createListing,
     deleteListing,
-    //updateListing
+    updateListing
 };

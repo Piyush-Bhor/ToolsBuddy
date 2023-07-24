@@ -10,5 +10,6 @@ router.get('/getUserDetailsByID/:userID', profileController.getUserDetailsByID);
 // CRUD - Listings
 router.post('/createListing', profileController.createListing); // create new listing
 router.delete('/deleteListing/:userID/:itemIndex', profileController.deleteListing); // delete listing
+router.put('/updateListing', profileController.updateListing); // update listing
 
 module.exports = router;
