@@ -22,7 +22,7 @@ function Account() {
     }
 
     if (!user) {
-      return null;
+      return <p style={{textAlign: "center"}}>You must log in to view this page.</p>;
     }
 
     return (
@@ -31,11 +31,6 @@ function Account() {
             <div className="account-container">
                 <aside className="profile">
                     <div className="profile-header">
-                        {/* <img
-                        src={avatar}
-                        alt="Profile"
-                        className="avatar"
-                        /> */}
                         <img
                         src={user.picture}
                         alt="Profile"
@@ -43,20 +38,10 @@ function Account() {
                         />
                         <div>
                             <p>My Account</p>
-                            {/* <h3>John Smith</h3> */}
                             <h3>{user.name}</h3>
                         </div>
                     </div>
                         
-                    
-                    {/* <div className="profile">
-                        <img
-                        src={user.picture}
-                        alt="Profile"
-                        className="avatar"
-                        />
-                        <h2>{user.name}</h2>
-                    </div> */}
                     <div className="profile-links">
 
                         <button onClick={() => handleClick("details")}>
@@ -71,12 +56,14 @@ function Account() {
                         <button onClick={() => handleClick("messages")}>
                             <AiFillMessage className="profile-icon" alt="chat bubble icon" /> Messages
                         </button>
-                    </div>
 
-                    <a href="" className="logout">
+                        
+                    </div>
+                    <a href="" className="account-logout">
                         <BiLogOut id="logout-icon" alt="chat bubble icon" />
                         <Logout />
                     </a>
+
                 </aside>
                 <section className="account-details">
                     {page === "details" && <Details/>}

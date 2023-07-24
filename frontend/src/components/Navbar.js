@@ -5,7 +5,7 @@ import Logout from "./Logout.js"
 import Logo from '../assets/logo-placeholder.png'
 import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from 'react-router-dom'
-import { BiLibrary, BiMenu } from "react-icons/bi";
+import { BiMenu } from "react-icons/bi";
 import React, { useState} from "react";
 
 
@@ -42,11 +42,22 @@ function Navbar() {
                 }
                 {isAuthenticated &&
                 <ul className="login">
+                    
                     <li>
-                        <NavLink to="/account">Hi, {user.name}</NavLink>
+                        <NavLink to="/account" className="nav-profile">
+                            <p> 
+                                <img
+                                src={user.picture}
+                                alt="Profile"
+                                className="nav-avatar"
+                                />   
+                                <span>Hi, {user.name}</span>
+                            </p>
+                        </NavLink>
+
                         <ul className="dropdown">
                             <li><NavLink to="/account">Account</NavLink></li>
-                            <li><Logout /></li>
+                            <li className="logout"><Logout /></li>
                         </ul>
                     </li>
                 </ul>

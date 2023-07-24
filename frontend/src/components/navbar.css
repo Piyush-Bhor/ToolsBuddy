@@ -12,13 +12,16 @@
     position: relative; 
 }
 
-.navbar ul li a, .navbar ul li p{
+.navbar ul li a, .navbar ul li button{
     text-decoration: none;
-    color:black;
     transition:0.3s;
     display: inline-block;
     margin-bottom:10px;
-    
+    width:100%;
+}
+
+.navbar ul li a{
+    color:black;
 }
 
 .login li{
@@ -39,6 +42,13 @@
     padding:0
 }
 
+.nav-profile p{
+    display:flex;
+    align-items: center;
+    gap:10px;
+    margin:0;
+}
+
 /* navbar for large screens */
 .large-navbar{
     display: flex;
@@ -54,7 +64,7 @@
 .large-navbar .login {
     float:right;
     justify-content: right;
-    margin-right:20px;
+    margin-right:50px;
 }
 
 .large-navbar .pages li a:hover, .large-navbar .pages li p:hover{
@@ -83,6 +93,10 @@
 
 .resize-navbar .login{
     margin-bottom:-4px;
+}
+
+.resize-navbar button{
+    margin-top:10px;
 }
 
 .resize-navbar ul{
@@ -116,9 +130,13 @@
     margin:0;
 }
 
-.dropdown li a{
-    color:white
+.dropdown button{
+    background-color: transparent;
+    color:black;
+    border-radius: 0;
+    
 }
+
 
 .large-navbar>ul>li{ 
     display: inline-block;
@@ -138,22 +156,32 @@
     color: white;
     display: block; 
     width:100%;
-    
+}
+
+nav .logout button:hover{
+    background-color: transparent;
 }
 
 .large-navbar ul li ul li:hover{ 
     background-color: #1D3557;
     cursor: pointer;
 }
+nav .logout button:hover{ 
+    margin-bottom: 0;
+}
+
 .large-navbar .login .dropdown li a{
     transition: none;
     margin-bottom:0px
 }
 
-.large-navbar .login .dropdown li a:hover{
-    color:white
+.large-navbar ul li ul button{
+    transition: none;
 }
 
+.large-navbar .login .dropdown li a:hover, .large-navbar ul li ul button:hover{
+    color:white;
+}
 
 .large-navbar ul li:hover ul{
     display: block; 
@@ -161,8 +189,19 @@
 
 .large-navbar ul li ul li a, .large-navbar ul li ul li p{ 
     display: block;
-    padding: 10px;
-    
+    padding-top: 10px;
+    padding-bottom:10px;
+}
+
+nav .logout {
+    margin-bottom:-10px;
+    /* width:100%;
+    align-self: center; */
+}
+
+.nav-avatar{
+    border-radius: 50%;
+    width:50px
 }
 
 /* icons and logo */
