@@ -16,7 +16,7 @@ body{
 
 h1{
   color:#1D3557;
-  font-size: 40px;
+  font-size: 32px;
 }
 
 button{
@@ -24,20 +24,18 @@ button{
   transition:0.3s;
   cursor:pointer;
 }
-.listings{
-  width:75%;
-  margin:auto;
-  margin-top:20px;
+
+.home-form button, .search button{
+  border-radius: 0 25px 25px 0;
+  border:none;
+  background-color:#e63946;
 }
 
-@media only screen and (max-width: 1280px) {
-  .listing-container{
-      grid-template-columns: 1fr 1fr;
-  }
+button:hover, button[type=submit]:hover{
+  background-color: #A8DADC;
+  color:#1D3557;
 }
 
-@media only screen and (max-width: 768px) {
-  .listing-container{
-      display:block;
-  }
+ul{
+  list-style-type: none;
 }

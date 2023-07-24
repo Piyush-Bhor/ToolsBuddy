@@ -2,7 +2,6 @@ import './search.css';
 import useFetch from '../../hooks/useFetch';
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
-import {Link} from "react-router-dom";
 import {useLocation} from 'react-router-dom';
 import Listings from '../../components/Listings';
 
@@ -33,6 +32,7 @@ function Search() {
   return (
     <div className="search">
       <section>
+        <div className="color-box"></div>
         <h1>Search</h1>
         <form onSubmit={handleSubmit}>
           <input type="text" placeholder="Search..." value={input}
@@ -61,7 +61,7 @@ function Search() {
           {errorMessage && !listingData && <p> {errorMessage}</p>}
 
           {/* If data exists, map the available listings from the db */}
-          {listings && isLoaded && <Listings data={listings} />}
+          {listings && isLoaded && <Listings data={listings} num={10} />}
         </div>
       </section>
     </div>

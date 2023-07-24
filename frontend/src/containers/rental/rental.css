@@ -1,30 +1,122 @@
+.rental{
+    margin-top:20px;
+}
+
 .rental-container{
-    width:80%;
+    width:60%;
     margin:auto;
-}
-
-.rental-container img{
-    width:100%;
-}
-
-.rental-container form{
+    margin-bottom:50px;
     display:grid;
     grid-template-columns: 1fr 1fr;
-    margin-bottom:40px;
+    align-items: center;
+    gap:50px;
+}
+
+.item-details{
+    justify-self:center;
+}
+
+.item-details h1{
+    margin-bottom:10px;
+}
+
+/*.rental-container img{
+    width:100%;
+    aspect-ratio: 3/4;
+    object-fit: cover; 
+}*/
+
+.rental .price{
+    margin-bottom:20px;
+    font-size: 22px;
+    font-weight: 400;
+    color:rgb(50, 50, 50)
+}
+
+.tag-list{
+    display:flex;
+    gap:10px;
+}
+
+.tag{
+    margin-bottom:10px;
+    background-color: transparent;
+    border:1px solid grey;
+    color:grey;
+    padding:5px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.tag:hover{
+    background-color:#E63946;
+    border:1px solid #E63946;
+    color:white
+}
+
+.rental .description{
+    color:rgb(76, 76, 76)
+}
+
+.booking-container{
+    display:grid;
+    grid-template-columns: 210px 10px 210px;
     grid-gap:20px;
 }
 
-.booking input[type=date], 
-.booking select{
-    
+.rental h3{
+    margin-bottom:-10px;
+}
+
+.rental select, .rental input{
+    padding:10px;
+}
+
+.rental select{
+    width:152px;
+}
+
+.rental input{
+    width:130px;
 }
 
 .booking label{
-    color:#e63946;
+    margin-right:10px;
 }
 
 .booking{
     display:flex;
     flex-direction: column;
     gap:20px;
+}
+
+.rental button[type=submit]{
+    border-radius: 0;
+    margin-top:20px;
+}
+
+.vl {
+    border-left: 2px solid rgb(222, 222, 222);
+    height: 175px;
+    margin-top:15px;
+  }
+
+@media only screen and (max-width: 1280px) {
+    .rental-container{
+        width:80%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .booking-container, .rental-container{
+        display:block;  
+    }
+
+    .item-details{
+        margin: auto;
+    }
+
+    .vl{
+        display:none;
+    }
 }
