@@ -51,10 +51,9 @@ const getUserDetailsByID = (req, res) => {
     });
 }; 
 
-// Create a new Posting
+// Create a new Listing
 const createListing = (req, res) => {
   const { userID, itemName, itemDescription, itemTags, itemPrice, rentalPeriod, itemImage } = req.body;
-  console.log(userID)
   const newRental = {
     itemName,
     itemDescription,
@@ -80,14 +79,34 @@ const createListing = (req, res) => {
     });
 };
 
- 
+// Delete a Listing - Work in Progress
+const deleteListing = (req, res) => {
+  const { userID, itemIndex } = req.params;
+  console.log(userID)
+  Rental.findOne({ _id: userID })
+    .then((user) => {
+      if (!user) {
+        console.log(user, userID)
+        return res.status(404).json({ message: 'User not found' });
+      }
+      if (itemIndex < 0 || itemIndex > user.itemsLend.length) {
+        return res.status(400).json({ message: 'Invalid item index' });
+      }
+      user.itemsLend.splice(itemIndex, 1);
+      user.save();
+      return res.status(200).json({ message: 'Item listing deleted successfully' })
+    })
+    .catch((err) => {
+      console.log('Error Deleting Item Listing:', err);
+      return res.status(500).send('Error Deleting Item Listing');
+    });
+};
+
 module.exports = {
     getRentedItemsByID,
     getLendedItemsByID,
     getUserDetailsByID,
-    createListing
-    //createListing
-    //viewListing
-    //deleteListing
+    createListing,
+    deleteListing,
     //updateListing
 };
