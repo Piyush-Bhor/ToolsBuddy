@@ -31,7 +31,13 @@ const getRentalsByItemName = (req, res) => {
       if (result) {
         const item = result.itemsLend.find((item) => item.itemName === itemName);
         if (item) {
-          return res.json(item);
+          const rentalID = result._id.toString();
+          const itemWithOriginalID = {
+            ...item,
+            originalId: rentalID
+          };
+          const { $__parent, $__, _doc, $isNew, ...resItem } = itemWithOriginalID; // To remove unrequired fields
+          return res.json(resItem);
         } else {
           return res.status(404).send('Item Not Found');
         }
@@ -85,7 +91,13 @@ const searchRentalsByTags = (req, res) => {
         results.forEach((rental) => {
           rental.itemsLend.forEach((item) => {
             if (item.itemTags.some((tag) => tags.includes(tag))) {
-              items.push(item);
+              const rentalID = rental._id.toString();
+              const itemWithOriginalID = {
+                ...item,
+                originalId: rentalID
+              };
+              const { $__parent, $__, _doc, $isNew, ...resItem } = itemWithOriginalID; // To remove unrequired fields
+              items.push(resItem);
             }
           });
         });
@@ -113,7 +125,13 @@ const searchRentalsByItemName = (req, res) => {
         results.forEach((rental) => {
           rental.itemsLend.forEach((item) => {
             if (searchQuery.includes(item.itemName)) {
-              items.push(item);
+              const rentalID = rental._id.toString();
+              const itemWithOriginalID = {
+                ...item,
+                originalId: rentalID
+              };
+              const { $__parent, $__, _doc, $isNew, ...resItem } = itemWithOriginalID; // To remove unrequired fields
+              items.push(resItem);
             }
           });
         });

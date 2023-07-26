@@ -12,4 +12,6 @@ router.post('/createListing', profileController.createListing); // create new li
 router.delete('/deleteListing/:userID/:itemIndex', profileController.deleteListing); // delete listing
 router.put('/updateListing', profileController.updateListing); // update listing
 
+// CRUD - Messages
+
 module.exports = router;

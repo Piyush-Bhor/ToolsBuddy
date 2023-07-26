@@ -127,7 +127,6 @@ const updateListing = (req, res) => {
       user.save();
       return res.status(200).json({ message: 'Item listing updated successfully' })
     })
-    //.then(() => res.status(200).json({ message: 'Item listing updated successfully' }))
     .catch((err) => {
       console.log(userID);
       console.log('Error Updating Item Listing:', err);
