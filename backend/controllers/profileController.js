@@ -134,11 +134,110 @@ const updateListing = (req, res) => {
     });
 };
 
+// Send message
+const sendMessage = (req, res) => {
+  const receiverId = req.params.receiverId;
+  const senderId = req.body.senderId;
+  const newMessageContent = req.body.message;
+
+  // Search Reciever
+  Rental.findOne({ _id: receiverId })
+    .then((receiver) => {
+      if (!receiver) {
+        return res.status(404).send('Receiver Not Found');
+      }
+
+      // Reciever - Incoming Message
+      const newIncomingMessage = {
+        senderId: senderId,
+        content: newMessageContent
+      };
+
+      // Sender - Outgoing Message
+      const newOutgoingMessage = {
+        receiverId: receiverId,
+        content: newMessageContent
+      };
+
+      receiver.messages.incoming.push(newIncomingMessage);
+
+      // Search Sender
+      Rental.findOne({ _id: senderId })
+        .then((sender) => {
+          if (!sender) {
+            return res.status(404).send('Sender Not Found');
+          }
+
+          sender.messages.outgoing.push(newOutgoingMessage);
+
+          // Save Both
+          Promise.all([receiver.save(), sender.save()])
+            .then(() => {
+              return res.json({
+                receiverMessages: receiver.messages.incoming,
+                senderMessages: sender.messages.outgoing
+              });
+            })
+            .catch((err) => {
+              console.log('Error saving receiver or sender:', err);
+              return res.status(500).send('Error saving receiver or sender');
+            });
+        })
+        .catch((err) => {
+          console.log('Error retrieving sender:', err);
+          return res.status(500).send('Error retrieving sender');
+        });
+    })
+    .catch((err) => {
+      console.log('Error retrieving receiver:', err);
+      return res.status(500).send('Error retrieving receiver');
+    });
+};
+
+// Delete Incoming Message - single
+const deleteIncomingMessage = (req, res) => {
+  const userId = req.params.userId; 
+  const messageIndex = req.params.messageIndex;
+
+  Rental.findOne({ _id: userId })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send('User Not Found');
+      }
+
+      const incomingMessages = user.messages.incoming;
+
+      if (messageIndex < 0 || messageIndex >= incomingMessages.length) {
+        return res.status(400).send('Invalid Message Index');
+      }
+
+      incomingMessages.splice(messageIndex, 1);
+
+      user.save()
+        .then(() => {
+          return res.json(incomingMessages);
+        })
+        .catch((err) => {
+          console.log('Error saving user:', err);
+          return res.status(500).send('Error saving user');
+        });
+    })
+    .catch((err) => {
+      console.log('Error retrieving user:', err);
+      return res.status(500).send('Error retrieving user');
+    });
+};
+
+
+// Read message 
+
 module.exports = {
     getRentedItemsByID,
     getLendedItemsByID,
     getUserDetailsByID,
     createListing,
     deleteListing,
-    updateListing
+    updateListing,
+    sendMessage,
+    deleteIncomingMessage,
 };

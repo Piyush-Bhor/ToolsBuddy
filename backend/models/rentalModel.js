@@ -17,8 +17,8 @@ const rentalSchema = new mongoose.Schema({
     }
   ],
   messages: {
-    incoming: [String],
-    outgoing: [String]
+    incoming: [Object],
+    outgoing: [Object]
   },
   itemsLend: [
     {
