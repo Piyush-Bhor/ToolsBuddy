@@ -15,7 +15,7 @@ function ViewListing() {
                 {!isLoaded && !errorMessage && <p>Loading...</p>}
                 {errorMessage && !listingData && <p> {errorMessage}</p>}
                 {listings && isLoaded && 
-                <Listings className="small-listings" data={listings} />}
+                <Listings data={listings} num={10} />}
             </section>
         </div>
     );

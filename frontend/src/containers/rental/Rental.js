@@ -2,12 +2,29 @@ import './rental.css';
 import {useParams} from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import ModalImage from "react-modal-image";
+import { useAuth0 } from "@auth0/auth0-react";
+import {useNavigate} from "react-router-dom";
 
 function Rental() {
     // get id and index from url
     const {id, index} = useParams();
     const url = `http://localhost:8080/rentals/getRentalByID/${id}/${index}`
     const {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
+    const { isAuthenticated } = useAuth0();
+    const { loginWithRedirect } = useAuth0();
+    const navigate = useNavigate();
+
+    function handleSubmit(e){
+        e.preventDefault();
+        if(!isAuthenticated){
+            // login the user
+            loginWithRedirect()
+        }
+        else{
+            // redirect to messages page
+            navigate('/account');
+        }
+    }
     
     return (
         <div className="rental">
@@ -19,6 +36,7 @@ function Rental() {
                 <section>
                     {/* modal image component lets you view large version of image... needs fixing */}
                     <ModalImage
+                    className="small"
                     small={require("../../assets/" + listings.itemImage)}
                     large={require("../../assets/" + listings.itemImage)}
                     alt="Rental Image"
@@ -43,7 +61,7 @@ function Rental() {
                         <p className="description">{listings.itemDescription}</p>
                     </div>}
 
-                    <form className="rentalForm">
+                    <form className="rentalForm" onSubmit={handleSubmit}>
                         <div className="booking-container">
                         <div className="booking pickup">
                             <h3>Pickup</h3>

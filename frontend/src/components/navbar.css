@@ -1,0 +1,223 @@
+/*navigation*/
+.navbar{
+    margin-bottom:20px;
+}
+
+.navbar .pages, .navbar .login, .navbar .logout {
+    width:100%;
+}
+
+.navbar ul li{
+    display: table-cell; 
+    position: relative; 
+}
+
+.navbar ul li a, .navbar ul li button{
+    text-decoration: none;
+    transition:0.3s;
+    display: inline-block;
+    margin-bottom:10px;
+    width:100%;
+}
+
+.navbar ul li a{
+    color:black;
+}
+
+.login li{
+    float:right;
+}
+
+.login p:hover{
+    cursor: pointer;
+}
+
+.pages{
+    float:left;
+    margin-bottom:0;
+    display: flex;
+}
+
+.login li{
+    padding:0
+}
+
+.nav-profile p{
+    display:flex;
+    align-items: center;
+    gap:10px;
+    margin:0;
+}
+
+/* navbar for large screens */
+.large-navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height:80px;
+}
+
+.large-navbar .pages{
+    gap:20px;
+}
+
+.large-navbar .login {
+    float:right;
+    justify-content: right;
+    margin-right:50px;
+}
+
+.large-navbar .pages li a:hover, .large-navbar .pages li p:hover{
+    color:#E63946;
+    cursor:pointer
+}
+
+/* hover effect */
+.link a:after, .link p:after{    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 3px;
+    left: 50%;
+    position: absolute;
+    background: #E63946;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.link a:hover:after, .link p:hover:after { 
+    width: 100%; 
+    left: 0; 
+}
+
+.resize-navbar .login{
+    margin-bottom:-4px;
+}
+
+.resize-navbar button{
+    margin-top:10px;
+}
+
+.resize-navbar ul{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left:-10px;
+}
+
+.resize-navbar ul li{
+    width:100vw;
+    margin-left:-60px;
+    text-align: center;
+    transition: 0.3s;
+    margin-top:0px;
+}
+
+.resize-navbar ul li a{
+    width:100vw;
+    margin-top:10px;
+}
+
+.resize-navbar ul li:hover{
+    background-color: rgb(214, 214, 214)
+}
+
+
+/* styling to enable dropdown */
+.dropdown {
+    padding: 0;
+    margin:0;
+}
+
+.dropdown button{
+    background-color: transparent;
+    color:black;
+    border-radius: 0;
+    
+}
+
+
+.large-navbar>ul>li{ 
+    display: inline-block;
+    position: relative;
+}
+
+.large-navbar li ul {
+	width: 150px;
+	position: absolute;
+	z-index: 999;
+	text-align: center;
+	background-color: white;
+    display: none;
+}
+
+.large-navbar ul li ul li{ 
+    color: white;
+    display: block; 
+    width:100%;
+}
+
+nav .logout button:hover{
+    background-color: transparent;
+}
+
+.large-navbar ul li ul li:hover{ 
+    background-color: #1D3557;
+    cursor: pointer;
+}
+nav .logout button:hover{ 
+    margin-bottom: 0;
+}
+
+.large-navbar .login .dropdown li a{
+    transition: none;
+    margin-bottom:0px
+}
+
+.large-navbar ul li ul button{
+    transition: none;
+}
+
+.large-navbar .login .dropdown li a:hover, .large-navbar ul li ul button:hover{
+    color:white;
+}
+
+.large-navbar ul li:hover ul{
+    display: block; 
+}
+
+.large-navbar ul li ul li a, .large-navbar ul li ul li p{ 
+    display: block;
+    padding-top: 10px;
+    padding-bottom:10px;
+}
+
+nav .logout {
+    margin-bottom:-10px;
+    /* width:100%;
+    align-self: center; */
+}
+
+.nav-avatar{
+    border-radius: 50%;
+    width:50px
+}
+
+/* icons and logo */
+#logo{
+    margin-left:20px;
+    width:150px;
+}
+
+#menu{
+    font-size: 36px;
+    color:#1D3557;
+    transition: 0.3s;
+    padding:10px;
+}
+
+#menu:hover{
+    color:#E63946;
+    cursor: pointer;
+}

@@ -1,11 +1,18 @@
 import './components.css';
-import { AiOutlineGithub } from "react-icons/ai";
-import { AiOutlineTwitter } from "react-icons/ai";
-import { AiFillLinkedin } from "react-icons/ai";
+import { AiOutlineGithub, AiOutlineTwitter, AiFillLinkedin, AiOutlineArrowUp } from "react-icons/ai";
 
 function Footer() {
+
+  const scrollToTop = () =>{
+    window.scrollTo({
+      top: 0, 
+      behavior: 'smooth'
+    });
+  };
+
     return (
       <div className="footer">
+        <button className="up" onClick={scrollToTop}><AiOutlineArrowUp /></button>
         <div className="footer-grid">
           <div className="socials">
             <h4>Rental App</h4>
@@ -33,7 +40,7 @@ function Footer() {
             </ul>
           </div>
         </div>
-        <hr />
+        <hr/>
         <div className="copy">
           <p>&copy; PYCS 2023</p>
         </div>

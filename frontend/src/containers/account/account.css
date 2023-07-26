@@ -19,6 +19,8 @@
     display:flex;
     flex-direction: column;
     align-items: flex-start;
+    width:250px;
+    
     background-color: white;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     padding-top:30px;
@@ -36,21 +38,30 @@
     margin-top:50px;
 }
 
-.profile a:hover{
+.profile a:hover, .profile button:hover{
     color:#E63946
 }
 
-.logout{
-    margin-top:30px;
+.account .logout{
+    display:flex;
+    align-items: center;
     border-radius: 0;
 }
 
+.account-logout button{
+    background-color: transparent;
+    color:#1D3557;
+}
+
 .profile-header{
+    width:100%;
     display:flex;
     align-items: center;
+    justify-content: center;
     text-align: left;
     gap:10px;
     margin:auto;
+    flex-grow: 1;
 }
 
 .profile-header p{
@@ -63,31 +74,34 @@
     display:flex;
     flex-direction: column;
     margin:auto;
-    align-items: flex-start;
+    /* align-items: flex-start; */
+    flex-grow: 1;
     margin-top:20px;
+    align-items: flex-start;
+    transition: 0.3s;
 }
 
 .profile-links button:hover{
-    background-color: #A8DADC;
+   /*  background-color: #A8DADC; */
+   color:#E63946;
 }
 
 .profile-links button{
+    
+    flex-grow:1;
     color:black;
     background-color: white;
     border-radius: 0;
     width:100%;
     text-align: left;
-    padding-left:40px;
-    padding-right:40px;
-}
-
-.profile button{
-    margin: auto;
+    /* padding-left:40px;
+    padding-right:40px; */
 }
 
 .profile img{
-    width:50px;
+    width:75px;
     align-self: center;
+    border-radius:50%;
 }
 
 .profile-icon{
@@ -96,8 +110,17 @@
     
 }
 
-.logout{
-    width:50%;
+.account .logout{
+    width:100%;
+}
+
+.account .logout button{
+    background-color: transparent;
+    color:#1D3557;
+}
+
+.account .logout button:hover{
+    color:#E63946
 }
 
 #logout-icon{
@@ -107,15 +130,16 @@
 
 /* Details page */
 
-.details{
+.details, .add-listing{
     width:70%;
+    margin-bottom:30px;
 }
 
 .details-container{
     text-align: center;
 }
 
-.account-form{
+.account-form, .listing-form{
     background-color: white;
     padding:1rem;
     border-radius:15px;
@@ -139,14 +163,14 @@ label{
     margin-top:20px;
 }
 
-.account-form input{ 
+.account-form input, .listing-form input, .listing-form textarea{ 
     margin-bottom:20px;
     padding:10px;
     border:none;
     background-color:rgb(227, 227, 227)
 }
 
-.account-form button{
+.inputs button{
     margin-top:40px;
     width:150px;
     background-color: #E63946;
@@ -155,6 +179,10 @@ label{
     margin-bottom:15px;
 }
 
-.small-listings{
+/* .small-listings{
     text-decoration: none;
+} */
+
+.view-listing{
+    width:80%;
 }

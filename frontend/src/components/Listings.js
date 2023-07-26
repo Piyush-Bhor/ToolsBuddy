@@ -17,7 +17,7 @@ function Listings(props) {
             
             return(
                  
-            <div>
+            <div className="list">
                 <Link to={`/rental/${listing.originalId}/${listing.__index}`}>
                     
                 <article className="single-listing" key={i}>

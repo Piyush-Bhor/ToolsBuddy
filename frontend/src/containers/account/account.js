@@ -5,19 +5,14 @@ import ViewListing from './ViewListing.js';
 import Messages from './Messages.js';
 import avatar from '../../assets/avatar-icon.png';
 import React, { useState } from "react";
-/* import {useParams} from 'react-router-dom'; */
 import { useAuth0 } from "@auth0/auth0-react";
 import { FaEdit, FaClipboardList } from "react-icons/fa";
 import { AiFillFileAdd, AiFillMessage } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
+import Logout from "../../components/Logout.js"
+
 function Account() {
-    
     const { user } = useAuth0();
-
-    /*if (!user) {
-      return null;
-    }*/
-
     console.log(user)
 
     const [page, setPage] = useState("details");
@@ -26,6 +21,9 @@ function Account() {
         setPage(page);
     }
 
+    if (!user) {
+      return <p style={{textAlign: "center"}}>You must log in to view this page.</p>;
+    }
 
     return (
         
@@ -34,26 +32,16 @@ function Account() {
                 <aside className="profile">
                     <div className="profile-header">
                         <img
-                        src={avatar}
-                        alt="Profile"
-                        className="avatar"
-                        />
-                        <div>
-                        <p>My Account</p>
-                        <h3>John Smith</h3>
-                        </div>
-                        
-                    </div>
-                        
-                    
-                    {/* <div className="profile">
-                        <img
                         src={user.picture}
                         alt="Profile"
                         className="avatar"
                         />
-                        <h2>{user.name}</h2>
-                    </div> */}
+                        <div>
+                            <p>My Account</p>
+                            <h3>{user.name}</h3>
+                        </div>
+                    </div>
+                        
                     <div className="profile-links">
 
                         <button onClick={() => handleClick("details")}>
@@ -68,12 +56,14 @@ function Account() {
                         <button onClick={() => handleClick("messages")}>
                             <AiFillMessage className="profile-icon" alt="chat bubble icon" /> Messages
                         </button>
-                    </div>
 
-                    <a href="" className="logout">
+                        
+                    </div>
+                    <a href="" className="account-logout">
                         <BiLogOut id="logout-icon" alt="chat bubble icon" />
-                        Log Out
+                        <Logout />
                     </a>
+
                 </aside>
                 <section className="account-details">
                     {page === "details" && <Details/>}
