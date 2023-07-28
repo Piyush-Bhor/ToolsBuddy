@@ -229,7 +229,27 @@ const deleteIncomingMessage = (req, res) => {
 };
 
 
-// Read message 
+// Read all incoming messages
+const readAllIncomingMessages = (req, res) => {
+  const userId = req.params.userId;
+
+  // Find the user in the database
+  Rental.findOne({ _id: userId })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send('User Not Found');
+      }
+
+      const incomingMessages = user.messages.incoming;
+
+      return res.json(incomingMessages);
+    })
+    .catch((err) => {
+      console.log('Error retrieving user:', err);
+      return res.status(500).send('Error retrieving user');
+    });
+};
+
 
 module.exports = {
     getRentedItemsByID,
@@ -240,4 +260,5 @@ module.exports = {
     updateListing,
     sendMessage,
     deleteIncomingMessage,
+    readAllIncomingMessages,
 };
