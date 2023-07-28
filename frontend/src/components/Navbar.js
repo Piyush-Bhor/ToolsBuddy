@@ -14,8 +14,6 @@ function Navbar() {
     const [showNav, setShowNav] = useState(false);
     const { user } = useAuth0();
     
-    console.log(isAuthenticated);
-    
     function handleMenu(){
         setShowNav((showNav)=>!showNav);
     }

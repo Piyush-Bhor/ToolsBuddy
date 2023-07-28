@@ -8,12 +8,9 @@ import Listings from '../../components/Listings';
 function Search() {
   const [query, setQuery] = useState();
   const [input, setInput] = useState();
-  const [url, setUrl] = useState();
+  const [url, setUrl] = useState("");
 
   const location = useLocation();
-  
-  //const url = `http://localhost:8080/rentals/searchRentalsByItemName/${query}`;
-  //const url = "http://localhost:8080/rentals/getAllRentals"
 
   // get data fetched using useFetch hook
   let {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
@@ -26,19 +23,18 @@ function Search() {
 
   useEffect(() => {
     // if query is coming from home page
-    setUrl("http://localhost:8080/rentals/searchRentalsByItemName/Football");
-
     if(location.state){
+      
       setQuery(location.state.query);
-      setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${query}`)
+      setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${location.state.query}`)
+      
     }
     else{
       setUrl("http://localhost:8080/rentals/getAllRentals")
-      
     }
     
-    // only run once
-  }, []); 
+    // run when url changes
+  }, [location.state, url]); 
 
   return (
     <div className="search">
