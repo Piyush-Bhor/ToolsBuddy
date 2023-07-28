@@ -7,7 +7,6 @@ function Listings(props) {
     
     useEffect(() => {
         setSlicedArray(props.data.slice(0, props.num));
-        console.log(props.data)
       }, [props.data]); 
       
     return (

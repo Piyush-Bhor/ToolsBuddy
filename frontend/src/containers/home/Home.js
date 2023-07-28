@@ -23,7 +23,6 @@ function Home() {
   // redirect to search
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(query);
     navigate('/search', {state:{query:query}});
   }
 

@@ -8,12 +8,9 @@ import Listings from '../../components/Listings';
 function Search() {
   const [query, setQuery] = useState();
   const [input, setInput] = useState();
-  const [url, setUrl] = useState();
+  const [url, setUrl] = useState("");
 
   const location = useLocation();
-  
-  //const url = `http://localhost:8080/rentals/searchRentalsByItemName/${query}`;
-  //const url = "http://localhost:8080/rentals/getAllRentals"
 
   // get data fetched using useFetch hook
   let {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
@@ -26,19 +23,18 @@ function Search() {
 
   useEffect(() => {
     // if query is coming from home page
-    setUrl("http://localhost:8080/rentals/searchRentalsByItemName/Football");
-
     if(location.state){
+      
       setQuery(location.state.query);
-      setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${query}`)
+      setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${location.state.query}`)
+      
     }
     else{
       setUrl("http://localhost:8080/rentals/getAllRentals")
-      
     }
     
-    // only run once
-  }, []); 
+    // run when url changes
+  }, [location.state, url]); 
 
   return (
     <div className="search">
@@ -72,23 +68,7 @@ function Search() {
           {errorMessage && !listingData && !listings && <p> {errorMessage}</p>}
 
           {/* If data exists, map the available listings from the db */}
-          {/* {listings && isLoaded && <Listings data={listings} num={10} />} */}
-
-
-            {listings && isLoaded && listingData &&
-            (listings.map((listing, i)=>{
-            <article className="single-listing" key={i}>
-              <img className="listing-img" alt="tool listing"
-              src={require("../../assets/" + listing.itemImage)}></img>
-
-              <div className="listing-details" >
-                <p className="listing-name">{listing.itemName}</p>
-                <p className="listing-price">Starting at ${listing.itemPrice.toFixed(2)}</p>
-                <p className="description">{listing.itemDescription}</p>
-              </div>
-            </article>
-            }))}
-
+          {listings && isLoaded && <Listings data={listings} num={10} />}
 
         </div>
       </section>
