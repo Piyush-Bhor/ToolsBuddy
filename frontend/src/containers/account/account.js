@@ -59,10 +59,10 @@ function Account() {
 
                         
                     </div>
-                    <a href="" className="account-logout">
+                    <button href="" className="account-logout">
                         <BiLogOut id="logout-icon" alt="chat bubble icon" />
                         <Logout />
-                    </a>
+                    </button>
 
                 </aside>
                 <section className="account-details">

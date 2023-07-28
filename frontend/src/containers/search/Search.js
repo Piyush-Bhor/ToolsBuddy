@@ -72,23 +72,7 @@ function Search() {
           {errorMessage && !listingData && !listings && <p> {errorMessage}</p>}
 
           {/* If data exists, map the available listings from the db */}
-          {/* {listings && isLoaded && <Listings data={listings} num={10} />} */}
-
-
-            {listings && isLoaded && listingData &&
-            (listings.map((listing, i)=>{
-            <article className="single-listing" key={i}>
-              <img className="listing-img" alt="tool listing"
-              src={require("../../assets/" + listing.itemImage)}></img>
-
-              <div className="listing-details" >
-                <p className="listing-name">{listing.itemName}</p>
-                <p className="listing-price">Starting at ${listing.itemPrice.toFixed(2)}</p>
-                <p className="description">{listing.itemDescription}</p>
-              </div>
-            </article>
-            }))}
-
+          {listings && isLoaded && <Listings data={listings} num={10} />}
 
         </div>
       </section>
