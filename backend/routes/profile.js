@@ -14,8 +14,13 @@ router.put('/updateListing', profileController.updateListing); // update listing
 
 // CRUD - Messages
 router.post('/sendMessage/:receiverId', profileController.sendMessage); // send message
+// Incoming messages
 router.delete('/deleteIncomingMessage/:userId/:messageIndex', profileController.deleteIncomingMessage); // delete incoming message - single
 router.get('/readAllIncomingMessages/:userId', profileController.readAllIncomingMessages); // read all incoming messages
 router.get('/readIncomingMessageByIndex/:userId/:messageIndex', profileController.readIncomingMessageByIndex); // read individual incoming messages
+// Outgoing messages
+router.get('/readAllOutgoingMessages/:userId', profileController.readAllOutgoingMessages); // read all outgoing messages
+router.get('/readOutgoingMessageByIndex/:userId/:messageIndex', profileController.readOutgoingMessageByIndex); // read individual outgoing messages
+
 
 module.exports = router;

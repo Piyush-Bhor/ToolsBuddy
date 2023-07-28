@@ -276,6 +276,52 @@ const readIncomingMessageByIndex = (req, res) => {
     });
 };
 
+// Read all outgoing messages
+const readAllOutgoingMessages = (req, res) => {
+  const userId = req.params.userId;
+
+  Rental.findOne({ _id: userId })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send('User Not Found');
+      }
+
+      const outgoingMessages = user.messages.outgoing;
+
+      return res.json(outgoingMessages);
+    })
+    .catch((err) => {
+      console.log('Error retrieving user:', err);
+      return res.status(500).send('Error retrieving user');
+    });
+};
+
+// Read a single outgoing message
+const readOutgoingMessageByIndex = (req, res) => {
+  const userId = req.params.userId;
+  const messageIndex = req.params.messageIndex;
+
+  Rental.findOne({ _id: userId })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send('User Not Found');
+      }
+
+      const outgoingMessages = user.messages.outgoing;
+
+      if (messageIndex < 0 || messageIndex >= outgoingMessages.length) {
+        return res.status(400).send('Invalid Message Index');
+      }
+
+      const message = outgoingMessages[messageIndex];
+
+      return res.json(message);
+    })
+    .catch((err) => {
+      console.log('Error retrieving user:', err);
+      return res.status(500).send('Error retrieving user');
+    });
+};
 
 module.exports = {
     getRentedItemsByID,
@@ -288,4 +334,6 @@ module.exports = {
     deleteIncomingMessage,
     readAllIncomingMessages,
     readIncomingMessageByIndex,
+    readAllOutgoingMessages,
+    readOutgoingMessageByIndex,
 };
