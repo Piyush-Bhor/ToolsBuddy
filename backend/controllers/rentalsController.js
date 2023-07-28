@@ -81,6 +81,7 @@ const getAllRentals = (req, res) => {
 // search Rentals by Tags
 const searchRentalsByTags = (req, res) => {
   const tags = req.params.Tags.split(',');
+  console.log(tags.length);
   if (tags.length === 0) {
     return res.status(400).send('Invalid Tags');
   }
