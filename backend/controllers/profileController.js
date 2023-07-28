@@ -233,7 +233,6 @@ const deleteIncomingMessage = (req, res) => {
 const readAllIncomingMessages = (req, res) => {
   const userId = req.params.userId;
 
-  // Find the user in the database
   Rental.findOne({ _id: userId })
     .then((user) => {
       if (!user) {
@@ -243,6 +242,33 @@ const readAllIncomingMessages = (req, res) => {
       const incomingMessages = user.messages.incoming;
 
       return res.json(incomingMessages);
+    })
+    .catch((err) => {
+      console.log('Error retrieving user:', err);
+      return res.status(500).send('Error retrieving user');
+    });
+};
+
+// Read a single incoming message
+const readIncomingMessageByIndex = (req, res) => {
+  const userId = req.params.userId;
+  const messageIndex = req.params.messageIndex;
+
+  Rental.findOne({ _id: userId })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send('User Not Found');
+      }
+
+      const incomingMessages = user.messages.incoming;
+
+      if (messageIndex < 0 || messageIndex >= incomingMessages.length) {
+        return res.status(400).send('Invalid Message Index');
+      }
+
+      const message = incomingMessages[messageIndex];
+
+      return res.json(message);
     })
     .catch((err) => {
       console.log('Error retrieving user:', err);
@@ -261,4 +287,5 @@ module.exports = {
     sendMessage,
     deleteIncomingMessage,
     readAllIncomingMessages,
+    readIncomingMessageByIndex,
 };

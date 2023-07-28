@@ -16,5 +16,6 @@ router.put('/updateListing', profileController.updateListing); // update listing
 router.post('/sendMessage/:receiverId', profileController.sendMessage); // send message
 router.delete('/deleteIncomingMessage/:userId/:messageIndex', profileController.deleteIncomingMessage); // delete incoming message - single
 router.get('/readAllIncomingMessages/:userId', profileController.readAllIncomingMessages); // read all incoming messages
+router.get('/readIncomingMessageByIndex/:userId/:messageIndex', profileController.readIncomingMessageByIndex); // read individual incoming messages
 
 module.exports = router;
