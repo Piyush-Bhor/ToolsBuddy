@@ -21,6 +21,6 @@ router.get('/readIncomingMessageByIndex/:userId/:messageIndex', profileControlle
 // Outgoing messages
 router.get('/readAllOutgoingMessages/:userId', profileController.readAllOutgoingMessages); // read all outgoing messages
 router.get('/readOutgoingMessageByIndex/:userId/:messageIndex', profileController.readOutgoingMessageByIndex); // read individual outgoing messages
-
+router.delete('/deleteOutgoingMessage/:userId/:messageIndex', profileController.deleteOutgoingMessage); // delete outgoing message - single
 
 module.exports = router;

@@ -1,5 +1,7 @@
 const Rental = require('../models/rentalModel');
 
+// User Details
+
 // Get All Rented Items by ID
 const getRentedItemsByID = (req, res) => {
     const objectId = req.params.rentalID;
@@ -50,6 +52,8 @@ const getUserDetailsByID = (req, res) => {
       return res.status(500).send('Error Retrieving User');
     });
 }; 
+
+// CRUD - Listing
 
 // Create a new Listing
 const createListing = (req, res) => {
@@ -134,6 +138,8 @@ const updateListing = (req, res) => {
     });
 };
 
+// CRUD - Messages
+
 // Send message
 const sendMessage = (req, res) => {
   const receiverId = req.params.receiverId;
@@ -194,6 +200,8 @@ const sendMessage = (req, res) => {
     });
 };
 
+// Incoming Messages
+
 // Delete Incoming Message - single
 const deleteIncomingMessage = (req, res) => {
   const userId = req.params.userId; 
@@ -227,7 +235,6 @@ const deleteIncomingMessage = (req, res) => {
       return res.status(500).send('Error retrieving user');
     });
 };
-
 
 // Read all incoming messages
 const readAllIncomingMessages = (req, res) => {
@@ -276,6 +283,8 @@ const readIncomingMessageByIndex = (req, res) => {
     });
 };
 
+// Outgoing Messages
+
 // Read all outgoing messages
 const readAllOutgoingMessages = (req, res) => {
   const userId = req.params.userId;
@@ -323,6 +332,40 @@ const readOutgoingMessageByIndex = (req, res) => {
     });
 };
 
+// Delete Outgoing Message - single
+const deleteOutgoingMessage = (req, res) => {
+  const userId = req.params.userId; 
+  const messageIndex = req.params.messageIndex;
+
+  Rental.findOne({ _id: userId })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send('User Not Found');
+      }
+
+      const outgoingMessages = user.messages.outgoing;
+
+      if (messageIndex < 0 || messageIndex >= outgoingMessages.length) {
+        return res.status(400).send('Invalid Message Index');
+      }
+
+      outgoingMessages.splice(messageIndex, 1);
+
+      user.save()
+        .then(() => {
+          return res.json(outgoingMessages);
+        })
+        .catch((err) => {
+          console.log('Error saving user:', err);
+          return res.status(500).send('Error saving user');
+        });
+    })
+    .catch((err) => {
+      console.log('Error retrieving user:', err);
+      return res.status(500).send('Error retrieving user');
+    });
+};
+
 module.exports = {
     getRentedItemsByID,
     getLendedItemsByID,
@@ -336,4 +379,5 @@ module.exports = {
     readIncomingMessageByIndex,
     readAllOutgoingMessages,
     readOutgoingMessageByIndex,
+    deleteOutgoingMessage,
 };
