@@ -1,0 +1,78 @@
+[
+  {
+    "context": "To fix Fixing Table, you need hammer and nails.,",
+    "question": "What tools are needed to fix a table?, study table"
+  },
+  {
+    "context": "To fix Painting Walls, you need paintbrush and roller.",
+    "question": "What tools are required for painting walls?"
+  },
+  {
+    "context": "To fix Measuring and Cutting Wood, you need saw and measuring tape.",
+    "question": "What tools are necessary for measuring and cutting wood?"
+  },
+  {
+    "context": "To fix Assembling Furniture, you need screwdriver and screws.",
+    "question": "What tools are recommended for assembling furniture?"
+  },
+  {
+    "context": "To fix Plumbing, you need wrench and pliers.",
+    "question": "What tools are necessary for plumbing?"
+  },
+  {
+    "context": "To fix Drilling Holes, you need drill and drill bits.",
+    "question": "What tools are needed for drilling holes?"
+  },
+  {
+    "context": "To fix Hanging Pictures, you need level and chalk line.",
+    "question": "What tools are required for hanging pictures?"
+  },
+  {
+    "context": "To fix Working at Heights, you need ladder and safety harness.",
+    "question": "What tools are necessary for working at heights?"
+  },
+  {
+    "context": "To fix Electrical Wiring, you need wire cutter and wire stripper.",
+    "question": "What tools are needed for electrical wiring?"
+  },
+  {
+    "context": "To fix Gardening, you need shovel and rake.",
+    "question": "What tools are required for gardening?"
+  },
+  {
+    "context": "To fix Concrete Work, you need trowel and cement.",
+    "question": "What tools are necessary for concrete work?"
+  },
+  {
+    "context": "To fix Painting with Sprayer, you need paint sprayer and drop cloth.",
+    "question": "What tools are needed for painting with a sprayer?"
+  },
+  {
+    "context": "To fix Pipe Installation, you need pipe cutter and pipe wrench.",
+    "question": "What tools are required for pipe installation?"
+  },
+  {
+    "context": "To fix Installing Drywall, you need stud finder and hammer drill.",
+    "question": "What tools are necessary for installing drywall?"
+  },
+  {
+    "context": "To fix Soldering Electronics, you need soldering iron and solder.",
+    "question": "What tools are needed for soldering electronics?"
+  },
+  {
+    "context": "To fix Upholstery, you need staple gun and staples.",
+    "question": "What tools are required for upholstery?"
+  },
+  {
+    "context": "To fix Woodworking, you need chisel and mallet.",
+    "question": "What tools are necessary for woodworking?"
+  },
+  {
+    "context": "To fix Home Improvement, you need tape measure and utility knife.",
+    "question": "What tools are needed for home improvement?"
+  },
+  {
+    "context": "To fix Electrical Repairs, you need wire nuts and electrical tape.",
+    "question": "What tools are required for electrical repairs?"
+  }
+]
