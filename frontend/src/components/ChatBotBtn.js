@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Configuration, OpenAIApi } from 'openai';
 import ruleBasedRules from './content2.json';
 import './ChatBotBtn.css';
 import raw from './context.txt';
@@ -81,6 +82,71 @@ const ChatBotBtn = () => {
     }
 
 
+    const getOpenAIChatCompletion = async (userMessage) => {
+
+
+        let messages1 = [
+            {
+                "role": "system",
+                "content": "When I ask any question , you will reply with a document that contains maximum 5 tools name. no description\n"
+            },
+            {
+                "role": "user",
+                "content": userMessage
+            },
+            {
+                "role": "assistant",
+                "content": "1. Screwdriver\n2. Wood glue\n3. Clamps\n4. Sandpaper\n5. Paint or varnish"
+            },
+            {
+                "role": "assistant",
+                "content": "1. Hammer\n2. Screwdriver\n3. Pliers\n4. Level\n5. Wood filler"
+            },
+            {
+                "role": "assistant",
+                "content": "1. Wrench\n2. Screwdriver\n3. Power drill\n4. Wood glue\n5. Sandpaper"
+            }
+        ];
+        let messages = [
+            {
+                "role": "system",
+                "content": "When I ask any question , you will reply with a document that contains maximum 5 tools name. no description\n"
+            },
+            {
+                "role": "user",
+                "content": userMessage
+            },
+
+
+        ];
+        const configuration = new Configuration({
+            apiKey: "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",
+        });
+        const openai = new OpenAIApi(configuration);
+
+        const completion = await openai.createChatCompletion({
+            model: 'gpt-3.5-turbo',
+            messages: messages,
+            temperature: 1.0,
+            max_tokens: 509,
+            top_p: 1,
+            frequency_penalty: 0,
+            presence_penalty: 0,
+        });
+
+        const result = completion.data.choices[0].message.content;
+        console.log("Query: ", userMessage);
+        // console.log("context: ", context);
+        console.log("Answer: ", result);
+
+        setChatMessages((prevMessages) => [
+            ...prevMessages,
+            createChatLi(result, 'incoming'),
+        ]);
+
+
+    };
+
 
     const handleChat = () => {
 
@@ -88,11 +154,9 @@ const ChatBotBtn = () => {
         const trimmedMessage = userMessage.trim();
         if (!trimmedMessage) return;
 
-        // empting usermsgs
         setUserMessage('');
 
 
-        // // storing all msgs in chatMessages , including latest most outgoing msg
         setChatMessages((prevMessages) => [
             ...prevMessages,
             createChatLi(trimmedMessage, 'outgoing'),
@@ -100,10 +164,10 @@ const ChatBotBtn = () => {
 
 
 
-        const context = processUserQuery(trimmedMessage);
+        //const context = processUserQuery(trimmedMessage);
 
-
-        generateResponse_roberta(trimmedMessage, context);
+        getOpenAIChatCompletion(trimmedMessage)
+        //  generateResponse_roberta(trimmedMessage, context);
     };
 
     const handleInputChange = (event) => {
@@ -139,6 +203,7 @@ const ChatBotBtn = () => {
             <div className="chatbot">
                 <header>
                     <h2>Chatbot</h2>
+                    <p>powered by OpenAI</p>
                     <span className="close-btn material-symbols-outlined">close</span>
                 </header>
                 <ul className="chatbox" ref={chatboxRef}>
