@@ -4,6 +4,10 @@ const Rental = require('../models/rentalModel');
 
 // Get All Rented Items by ID
 const getRentedItemsByID = (req, res) => {
+  if (!req.oidc.isAuthenticated()) {
+    return res.redirect('/login');
+  }
+  
     const objectId = req.params.rentalID;
     Rental.find({ _id: objectId, itemsRented: { $exists: true, $not: { $size: 0 } } })
       .then((result) => {
@@ -21,6 +25,9 @@ const getRentedItemsByID = (req, res) => {
 
 // Get All Lended Items by ID
 const getLendedItemsByID = (req, res) => {
+  if (!req.oidc.isAuthenticated()) {
+    return res.redirect('/login');
+  }
     const objectId = req.params.rentalID;
     Rental.find({ _id: objectId, itemsLend: { $exists: true, $not: { $size: 0 } } })
       .then((result) => {
@@ -38,6 +45,10 @@ const getLendedItemsByID = (req, res) => {
 
 // Get User By ID
 const getUserDetailsByID = (req, res) => {
+  if (!req.oidc.isAuthenticated()) {
+    return res.redirect('/login');
+  }
+
   const objectId = req.params.userID;
   Rental.findOne({ _id: objectId })
     .then((result) => {
@@ -57,6 +68,9 @@ const getUserDetailsByID = (req, res) => {
 
 // Create a new Listing
 const createListing = (req, res) => {
+  if (!req.oidc.isAuthenticated()) {
+    return res.redirect('/login');
+  }
   const { userID, itemName, itemDescription, itemTags, itemPrice, rentalPeriod, itemImage } = req.body;
   const newRental = {
     itemName,
@@ -85,6 +99,9 @@ const createListing = (req, res) => {
 
 // Delete a Listing
 const deleteListing = (req, res) => {
+  if (!req.oidc.isAuthenticated()) {
+    return res.redirect('/login');
+  }
   const { userID, itemIndex } = req.params;
   console.log(userID)
   Rental.findOne({ _id: userID })
@@ -108,6 +125,9 @@ const deleteListing = (req, res) => {
 
 // Update Listing
 const updateListing = (req, res) => {
+  if (!req.oidc.isAuthenticated()) {
+    return res.redirect('/login');
+  }
   const { userID, itemIndex, itemName, itemDescription, itemTags, itemPrice, rentalPeriod, itemImage } = req.body;
   const updatedRental = {
     itemName,
@@ -142,6 +162,9 @@ const updateListing = (req, res) => {
 
 // Send message
 const sendMessage = (req, res) => {
+  if (!req.oidc.isAuthenticated()) {
+    return res.redirect('/login');
+  }
   const receiverId = req.params.receiverId;
   const senderId = req.body.senderId;
   const newMessageContent = req.body.message;
@@ -204,6 +227,9 @@ const sendMessage = (req, res) => {
 
 // Delete Incoming Message - single
 const deleteIncomingMessage = (req, res) => {
+  if (!req.oidc.isAuthenticated()) {
+    return res.redirect('/login');
+  }
   const userId = req.params.userId; 
   const messageIndex = req.params.messageIndex;
 
@@ -238,8 +264,11 @@ const deleteIncomingMessage = (req, res) => {
 
 // Read all incoming messages
 const readAllIncomingMessages = (req, res) => {
-  const userId = req.params.userId;
+  if (!req.oidc.isAuthenticated()) {
+    return res.redirect('/login');
+  }
 
+  const userId = req.params.userId;
   Rental.findOne({ _id: userId })
     .then((user) => {
       if (!user) {
@@ -258,6 +287,10 @@ const readAllIncomingMessages = (req, res) => {
 
 // Read a single incoming message
 const readIncomingMessageByIndex = (req, res) => {
+  if (!req.oidc.isAuthenticated()) {
+    return res.redirect('/login');
+  }
+
   const userId = req.params.userId;
   const messageIndex = req.params.messageIndex;
 
@@ -287,6 +320,10 @@ const readIncomingMessageByIndex = (req, res) => {
 
 // Read all outgoing messages
 const readAllOutgoingMessages = (req, res) => {
+  if (!req.oidc.isAuthenticated()) {
+    return res.redirect('/login');
+  }
+
   const userId = req.params.userId;
 
   Rental.findOne({ _id: userId })
@@ -307,6 +344,10 @@ const readAllOutgoingMessages = (req, res) => {
 
 // Read a single outgoing message
 const readOutgoingMessageByIndex = (req, res) => {
+  if (!req.oidc.isAuthenticated()) {
+    return res.redirect('/login');
+  }
+
   const userId = req.params.userId;
   const messageIndex = req.params.messageIndex;
 
@@ -334,6 +375,10 @@ const readOutgoingMessageByIndex = (req, res) => {
 
 // Delete Outgoing Message - single
 const deleteOutgoingMessage = (req, res) => {
+  if (!req.oidc.isAuthenticated()) {
+    return res.redirect('/login');
+  }
+
   const userId = req.params.userId; 
   const messageIndex = req.params.messageIndex;
 

@@ -62,6 +62,10 @@ app.use('/', indexRoutes);
 app.use('/rentals', rentalRoutes);
 app.use('/profile', profileRoutes);
 
+// oauth 
+app.get('/outh_profile', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user, null, 2));
+});
 
 // server
 app.listen(8080);
