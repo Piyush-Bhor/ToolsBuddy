@@ -12,6 +12,8 @@ import Cleaning from '../../assets/cleaning.jpg';
 import Cooking from '../../assets/cooking.jpg';
 import Gardening from '../../assets/gardening.jpg';
 import Hardware from '../../assets/hardware.jpg';
+import Paint from '../../assets/paint.jpg';
+import Guitar from '../../assets/guitar.jpg';
 
 
 function Home() {
