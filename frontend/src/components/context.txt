@@ -1,0 +1,126 @@
+To fix Fixing Table, you need hammer and nails.
+To fix Fixing Study Table, you need hammer and nails.
+To fix Painting Walls, you need paintbrush and roller.
+To fix Measuring and Cutting Wood, you need saw and measuring tape.
+To fix Assembling Furniture, you need screwdriver and screws.
+To fix Plumbing, you need wrench and pliers.
+To fix Drilling Holes, you need drill and drill bits.
+To fix Hanging Pictures, you need level and chalk line.
+To fix Working at Heights, you need ladder and safety harness.
+To fix Electrical Wiring, you need wire cutter and wire stripper.
+To fix Gardening, you need shovel and rake.
+To fix Concrete Work, you need trowel and cement.
+To fix Painting with Sprayer, you need paint sprayer and drop cloth.
+To fix Pipe Installation, you need pipe cutter and pipe wrench.
+To fix Installing Drywall, you need stud finder and hammer drill.
+To fix Soldering Electronics, you need soldering iron and solder.
+To fix Upholstery, you need staple gun and staples.
+To fix Woodworking, you need chisel and mallet.
+To fix Home Improvement, you need tape measure and utility knife.
+To fix Electrical Repairs, you need wire nuts and electrical tape.
+To fix Surface Preparation, you need paint scraper and sandpaper.
+To fix Laying Tiles, you need tile cutter and tile spacers.
+To fix Roofing, you need roofing hammer and roofing nails.
+To fix Car Repair, you need wrench set and socket set.
+To fix Painting Ceilings, you need extension pole and paint roller.
+To fix Landscaping, you need garden shovel and wheelbarrow.
+To fix Drywall Patching, you need putty knife and sanding block.
+To fix Flooring Installation, you need flooring nailer and knee pads.
+To fix Cabinet Installation, you need cabinet level and clamps.
+To fix Appliance Repair, you need multimeter and screwdriver set.
+To fix Window Installation, you need caulking gun and window screws.
+To fix Carpentry, you need miter saw and wood chisels.
+To fix Plastering, you need hawk and trowel.
+To fix Fence Installation, you need post hole digger and fence pliers.
+To fix HVAC Maintenance, you need air filter and HVAC gauges.
+To fix Paint Stripping, you need heat gun and scraper.
+To fix Tiling Backsplash, you need tile adhesive and grout float.
+To fix Deck Building, you need deck screws and deck stain.
+To fix Masonry, you need masonry trowel and mortar mix.
+To fix Cable Management, you need cable clips and cable ties.
+To fix Concrete Resurfacing, you need concrete resurfacer and squeegee.
+To fix Plumbing Leaks, you need pipe wrench and pipe sealant.
+To fix Electrical Outlets, you need voltage tester and wire connectors.
+To fix Broken Locks, you need lock pick set and lubricant.
+To fix Clogged Drains, you need plunger and drain snake.
+To fix Broken Windows, you need glass cutter and window putty.
+To fix Squeaky Doors, you need lubricating oil and screwdriver.
+To fix Leaking Faucets, you need adjustable wrench and faucet repair kit.
+To fix Broken Tiles, you need grout saw and tile adhesive.
+To fix Stuck Door Locks, you need graphite powder and screwdriver.
+To fix Jammed Garbage Disposals, you need hex key and pliers.
+To fix Wobbly Furniture, you need wood glue and clamps.
+To fix Flickering Lights, you need replacement bulbs and wire strippers.
+To fix Cracked Plaster, you need patching compound and putty knife.
+To fix Running Toilets, you need toilet flapper and adjustable pliers.
+To fix Loose Cabinet Handles, you need screwdriver and screws.
+To fix Noisy Ceiling Fans, you need fan balancing kit and ladder.
+To fix Rusty Metal Surfaces, you need wire brush and rust converter.
+To fix Scratched Wood Furniture, you need wood filler and sandpaper.
+To fix Moldy Bathroom Grout, you need bleach and grout brush.
+To fix Faded Paint, you need primer and paint roller.
+To fix Uneven Flooring, you need floor leveling compound and trowel.
+To fix Faulty Light Switches, you need replacement switch and wire strippers.
+To fix Cracked Concrete Steps, you need concrete patch and trowel.
+To fix Dripping Showerheads, you need plumber's tape and adjustable wrench.
+To fix Loose Wall Tiles, you need adhesive caulk and putty knife.
+To fix Worn Cabinet Hinges, you need hinge replacement and screwdriver.
+To fix Rattling Pipes, you need pipe insulation and pipe straps.
+To fix Faded Carpet Stains, you need carpet cleaner and scrub brush.
+To fix Loose Handrails, you need screws and screwdriver.
+To fix Chipped Porcelain, you need porcelain repair kit and sandpaper.
+To fix Rusted Garden Tools, you need wire brush and lubricating oil.
+To fix Squeaky Floors, you need talcum powder and hammer.
+To fix Loose Deck Boards, you need deck screws and drill.
+To fix Cracked Drywall, you need drywall joint compound and putty knife.
+To fix Leaky Roof, you need roof patch and roofing nails.
+To fix Stained Carpets, you need carpet stain remover and scrub brush.
+To fix Loose Wallpaper, you need wallpaper adhesive and smoothing brush.
+To fix Broken Fence Panels, you need replacement panels and hammer.
+To fix Creaky Stairs, you need wood glue and nails.
+To fix Damaged Laminate Flooring, you need laminate repair kit and utility knife.
+To fix Cracked Bathtub, you need bathtub repair kit and caulking gun.
+To fix Faulty Garage Door Opener, you need replacement remote and screwdriver.
+To fix Flickering Computer Screen, you need VGA cable and monitor cleaner.
+To fix Leaky Kitchen Sink, you need plumber's putty and adjustable wrench.
+To fix Squeaky Bicycle Chain, you need chain lubricant and chain tool.
+To fix Jammed Printer, you need printer driver update and paperclip.
+To fix Dull Kitchen Knives, you need knife sharpener and cutting board.
+To fix Scratched Glass Surfaces, you need glass polish and microfiber cloth.
+To fix Stuck Zippers, you need zipper lubricant and needle-nose pliers.
+To fix Cracked Phone Screen, you need phone screen replacement and screwdriver.
+To fix Faded Outdoor Furniture, you need UV protectant spray and sponge.
+To fix Clogged Showerhead, you need vinegar and toothbrush.
+To fix Damaged Car Paint, you need touch-up paint and sandpaper.
+To fix Squeaky Office Chair, you need silicone spray and wrench.
+To fix Loose Cabinet Doors, you need cabinet hinges and screwdriver.
+To fix Scratched Stainless Steel Appliances, you need stainless steel cleaner and soft cloth.
+To fix Stuck Drawers, you need drawer slides and hammer.
+To fix Dead Car Battery, you need jumper cables and another vehicle.
+To fix Smelly Garbage Disposal, you need baking soda and vinegar.
+To fix Cracked Laptop Screen, you need laptop screen replacement and screwdriver.
+To fix Flickering Candle Flame, you need candle wick trimmer and lighter.
+To fix Damaged Wooden Floors, you need wood filler and sandpaper.
+To fix Leaky Faucet, you need faucet repair kit and adjustable wrench.
+To fix Tangled Earphones, you need untangling tool and patience.
+To fix Scratched Car Interior, you need upholstery repair kit and cloth.
+To fix Stuck Key in Lock, you need graphite lubricant and pliers.
+To fix Dull Lawn Mower Blades, you need mower blade sharpener and gloves.
+To fix Cracked Phone Case, you need phone case replacement and screwdriver.
+To fix Faded Outdoor Signage, you need sign paint and brushes.
+To fix Clogged Gutters, you need gutter cleaning tool and ladder.
+To fix Damaged Leather Furniture, you need leather repair kit and sponge.
+To fix Squeaky Floorboards, you need powdered graphite and hammer.
+To fix Loose Bike Pedals, you need pedal wrench and lubricant.
+To fix Scratched Watch Face, you need watch scratch remover and cloth.
+To fix Stuck CD/DVD, you need disc cleaner and paperclip.
+To fix Cracked Picture Frame, you need frame repair kit and glue.
+To fix Flickering Outdoor Light, you need replacement bulb and ladder.
+To fix Damaged Vinyl Flooring, you need vinyl patching kit and heat gun.
+To fix Leaky Shower Enclosure, you need silicone caulk and caulk gun.
+To fix Tangled Necklace Chains, you need sewing needle and patience.
+To fix Scratched Car Rims, you need rim touch-up paint and sandpaper.
+To fix Stuck Zipper on Bag, you need zipper lubricant and pliers.
+To fix Dull Kitchen Countertops, you need countertop polish and sponge.
+To fix Cracked Ceramic Tiles, you need tile adhesive and grout float.
+To fix Faded Book Covers, you need book cover protectors and adhesive.
