@@ -66,7 +66,7 @@ const getUserDetailsByID = (req, res) => {
 
 // CRUD - Listing
 
-// Create a new Listing
+// Create a new Listing - Need work
 const createListing = (req, res) => {
   if (!req.oidc.isAuthenticated()) {
     return res.redirect('/login');
@@ -160,14 +160,19 @@ const updateListing = (req, res) => {
 
 // CRUD - Messages
 
-// Send message
+// Send message / Request Rental
 const sendMessage = (req, res) => {
   if (!req.oidc.isAuthenticated()) {
     return res.redirect('/login');
   }
+
   const receiverId = req.params.receiverId;
-  const senderId = req.body.senderId;
+  const senderName = req.oidc.user.nickname;
   const newMessageContent = req.body.message;
+  const pickupDate = req.body.pickupDate;
+  const pickupTime = req.body.pickupTime;
+  const returnDate = req.body.returnDate;
+  const returnTime = req.body.returnTime;
 
   // Search Reciever
   Rental.findOne({ _id: receiverId })
@@ -178,20 +183,28 @@ const sendMessage = (req, res) => {
 
       // Reciever - Incoming Message
       const newIncomingMessage = {
-        senderId: senderId,
-        content: newMessageContent
+        senderName: senderName,
+        pickupDate: pickupDate,
+        pickupTime: pickupTime,
+        returnDate: returnDate,
+        returnTime: returnTime,
+        message: newMessageContent
       };
 
       // Sender - Outgoing Message
       const newOutgoingMessage = {
         receiverId: receiverId,
-        content: newMessageContent
+        pickupDate: pickupDate,
+        pickupTime: pickupTime,
+        returnDate: returnDate,
+        returnTime: returnTime,
+        message: newMessageContent
       };
 
       receiver.messages.incoming.push(newIncomingMessage);
 
       // Search Sender
-      Rental.findOne({ _id: senderId })
+      Rental.findOne({ username: senderName })
         .then((sender) => {
           if (!sender) {
             return res.status(404).send('Sender Not Found');
