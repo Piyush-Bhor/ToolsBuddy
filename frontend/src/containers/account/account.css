@@ -18,14 +18,15 @@
     border-radius: 10px;
     display:flex;
     flex-direction: column;
-    align-items: flex-start;
+    /* align-items: flex-start; */
+    align-items: center;
     width:250px;
     
     background-color: white;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     padding-top:30px;
     padding-bottom:50px;
-    
+    word-wrap: break-word
 }
 
 .profile a{ 
@@ -48,20 +49,24 @@
     border-radius: 0;
 }
 
+
 .account-logout button{
-    background-color: transparent;
-    color:#1D3557;
+    border-radius: none;
+} 
+
+.account-text{
+    
 }
 
 .profile-header{
     width:100%;
-    display:flex;
+    /*display:flex;
     align-items: center;
-    justify-content: center;
-    text-align: left;
+    justify-content: center;  */
+    text-align: center;
     gap:10px;
     margin:auto;
-    flex-grow: 1;
+    /* flex-grow: 1; */
 }
 
 .profile-header p{

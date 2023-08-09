@@ -29,9 +29,13 @@ function Search() {
       setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${location.state.query}`)
       
     }
-    else{
+    else if(!query){
       setUrl("http://localhost:8080/rentals/getAllRentals")
     }
+    /* else{
+      setQuery(input);
+    setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${input}`);
+    } */
     
     // run when url changes
   }, [location.state, url]); 
@@ -57,7 +61,6 @@ function Search() {
         </form>
       </section>
 
-      {/*maybe make this a component later*/}
       <section className="listings">
 
         {listings && query && <h3>{listings.length} results</h3>}

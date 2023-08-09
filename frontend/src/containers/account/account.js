@@ -15,7 +15,7 @@ function Account() {
     const { user } = useAuth0();
     console.log(user)
 
-    const [page, setPage] = useState("details");
+    const [page, setPage] = useState("current");
     
     function handleClick(page){
         setPage(page);
@@ -36,17 +36,13 @@ function Account() {
                         alt="Profile"
                         className="avatar"
                         />
-                        <div>
+                        <div className="account-text">
                             <p>My Account</p>
                             <h3>{user.name}</h3>
                         </div>
                     </div>
                         
                     <div className="profile-links">
-
-                        <button onClick={() => handleClick("details")}>
-                            <FaEdit className="profile-icon" alt="edit icon" /> Edit Details
-                        </button>
                         <button onClick={() => handleClick("current")}>
                             <FaClipboardList className="profile-icon" alt="list icon" / >Current Listings
                         </button>
@@ -59,14 +55,16 @@ function Account() {
 
                         
                     </div>
-                    <button href="" className="account-logout">
-                        <BiLogOut id="logout-icon" alt="chat bubble icon" />
-                        <Logout />
-                    </button>
+                    {/* <button className="account-logout">
+                        <BiLogOut id="logout-icon" alt="chat bubble icon" /> */}
+                        <div className="account-logout">
+                        <Logout  />
+                        </div>
+                        
+                    {/* </button> */}
 
                 </aside>
                 <section className="account-details">
-                    {page === "details" && <Details/>}
                     {page === "current" && <ViewListing />}
                     {page === "new" && <AddListing />}
                     {page === "messages" && <Messages />}

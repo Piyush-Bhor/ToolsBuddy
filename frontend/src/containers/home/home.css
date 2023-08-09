@@ -50,6 +50,10 @@
     width:100%;
 }
 
+.home button{
+    color:white;
+}
+
 #categories{
     border:none;
     transition:0.3s;
@@ -100,14 +104,14 @@
     font-weight: 400;
 }
 
-hr{
+/* hr{
     border: 0;
   clear:both;
   display:block;
   width: 80%;               
   background-color:rgb(222, 222, 222);
   height: 1px;
-}
+} */
 
 /* Categories section */
 .category{
@@ -122,8 +126,8 @@ hr{
     content: "";
     display: block;
     width: 32px;
-    padding-top: 3px;
     border-bottom: 3px solid #E63946;
+    margin-bottom:20px
   }
 
 .category-grid {
@@ -229,11 +233,6 @@ hr{
     .heroResize{
         margin-top:-16px;
     }
-
-    /* .category-container{
-        grid-template-columns: 48.5% 48.5%;
-        grid-gap:3%
-    } */
 }
 
 @media only screen and (max-width: 390px) {

@@ -40,7 +40,6 @@ function Footer() {
             </ul>
           </div>
         </div>
-        <hr/>
         <div className="copy">
           <p>&copy; PYCS 2023</p>
         </div>

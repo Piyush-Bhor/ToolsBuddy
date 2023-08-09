@@ -58,6 +58,10 @@
     color:rgb(76, 76, 76)
 }
 
+.rentalForm{
+    margin-top:25px;
+}
+
 .booking-container{
     display:grid;
     grid-template-columns: 210px 10px 210px;
@@ -72,12 +76,8 @@
     padding:10px;
 }
 
-.rental select{
-    width:152px;
-}
-
-.rental input{
-    width:130px;
+.rental select, .rental input{
+    width:150px;
 }
 
 .booking label{
@@ -99,7 +99,22 @@
     border-left: 2px solid rgb(222, 222, 222);
     height: 175px;
     margin-top:15px;
-  }
+}
+
+.booking-finalize{
+    display:flex;
+    flex-direction: column;
+}
+
+.booking-finalize textarea{
+    width:250px;
+    
+}
+
+.booking-finalize button{
+    width:200px;
+    height:50px;
+}
 
 @media only screen and (max-width: 1280px) {
     .rental-container{
@@ -118,5 +133,9 @@
 
     .vl{
         display:none;
+    }
+
+    .booking-finalize label{
+        margin-top:20px;
     }
 }

@@ -63,42 +63,18 @@ function Rental() {
 
                     <form className="rentalForm" onSubmit={handleSubmit}>
                         <div className="booking-container">
-                        <div className="booking pickup">
-                            <h3>Pickup</h3>
-                            {listings && isLoaded &&
-                            <div>
-                                <label for="pickupDate">Date</label>
-                                <input type="date" id="pickupDate" name="pickupDate"
-                                value={listings.rentalPeriod.from.substring(0,10)}
-                                min={listings.rentalPeriod.from.substring(0,10)} max={listings.rentalPeriod.to.substring(0,10)} /> 
-                            </div>}
-                            <div>
-                            <label for="pickupTime">Time</label>
-                            <select name="pickupTime" id="pickupTime">
-                                <option value="" disabled selected>Select a time</option>
-                                <option value="11">11:00 AM</option>
-                                <option value="12">12:00 PM</option>
-                                <option value="13">1:00 PM</option>
-                                <option value="14">2:00 PM</option>
-                                <option value="15">3:00 PM</option>
-                            </select>
-                            </div>
-                        </div>
-
-                        {/* vertical line */}
-                        <div class="vl"></div>
-                        <div className="booking return">
-                            <h3>Return</h3>
-                            {listings && isLoaded &&
-                            <div>
-                                <label for="returnDate">Date</label>
-                                <input type="date" id="returnDate" name="returnDate"
-                                value={listings.rentalPeriod.from.substring(0,10)}
-                                min={listings.rentalPeriod.from.substring(0,10)} max={listings.rentalPeriod.to.substring(0,10)} /> 
-                            </div>}
-                            <div>
-                                <label for="returnTime">Time</label>
-                                <select name="returnTime" id="returnTime">
+                            <div className="booking pickup">
+                                <h3>Pickup</h3>
+                                {listings && isLoaded &&
+                                <div>
+                                    <label for="pickupDate">Date</label>
+                                    <input type="date" id="pickupDate" name="pickupDate"
+                                    value={listings.rentalPeriod.from.substring(0,10)}
+                                    min={listings.rentalPeriod.from.substring(0,10)} max={listings.rentalPeriod.to.substring(0,10)} /> 
+                                </div>}
+                                <div>
+                                <label for="pickupTime">Time</label>
+                                <select name="pickupTime" id="pickupTime">
                                     <option value="" disabled selected>Select a time</option>
                                     <option value="11">11:00 AM</option>
                                     <option value="12">12:00 PM</option>
@@ -106,11 +82,43 @@ function Rental() {
                                     <option value="14">2:00 PM</option>
                                     <option value="15">3:00 PM</option>
                                 </select>
+                                </div>
                             </div>
-                        </div>
 
+                            {/* vertical line */}
+                            <div class="vl"></div>
+                            <div className="booking return">
+                                <h3>Return</h3>
+                                {listings && isLoaded &&
+                                <div>
+                                    <label for="returnDate">Date</label>
+                                    <input type="date" id="returnDate" name="returnDate"
+                                    value={listings.rentalPeriod.from.substring(0,10)}
+                                    min={listings.rentalPeriod.from.substring(0,10)} max={listings.rentalPeriod.to.substring(0,10)} /> 
+                                </div>}
+                                <div>
+                                    <label for="returnTime">Time</label>
+                                    <select name="returnTime" id="returnTime">
+                                        <option value="" disabled selected>Select a time</option>
+                                        <option value="11">11:00 AM</option>
+                                        <option value="12">12:00 PM</option>
+                                        <option value="13">1:00 PM</option>
+                                        <option value="14">2:00 PM</option>
+                                        <option value="15">3:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="booking-finalize">
+                            
+                            <label for="message">Message (optional)</label>
+                            <textarea id="message" placeholder="Type your message here..."></textarea>
+                            
+                            
+                            <button type="submit">Request Rental</button>
                         </div>
-                        <button type="submit">Request Rental</button>
+                        </div>
+                        
+                        
                     </form>
                 </section>
             </div>

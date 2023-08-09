@@ -41,7 +41,8 @@
 }
 
 .search .listings{
-    width:75%
+    width:75%;
+    margin-top:20px;
 }
 
 .listings h3{

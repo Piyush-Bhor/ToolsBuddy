@@ -1,10 +1,12 @@
 
-import React, { useState, useEffect } from "react";
+
 import Listings from '../../components/Listings';
 import useFetch from '../../hooks/useFetch';
 
 function ViewListing() {
     const url = "http://localhost:8080/rentals/getAllRentals";
+    /* const {userId} = useParams(); */
+    //const url = `http://localhost:8080/profile/getUserDetailsByID/${userId}`;
     const {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
 
     return (

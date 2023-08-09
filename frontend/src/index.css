@@ -1,9 +1,18 @@
 /*https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557*/
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;900&display=swap');
 
 *{
   font-family: 'Inter', sans-serif;
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 /*hide horizontal overflow when using width 100vw*/
@@ -21,11 +30,12 @@ h1{
 
 button{
   background-color: #E63946;
+  
+  border-radius:25px;
+  color:white; 
   border:none;
   padding:10px 15px 10px 15px;
   font-size:16px;
-  border-radius:25px;
-  color:white;
   transition:0.3s;
   cursor:pointer;
 }

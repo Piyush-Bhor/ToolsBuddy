@@ -6,10 +6,15 @@ import Navbar from "./components/Navbar.js"
 import Footer from "./components/Footer.js"
 import Rental from "./containers/rental/Rental.js"
 import ChatBot from './components/ChatBotBtn';
+import React, { useEffect } from "react";
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
+  useEffect(() => {
+    document.title = "Tools Buddy";  
+  }, []);
+
   return (
     <div className="app">
       <Router>

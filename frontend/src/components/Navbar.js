@@ -2,7 +2,7 @@
 import './navbar.css';
 import Login from "./Login.js"
 import Logout from "./Logout.js"
-import Logo from '../assets/logo-placeholder.png'
+import Logo from '../assets/logo.png'
 import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from 'react-router-dom'
 import { BiMenu } from "react-icons/bi";
@@ -79,9 +79,6 @@ function Navbar() {
                     <li >
                         <Login />
                     </li>
-                    {/* <li>
-                        <button className="signup" onClick={() => loginWithRedirect()}>Sign Up</button>
-                    </li> */}
                 </ul>
                 }
                 {isAuthenticated &&
