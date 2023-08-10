@@ -96,13 +96,15 @@
 }
 
 .perks p{
-    font-weight: 100;
+    font-weight: 200;
 }
 
 .perks h4{
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 600;
 }
+
+
 
 /* hr{
     border: 0;

@@ -13,7 +13,7 @@ import Logout from "../../components/Logout.js"
 
 function Account() {
     const { user } = useAuth0();
-    console.log(user)
+    /* console.log(user) */
 
     const [page, setPage] = useState("current");
     
@@ -38,7 +38,7 @@ function Account() {
                         />
                         <div className="account-text">
                             <p>My Account</p>
-                            <h3>{user.name}</h3>
+                            <p className="display-name">{user.name}</p>
                         </div>
                     </div>
                         

@@ -4,9 +4,10 @@ import Listings from '../../components/Listings';
 import useFetch from '../../hooks/useFetch';
 
 function ViewListing() {
-    const url = "http://localhost:8080/rentals/getAllRentals";
+    //const url = "http://localhost:8080/rentals/getAllRentals";
     /* const {userId} = useParams(); */
     //const url = `http://localhost:8080/profile/getUserDetailsByID/${userId}`;
+    const url = "http://localhost:8080/profile/getRentedItems/647e6256cf9632b4ec39bbe2";
     const {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
 
     return (

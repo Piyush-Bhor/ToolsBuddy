@@ -15,16 +15,17 @@ function Footer() {
         <button className="up" onClick={scrollToTop}><AiOutlineArrowUp /></button>
         <div className="footer-grid">
           <div className="socials">
-            <h4>Rental App</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-              sed do eiusmod tempor incididunt ut labore et dolore magna 
-              aliqua. Ut enim ad minim veniam.</p>
+            <h4>Tools Buddy</h4>
+            <p>Tool Buddy is a cutting-edge app that connects people looking to borrow tools with those 
+              who have them to lend. Our platform fosters a vibrant community of tool enthusiasts, 
+              empowering them to save money, earn money, and forge meaningful connections with like-minded
+              individuals.</p>
             <AiOutlineGithub className="footer-icon"/>
             <AiOutlineTwitter className="footer-icon"/>
             <AiFillLinkedin className="footer-icon"/>
           </div>
           <div>
-            <h4>Links</h4>
+            <h4>Quick Links</h4>
             <ul>
               <li>About</li>
               <li>Search</li>
@@ -32,16 +33,16 @@ function Footer() {
             </ul>
           </div>
           <div>
-          <h4>Links</h4>
+          <h4>Legal</h4>
             <ul>
-              <li>About</li>
-              <li>Search</li>
-              <li>Account</li>
+              <li>Acknowledgements</li>
+              <li>Terms & Conditions</li>
+              <li>Contact Us</li>
             </ul>
           </div>
         </div>
         <div className="copy">
-          <p>&copy; PYCS 2023</p>
+          <p>&copy; Tools Buddy 2023</p>
         </div>
         
         

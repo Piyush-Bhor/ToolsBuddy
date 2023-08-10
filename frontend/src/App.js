@@ -7,6 +7,7 @@ import Footer from "./components/Footer.js"
 import Rental from "./containers/rental/Rental.js"
 import ChatBot from './components/ChatBotBtn';
 import React, { useEffect } from "react";
+import Test from "./containers/Test.js"
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/rental/:id/:index" element={<Rental />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/test" element={<Test />} />
           </Routes>
         </main>
         <ChatBot />

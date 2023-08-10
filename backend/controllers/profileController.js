@@ -79,8 +79,8 @@ const createListing = (req, res) => {
     itemDescription,
     itemTags,
     itemPrice,
-    rentalPeriod,
-    itemImage,
+    /* rentalPeriod,
+    itemImage, */
   };
 
   Rental.findOne({ username: username })

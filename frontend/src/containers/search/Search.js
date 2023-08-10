@@ -9,6 +9,7 @@ function Search() {
   const [query, setQuery] = useState();
   const [input, setInput] = useState();
   const [url, setUrl] = useState("");
+  const [searchType, setSearchType] = useState('');
 
   const location = useLocation();
 
@@ -18,24 +19,34 @@ function Search() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setQuery(input);
-    setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${input}`);
+    if(searchType=="byName"){
+      setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${input}`);
+    }
+    else{
+      setUrl(`http://localhost:8080/rentals/searchRentalsByTags/${input}`)
+    }
   }
+
+  const updateValue = ({target}) => {
+    setSearchType(target.value);
+  };
 
   useEffect(() => {
     // if query is coming from home page
     if(location.state){
-      
       setQuery(location.state.query);
-      setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${location.state.query}`)
-      
+      if(location.state.searchType == "byName"){
+        setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${location.state.query}`)
+      }
+      else{
+        setUrl(`http://localhost:8080/rentals/searchRentalsByTags/${location.state.query}`)
+      }  
     }
+
+    // if there is no query, show all rentals
     else if(!query){
       setUrl("http://localhost:8080/rentals/getAllRentals")
     }
-    /* else{
-      setQuery(input);
-    setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${input}`);
-    } */
     
     // run when url changes
   }, [location.state, url]); 
@@ -49,14 +60,10 @@ function Search() {
           <input type="text" placeholder="Search..." value={input}
             onChange={(e) => setInput(e.target.value)}/>
 
-          <select name="categories" id="categories">
-            <option value="" disabled selected>Categories</option>
-            <option value="hardware">Hardware</option>
-            <option value="cooking">Cooking</option>
-            <option value="gardening">Gardening</option>
-            <option value="cleaning">Cleaning</option>
-            <option value="arts">Arts & Crafts</option>
-          </select>
+              <select name="categories" id="categories" onChange={updateValue}>
+                <option value="byName">By Name</option>
+                <option value="byTags">By Tags</option>
+              </select> 
           <button type="submit"><FaSearch /></button>
         </form>
       </section>
