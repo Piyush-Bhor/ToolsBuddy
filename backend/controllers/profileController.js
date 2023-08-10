@@ -71,14 +71,16 @@ const createListing = (req, res) => {
   if (!req.oidc.isAuthenticated()) {
     return res.redirect('/login');
   }
-  const { userID, itemName, itemDescription, itemTags, itemPrice, rentalPeriod, itemImage } = req.body;
+  const { userID, itemName, itemDescription, itemTags, itemPrice, 
+   /*  rentalPeriod, itemImage  */
+  } = req.body;
   const newRental = {
     itemName,
     itemDescription,
     itemTags,
     itemPrice,
-    rentalPeriod,
-    itemImage,
+    /* rentalPeriod,
+    itemImage, */
   };
 
   Rental.findOne({ _id: userID })

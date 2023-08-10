@@ -18,6 +18,7 @@ import Guitar from '../../assets/guitar.jpg';
 
 function Home() {
   const [query, setQuery] = useState('');
+  const [searchType, setSearchType] = useState('');
   const navigate = useNavigate();
   const url = "http://localhost:8080/rentals/getAllRentals";
   const {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
@@ -25,8 +26,12 @@ function Home() {
   // redirect to search
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/search', {state:{query:query}});
+    navigate('/search', {state:{query:query, searchType:searchType}});
   }
+
+  const updateValue = ({target}) => {
+    setSearchType(target.value);
+  };
 
   return (
     <div className="home">
@@ -42,14 +47,16 @@ function Home() {
               <input type="text" placeholder="Search..." value={query}
               onChange={(e) => setQuery(e.target.value)} />
 
-              <select name="categories" id="categories">
-                <option value="" disabled selected>Categories</option>
+              <select name="categories" id="categories" onChange={updateValue}>
+                {/* <option value="" disabled selected>Categories</option>
                 <option value="hardware">Hardware</option>
                 <option value="cooking">Cooking</option>
                 <option value="gardening">Gardening</option>
                 <option value="cleaning">Cleaning</option>
-                <option value="arts">Arts & Crafts</option>
-              </select>
+                <option value="arts">Arts & Crafts</option> */}
+                <option value="byName">By Name</option>
+                <option value="byTags">By Tags</option>
+              </select> 
             
               <button><FaSearch alt="search icon" /></button>
             
