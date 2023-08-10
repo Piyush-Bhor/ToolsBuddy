@@ -55,10 +55,10 @@ function AddListing() {
                 <form method="POST" action="http://localhost:8080/profile/createListing" className="listing-form">
                     <div className="inputs">
                         <label for="new-name">Listing Name</label>
-                        <input id="new-name" name="itemName" onChange={handleChange} required />
+                        <input id="new-name" name="itemName" required />
 
                         <label for="new-price">Price</label>
-                        <input id="new-price" name="itemPrice" onChange={handleChange} required />
+                        <input id="new-price" name="itemPrice" required />
 
                         <label for="itemDescription">Description</label>
                         <textarea 
@@ -72,7 +72,7 @@ function AddListing() {
                         </textarea> 
 
                         <label for="new-tags">Tags</label>
-                        <input id="new-tags" name="itemTags" onChange={handleChange} required
+                        <input id="new-tags" name="itemTags" required
                         placeholder="Separate tags by comma" />
 
                         <button type="submit">Add Listing</button>
