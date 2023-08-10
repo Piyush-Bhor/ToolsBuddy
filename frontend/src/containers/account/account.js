@@ -11,9 +11,11 @@ import { AiFillFileAdd, AiFillMessage } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import Logout from "../../components/Logout.js"
 
+
+
 function Account() {
     const { user } = useAuth0();
-    /* console.log(user) */
+    /* console.log(user)  */
 
     const [page, setPage] = useState("current");
     
@@ -38,7 +40,7 @@ function Account() {
                         />
                         <div className="account-text">
                             <p>My Account</p>
-                            <p className="display-name">{user.name}</p>
+                            <p className="display-name">{user.nickname}</p>
                         </div>
                     </div>
                         
@@ -55,11 +57,11 @@ function Account() {
 
                         
                     </div>
-                    {/* <button className="account-logout">
-                        <BiLogOut id="logout-icon" alt="chat bubble icon" /> */}
-                        <div className="account-logout">
+                    <hr/>
+                    <div className="account-logout">
+                        <BiLogOut id="logout-icon" />
                         <Logout  />
-                        </div>
+                    </div>
                         
                     {/* </button> */}
 

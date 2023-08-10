@@ -26,17 +26,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
 // enable cors
-app.use(cors());
-app.use(function(req, res, next) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
-     
-    /* res.header("Access-Control-Allow-Origin", "http://localhost:8080/callback");
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Allow-Headers", "Origin,Content-Type, Authorization, x-id, Content-Length, X-Requested-With");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); */
-  next();
-}); 
+app.use(cors()); 
 
 // database connection
 mongoose.set("strictQuery", false);

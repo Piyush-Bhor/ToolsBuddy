@@ -1,14 +1,14 @@
 
 import React, { useState, useEffect } from "react";
 import ImageUploading from 'react-images-uploading';
+import { useAuth0 } from "@auth0/auth0-react";
+
 function AddListing() {
-    const [itemName, setItemName] = useState("");
+    /* const [itemName, setItemName] = useState("");
     const [itemDescription, setItemDescription] = useState("");
     const [itemTags, setItemTags] = useState("");
-    const [itemPrice, setItemPrice] = useState("");
+    const [itemPrice, setItemPrice] = useState(""); */
     
-    
-
     /* 
     const [itemImage, setImages] = React.useState([]);
     const maxNumber = 1;
@@ -17,34 +17,7 @@ function AddListing() {
         console.log(imageList, addUpdateIndex);
         setImages(imageList);
     }; */
-
-
-    async function create(e){
-        e.preventDefault();
-        await fetch("http://localhost:8080/profile/createListing", {
-            method:'post',
-            /* mode: 'cors', */
-            headers: {
-                'Content-Type': 'application/json',
-                /* "Access-Control-Allow-Headers": "*",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "*"  */
-            },
-            body: JSON.stringify({
-                itemName: itemName,
-                itemDescription: itemDescription,
-                itemTags: itemTags,
-                itemPrice: itemPrice,
-                userId: "647e6256cf9632b4ec39bbe2"
-                /*rentalPeriod: rentalPeriod,
-                 itemImage: itemImage */
-            })
-        }).catch(error => {
-            console.log(error);
-        });
-    }
-
-    
+    const { user } = useAuth0();
 
     return (
         
@@ -52,28 +25,44 @@ function AddListing() {
             <h1>Add Listing</h1>
             <section>
                 
-                <form method="POST" action="http://localhost:8080/profile/createListing" className="listing-form">
+                <form method="POST" 
+                action="http://localhost:8080/profile/createListing" 
+                className="listing-form"
+                /* enctype="multipart/form-data" */
+                >
+                   
                     <div className="inputs">
-                        <label for="new-name">Listing Name</label>
-                        <input id="new-name" name="itemName" required />
+                        <input id="username" name="username" value={user.nickname} hidden /> 
 
-                        <label for="new-price">Price</label>
-                        <input id="new-price" name="itemPrice" required />
+                        <label for="itemName">Listing Name</label>
+                        <input id="itemName" name="itemName" required />
+
+                        <label for="rentalPeriod">Rental Period</label>
+                        <input type="date" id="rentalPeriod" name="rentalPeriod" />
+
+                        {/* <label for="rentalPeriod">Rental Period</label>
+                        <input type="date" id="rentalPeriod" name="rentalPeriod" /> */}
+
+                        <label for="itemImage">Item image</label>
+                        {/* <input type="file" name="itemImage" id="itemImage" /> */}
+                        <input id="itemImage" name="itemImage" />
+
+                        <label for="itemPrice">Price</label>
+                        <input id="itemPrice" name="itemPrice" required />
 
                         <label for="itemDescription">Description</label>
                         <textarea 
-                        id="new-description" 
+                        id="itemDescription" 
                         name="itemDescription" 
                         rows="4"
                         placeholder="Add a description of your listing." 
-                        value = { itemDescription }
-                        onChange={(e) => setItemDescription(e.target.value)}
+                        /* value = { itemDescription }
+                        onChange={(e) => setItemDescription(e.target.value)} */
                         required>
                         </textarea> 
 
-                        <label for="new-tags">Tags</label>
-                        <input id="new-tags" name="itemTags" required
-                        placeholder="Separate tags by comma" />
+                        <label for="itemTags">Tags</label>
+                        <input id="itemTags" name="itemTags" />
 
                         <button type="submit">Add Listing</button>
                     </div>

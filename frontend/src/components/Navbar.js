@@ -49,7 +49,7 @@ function Navbar() {
                                 alt="Profile"
                                 className="nav-avatar"
                                 />   
-                                <span>Hi, {user.name}</span>
+                                <span>Hi, {user.nickname}</span>
                             </p>
                         </NavLink>
 

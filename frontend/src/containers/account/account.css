@@ -25,7 +25,8 @@
     background-color: white;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     padding-top:30px;
-    padding-bottom:50px;
+    margin-bottom:50px;
+    padding-bottom:20px;
     word-wrap: break-word
 }
 
@@ -74,7 +75,7 @@
 .profile-header p{
     color:rgb(79, 79, 79);
     font-size: 14px;
-    margin-bottom:-10px;
+    margin-bottom:-20px;
 }
 
 .profile-links{
@@ -83,9 +84,11 @@
     margin:auto;
     /* align-items: flex-start; */
     flex-grow: 1;
-    margin-top:20px;
+    
     align-items: flex-start;
     transition: 0.3s;
+    margin-bottom:50px;
+    margin-top:50px;
 }
 
 .profile-links button:hover{
@@ -113,7 +116,7 @@
 
 .profile-icon{
     width:30px;
-    margin-right:20px;
+    margin-right:5px;
     
 }
 
@@ -186,10 +189,263 @@ label{
     margin-bottom:15px;
 }
 
-/* .small-listings{
-    text-decoration: none;
-} */
+.accounthr{
+    width:100%;
+    margin-top:10px;
+    text-align: center;
+}
 
 .view-listing{
-    width:80%;
+    width:50%;
 }
+
+/* messages */
+.messages{
+    width:100%;
+    margin:auto;
+    border-radius: 20px;
+}
+
+.inside{
+    /* display:flex;
+    width:100%; */
+    margin-top:20px;
+    display:grid;
+    grid-template-columns: 25% 60%;
+    
+}
+
+.inside aside{
+    border-radius: 20px 0 0 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.inside article{
+    border-radius: 0 20px 20px 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.convo-info{
+    display:flex;
+    gap:20px;
+    align-items: start;
+}
+
+.inside aside img{
+    width:50px;
+}
+
+.messages aside, .messages article{
+    background-color: white;
+    padding:1rem;
+}
+
+.messages h4{
+    margin-bottom:50px;
+    text-align: center;
+}
+
+.messaging{
+    width:100%;
+    height:50px;
+    border:none;
+}
+
+.messaging-input button{
+    text-align: center;
+    border-radius: 100%;
+    margin:auto
+}
+
+.snippet{
+    font-style: italic;
+    color:grey
+}
+
+.messaging-input{
+    display:flex;
+}
+
+.talk-bubble{
+    white-space: pre-wrap;
+  padding: 12px 16px;
+  border-radius: 10px 10px 10px 0px;
+  max-width: 75%;
+  font-size: 0.95rem;
+  background: #c0c0c0;
+}
+
+.messages article img{
+    width:50px;
+    
+}
+
+.messages img{
+    clip-path: circle(50% at 50% 50%);
+}
+
+.messages article .incoming{
+    display:flex;
+    align-items: flex-end;
+    gap:10px;
+    margin-bottom:50px;
+}
+
+.account-logout button{
+    background-color: transparent;
+    color:black;
+}
+
+.account hr{
+    margin-bottom:20px;
+}
+
+.account-logout{
+    transition: 0.3s;
+}
+
+.account-logout:hover{
+    color:#E63946
+}
+
+  /* CSS talk bubble */
+  /* 
+  .talk-bubble {
+      margin: 40px;
+    display: inline-block;
+    position: relative;
+      width: 200px;
+      height: auto;
+      background-color: #A8DADC;
+  }
+  .round{
+    border-radius: 30px;
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+  }
+  
+  
+  .tri-right.left-top:after{
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+    left: -20px;
+      right: auto;
+    top: 0px;
+      bottom: auto;
+      border: 22px solid;
+      border-color: #A8DADC transparent transparent transparent;
+  }
+  
+  
+  .tri-right.left-in:after{
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+    left: -20px;
+      right: auto;
+    top: 38px;
+      bottom: auto;
+      border: 12px solid;
+      border-color: #A8DADC #A8DADC transparent transparent;
+  }
+  
+  .tri-right.border.btm-left:before {
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: -8px;
+    right: auto;
+    top: auto;
+      bottom: -40px;
+      border: 32px solid;
+      border-color: transparent transparent transparent #666;
+  }
+  .tri-right.btm-left:after{
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: 0px;
+    right: auto;
+    top: auto;
+      bottom: -20px;
+      border: 22px solid;
+      border-color: transparent transparent transparent #A8DADC;
+  }
+  
+  .tri-right.btm-left-in:after{
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: 38px;
+    right: auto;
+    top: auto;
+      bottom: -20px;
+      border: 12px solid;
+      border-color: #A8DADC transparent transparent #A8DADC;
+  }
+  
+  .tri-right.btm-right-in:after{
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+    left: auto;
+      right: 38px;
+      bottom: -20px;
+      border: 12px solid;
+      border-color: #A8DADC #A8DADC transparent transparent;
+  }
+  
+  .tri-right.btm-right:after{
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+    left: auto;
+      right: 0px;
+      bottom: -20px;
+      border: 12px solid;
+      border-color: #A8DADC #A8DADC transparent transparent;
+  }
+  
+  .tri-right.right-in:after{
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+    left: auto;
+      right: -20px;
+    top: 38px;
+      bottom: auto;
+      border: 12px solid;
+      border-color: #A8DADC transparent transparent #A8DADC;
+  }
+  
+  .tri-right.right-top:after{
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+    left: auto;
+      right: -20px;
+    top: 0px;
+      bottom: auto;
+      border: 20px solid;
+      border-color: #A8DADC transparent transparent transparent;
+  }
+  
+  .talktext{
+    padding: 1em;
+      text-align: left;
+    line-height: 1.5em;
+  }
+  .talktext p{
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+  } */

@@ -7,7 +7,7 @@ import Footer from "./components/Footer.js"
 import Rental from "./containers/rental/Rental.js"
 import ChatBot from './components/ChatBotBtn';
 import React, { useEffect } from "react";
-import Test from "./containers/Test.js"
+import Test from "./containers/Test.js";
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 

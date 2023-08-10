@@ -60,3 +60,8 @@ button:hover, button[type=submit]:hover{
 ul{
   list-style-type: none;
 }
+
+hr{
+  width:80%;
+  border-color: rgb(249, 249, 249);
+}

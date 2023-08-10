@@ -12,8 +12,6 @@ import Cleaning from '../../assets/cleaning.jpg';
 import Cooking from '../../assets/cooking.jpg';
 import Gardening from '../../assets/gardening.jpg';
 import Hardware from '../../assets/hardware.jpg';
-import Paint from '../../assets/paint.jpg';
-import Guitar from '../../assets/guitar.jpg';
 
 
 function Home() {
@@ -48,12 +46,6 @@ function Home() {
               onChange={(e) => setQuery(e.target.value)} />
 
               <select name="categories" id="categories" onChange={updateValue}>
-                {/* <option value="" disabled selected>Categories</option>
-                <option value="hardware">Hardware</option>
-                <option value="cooking">Cooking</option>
-                <option value="gardening">Gardening</option>
-                <option value="cleaning">Cleaning</option>
-                <option value="arts">Arts & Crafts</option> */}
                 <option value="byName">By Name</option>
                 <option value="byTags">By Tags</option>
               </select> 
@@ -86,7 +78,7 @@ function Home() {
         <div>
           <FaMoneyBillWave className="perks-icon" alt="earth icon" />
           <h4>Save Money</h4>
-          <p>Save those hard earned dollars</p>
+          <p>Pay a fraction of the price of retail</p>
         </div>
       </section>
 
