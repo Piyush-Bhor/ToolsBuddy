@@ -71,8 +71,10 @@ const createListing = (req, res) => {
   if (!req.oidc.isAuthenticated()) {
     return res.redirect('/login');
   }
-  const { userID, itemName, itemDescription, itemTags, itemPrice, rentalPeriod, itemImage } = req.body;
+  const { itemName, itemDescription, itemTags, itemPrice, rentalPeriod, itemImage } = req.body;
+  const username = req.oidc.user.nickname;
   const newRental = {
+    username,
     itemName,
     itemDescription,
     itemTags,
@@ -81,7 +83,7 @@ const createListing = (req, res) => {
     itemImage,
   };
 
-  Rental.findOne({ _id: userID })
+  Rental.findOne({ username: username })
     .then((user) => {
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
@@ -91,7 +93,6 @@ const createListing = (req, res) => {
     })
     .then(() => res.status(201).json({ message: 'Item listing created successfully' }))
     .catch((err) => {
-      console.log(userID)
       console.log('Error Creating Item Listing:', err);
       return res.status(500).send('Error Creating Item Listing');
     });

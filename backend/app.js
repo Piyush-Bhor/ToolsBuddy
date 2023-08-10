@@ -62,9 +62,34 @@ app.use('/', indexRoutes);
 app.use('/rentals', rentalRoutes);
 app.use('/profile', profileRoutes);
 
-// oauth 
+/* 
+//oauth 
 app.get('/outh_profile', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user, null, 2));
+});
+*/
+
+app.post('/auth/oauth/callback', (req, res) => {
+  // Process OAuth callback, get username
+  const username = req.oidc.user.nickname;
+  const itemsRented = [];
+  const itemsLend = [];
+
+  const newRental = new Rental({
+    username : username,
+    itemsRented: itemsRented,
+    messages: { incoming: [], outgoing: [] },
+    itemsLend: itemsLend,
+  });
+
+  newRental.save()
+    .then(() => {
+      return res.status(201).json({ message: 'User created successfully' });
+    })
+    .catch((error) => {
+      console.error('Error saving user:', error);
+      return res.status(500).json({ error: 'Error creating user' });
+    });
 });
 
 // server
