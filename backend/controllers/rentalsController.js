@@ -59,7 +59,8 @@ const getAllRentals = (req, res) => {
         return rental.itemsLend.map((itemLend, itemIndex) => {
           const item = {
             ...itemLend,
-            originalId: rental._id.toString()
+            originalId: rental._id.toString(),
+            username: rental.username
           };
           const { $__parent, $__, _doc, $isNew, ...resItem } = item; // To remove unrequired fields
           return resItem;

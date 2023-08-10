@@ -66,7 +66,7 @@ const getUserDetailsByID = (req, res) => {
 
 // CRUD - Listing
 
-// Create a new Listing - Need work
+// Create a new Listing
 const createListing = (req, res) => {
   if (!req.oidc.isAuthenticated()) {
     return res.redirect('/login');
