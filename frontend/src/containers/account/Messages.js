@@ -7,7 +7,8 @@ import { IconContext } from "react-icons";
 import Icon from '../../assets/re.png';
 
 function Messages() {
-    const url = "/profile/readAllIncomingMessages/647e6256cf9632b4ec39bbe1";
+    const url = "http://localhost:8080/profile/readAllIncomingMessages/647e6256cf9632b4ec39bbe1";
+    /* const url = "http://localhost:8080/rentals/getAllRentals"; */
     const [messages, setMessages] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const [errorMessage, setErrorMessage] = useState();

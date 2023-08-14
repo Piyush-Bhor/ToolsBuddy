@@ -9,7 +9,7 @@ function Search() {
   const [query, setQuery] = useState();
   const [input, setInput] = useState();
   const [url, setUrl] = useState("");
-  const [searchType, setSearchType] = useState('');
+  const [searchType, setSearchType] = useState("byName");
 
   const location = useLocation();
 
@@ -35,11 +35,12 @@ function Search() {
     // if query is coming from home page
     if(location.state){
       setQuery(location.state.query);
-      if(location.state.searchType == "byName"){
-        setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${location.state.query}`)
+      if(location.state.searchType == "byTags"){
+        setUrl(`http://localhost:8080/rentals/searchRentalsByTags/${location.state.query}`);
       }
       else{
-        setUrl(`http://localhost:8080/rentals/searchRentalsByTags/${location.state.query}`)
+        
+        setUrl(`http://localhost:8080/rentals/searchRentalsByItemName/${location.state.query}`)
       }  
     }
 

@@ -120,7 +120,7 @@ const ChatBotBtn = () => {
 
         ];
         const configuration = new Configuration({
-            apiKey: "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",
+            apiKey: "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",
         });
         const openai = new OpenAIApi(configuration);
 
