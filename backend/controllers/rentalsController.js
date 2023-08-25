@@ -52,6 +52,7 @@ const getRentalsByItemName = (req, res) => {
 };
 
 // get All Rentals
+/*
 const getAllRentals = (req, res) => {
   Rental.find()
     .then((rentals) => {
@@ -63,6 +64,7 @@ const getAllRentals = (req, res) => {
             username: rental.username
           };
           const { $__parent, $__, _doc, $isNew, ...resItem } = item; // To remove unrequired fields
+          console.log(itemIndex);
           return resItem;
         });
       });
@@ -78,11 +80,36 @@ const getAllRentals = (req, res) => {
       res.status(500).send('Error Retrieving Listings');
     });
 };
+*/
+const getAllRentals = (req, res) => {
+  Rental.find()
+    .then((rentals) => {
+      const itemsLend = [];
+
+      rentals.forEach((rental) => {
+        rental.itemsLend.forEach((itemLend, itemIndex) => {
+          if (itemIndex === itemLend.__index) {
+            itemsLend.push(itemLend);
+          }
+        });
+      });
+
+      if (itemsLend.length > 0) {
+        res.json(itemsLend);
+      } else {
+        res.status(404).send('Listing Not Found');
+      }
+    })
+    .catch((err) => {
+      console.log('Error retrieving listings:', err);
+      res.status(500).send('Error Retrieving Listings');
+    });
+};
+
 
 // search Rentals by Tags
 const searchRentalsByTags = (req, res) => {
   const tags = req.params.Tags.split(',');
-  console.log(tags.length);
   if (tags.length === 0) {
     return res.status(400).send('Invalid Tags');
   }
@@ -115,6 +142,7 @@ const searchRentalsByTags = (req, res) => {
 };
 
 // search Rentals by Name
+/*
 const searchRentalsByItemName = (req, res) => {
   const searchQuery = req.params.itemName.split(',');
   if (searchQuery.length === 0) {
@@ -134,9 +162,49 @@ const searchRentalsByItemName = (req, res) => {
               };
               const { $__parent, $__, _doc, $isNew, ...resItem } = itemWithOriginalID; // To remove unrequired fields
               items.push(resItem);
+              console.log(resItem);
             }
           });
         });
+        return res.json(items);
+      } else {
+        return res.status(404).send('Listings Not Found');
+      }
+    })
+    .catch((err) => {
+      console.log('Error Retrieving Listings:', err);
+      return res.status(500).send('Error Retrieving Listings');
+    });
+};
+*/
+const searchRentalsByItemName = (req, res) => {
+  const searchQuery = req.params.itemName;
+
+  if (!searchQuery) {
+    return res.status(400).send('Search query is missing');
+  }
+
+  Rental.find({
+    'itemsLend.itemName': { $regex: new RegExp(searchQuery, 'i') }
+  })
+    .then((results) => {
+      const items = [];
+
+      results.forEach((rental) => {
+        rental.itemsLend.forEach((item) => {
+          if (item.itemName.toLowerCase().includes(searchQuery.toLowerCase())) {
+            const rentalID = rental._id.toString();
+            const itemWithOriginalID = {
+              ...item,
+              originalId: rentalID
+            };
+            const { $__parent, $__, _doc, $isNew, ...resItem } = itemWithOriginalID;
+            items.push(resItem);
+          }
+        });
+      });
+
+      if (items.length > 0) {
         return res.json(items);
       } else {
         return res.status(404).send('Listings Not Found');
