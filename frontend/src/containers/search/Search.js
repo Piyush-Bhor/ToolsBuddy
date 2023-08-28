@@ -14,7 +14,7 @@ function Search() {
   const location = useLocation();
 
   // get data fetched using useFetch hook
-  let {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
+let {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -74,11 +74,9 @@ function Search() {
         {listings && query && <h3>{listings.length} results</h3>}
         <div className="listing-container">
           
-          {/* Loading and error message */}
+         
           {!isLoaded && !errorMessage && <p>Loading...</p>}
           {errorMessage && !listingData && !listings && <p> {errorMessage}</p>}
-
-          {/* If data exists, map the available listings from the db */}
           {listings && isLoaded && <Listings data={listings} num={10} />}
 
         </div>

@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 function Rental() {
     // get id and index from url
     const {id, index} = useParams();
+    console.log(id, index);
     const url = `http://localhost:8080/rentals/getRentalByID/${id}/${index}`
     const {data: listingData, listings, isLoaded, errorMessage} = useFetch(url);
     const { isAuthenticated } = useAuth0();

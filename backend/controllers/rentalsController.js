@@ -52,44 +52,20 @@ const getRentalsByItemName = (req, res) => {
 };
 
 // get All Rentals
-/*
-const getAllRentals = (req, res) => {
-  Rental.find()
-    .then((rentals) => {
-      const itemsLend = rentals.flatMap((rental) => {
-        return rental.itemsLend.map((itemLend, itemIndex) => {
-          const item = {
-            ...itemLend,
-            originalId: rental._id.toString(),
-            username: rental.username
-          };
-          const { $__parent, $__, _doc, $isNew, ...resItem } = item; // To remove unrequired fields
-          console.log(itemIndex);
-          return resItem;
-        });
-      });
-
-      if (itemsLend && itemsLend.length > 0) {
-        res.json(itemsLend);
-      } else {
-        res.status(404).send('Listing Not Found');
-      }
-    })
-    .catch((err) => {
-      console.log('Error retrieving listings:', err);
-      res.status(500).send('Error Retrieving Listings');
-    });
-};
-*/
 const getAllRentals = (req, res) => {
   Rental.find()
     .then((rentals) => {
       const itemsLend = [];
-
+      
       rentals.forEach((rental) => {
         rental.itemsLend.forEach((itemLend, itemIndex) => {
           if (itemIndex === itemLend.__index) {
-            itemsLend.push(itemLend);
+            const itemWithRentalId = {
+              itemLend,
+              originalId: rental._id.toString(),
+              itemIndex: itemIndex
+            };
+            itemsLend.push(itemWithRentalId);
           }
         });
       });
@@ -105,7 +81,6 @@ const getAllRentals = (req, res) => {
       res.status(500).send('Error Retrieving Listings');
     });
 };
-
 
 // search Rentals by Tags
 const searchRentalsByTags = (req, res) => {
@@ -142,31 +117,31 @@ const searchRentalsByTags = (req, res) => {
 };
 
 // search Rentals by Name
-/*
 const searchRentalsByItemName = (req, res) => {
   const searchQuery = req.params.itemName.split(',');
   if (searchQuery.length === 0) {
     return res.status(400).send('Listing Not Found');
   }
-  Rental.find({ 'itemsLend.itemName': { $in: searchQuery } })
+
+  const regexPatterns = searchQuery.map(query => new RegExp(query, 'i'));
+
+  Rental.find({ 'itemsLend.itemName': { $in: regexPatterns } })
     .then((results) => {
       if (results.length > 0) {
-        const items = [];
+        const itemsLend = [];
         results.forEach((rental) => {
-          rental.itemsLend.forEach((item) => {
-            if (searchQuery.includes(item.itemName)) {
-              const rentalID = rental._id.toString();
+          rental.itemsLend.forEach((itemLend, itemIndex) => {
+            if (regexPatterns.some(regex => regex.test(itemLend.itemName))) {
               const itemWithOriginalID = {
-                ...item,
-                originalId: rentalID
+                itemLend,
+                originalId: rental._id.toString(),
+                itemIndex: itemIndex
               };
-              const { $__parent, $__, _doc, $isNew, ...resItem } = itemWithOriginalID; // To remove unrequired fields
-              items.push(resItem);
-              console.log(resItem);
+              itemsLend.push(itemWithOriginalID);
             }
           });
         });
-        return res.json(items);
+        return res.json(itemsLend);
       } else {
         return res.status(404).send('Listings Not Found');
       }
@@ -176,46 +151,6 @@ const searchRentalsByItemName = (req, res) => {
       return res.status(500).send('Error Retrieving Listings');
     });
 };
-*/
-const searchRentalsByItemName = (req, res) => {
-  const searchQuery = req.params.itemName;
-
-  if (!searchQuery) {
-    return res.status(400).send('Search query is missing');
-  }
-
-  Rental.find({
-    'itemsLend.itemName': { $regex: new RegExp(searchQuery, 'i') }
-  })
-    .then((results) => {
-      const items = [];
-
-      results.forEach((rental) => {
-        rental.itemsLend.forEach((item) => {
-          if (item.itemName.toLowerCase().includes(searchQuery.toLowerCase())) {
-            const rentalID = rental._id.toString();
-            const itemWithOriginalID = {
-              ...item,
-              originalId: rentalID
-            };
-            const { $__parent, $__, _doc, $isNew, ...resItem } = itemWithOriginalID;
-            items.push(resItem);
-          }
-        });
-      });
-
-      if (items.length > 0) {
-        return res.json(items);
-      } else {
-        return res.status(404).send('Listings Not Found');
-      }
-    })
-    .catch((err) => {
-      console.log('Error Retrieving Listings:', err);
-      return res.status(500).send('Error Retrieving Listings');
-    });
-};
-
   
 module.exports = {
     getRentalByID,
